@@ -1,5 +1,5 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef _SYLAR_LOGGER_H
+#define _SYLAR_LOGGER_H
 
 #include <string>
 #include <stdint.h>
@@ -17,6 +17,7 @@
 #include <unistd.h>
 
 #include "util/util.h"
+#include "util/Singleton.h"
 
 #define STREAM_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -244,12 +245,12 @@ public:
 
     std::string toYamlString();
 
+    Logger::Ptr m_root;
 private:
     std::string m_name;
     LogLevel::Level m_level;
     MutexType m_mutex;
     std::list<LogAppender::Ptr> m_appenders;
-    Logger::Ptr m_root;
     LogFormatter::Ptr m_formatter;
 };
 
@@ -275,7 +276,25 @@ private:
     uint64_t m_lastTime = 0;
 };
 
+class LoggerManager {
+public:
+    using Ptr = std::shared_ptr<LoggerManager>;
+
+    Logger::Ptr addLogger(const std::string& name);
+
+    Logger::Ptr getRoot() const { return m_root;}
+
+    LoggerManager();
+
+    void init(){}
+private:
+    Logger::Ptr m_root;
+    std::unordered_map<std::string, Logger::Ptr> m_loggers;
+};
+
+using LoggerMgr = Singleton<LoggerManager>;
+
 } // namespace sylar
 
 
-#endif //LOGGER_H
+#endif //_SYLAR_LOGGER_H

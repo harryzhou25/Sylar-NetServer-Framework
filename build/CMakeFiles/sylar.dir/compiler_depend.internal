@@ -4,6 +4,7 @@
 CMakeFiles/sylar.dir/src/log/logger.cpp.o
  /home/harry/workspace/sylar/sylar_learn/src/log/logger.cpp
  /home/harry/workspace/sylar/sylar_learn/src/log/logger.h
+ /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h
  /home/harry/workspace/sylar/sylar_learn/src/util/util.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
@@ -512,6 +513,7 @@ CMakeFiles/sylar.dir/src/util/util.cpp.o
 CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o
  /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp
  /home/harry/workspace/sylar/sylar_learn/src/log/logger.h
+ /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h
  /home/harry/workspace/sylar/sylar_learn/src/util/util.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h

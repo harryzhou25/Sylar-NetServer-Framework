@@ -13,6 +13,8 @@ int main() {
     // event->getSS() << "hello sylar log";
     // logger->log(sylar::LogLevel::INFO, event);
 
-    Bug_Log(logger) << "test";
+    auto t = sylar::LoggerMgr::getInstance()->getRoot();
+
+    Bug_Log(t) << "test";
     return 0;
 }

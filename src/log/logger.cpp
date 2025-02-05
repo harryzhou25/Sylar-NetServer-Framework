@@ -470,4 +470,27 @@ void Logger::fatal(LogEvent::Ptr event) {
     log(LogLevel::FATAL, event);
 }
 
+/////////////////// Logger Manager /////////////////////
+
+LoggerManager::LoggerManager() {
+    m_root.reset(new Logger);
+    m_root->addAppender(LogAppender::Ptr(new StdoutLogAppender));
+
+    m_loggers[m_root->getName()] = m_root;
+
+    init();
+}
+
+Logger::Ptr LoggerManager::addLogger(const std::string& name) {
+    auto it = m_loggers.find(name);
+    if(it != m_loggers.end()) {
+        return it->second;
+    }
+
+    Logger::Ptr logger(new Logger(name));
+    logger->m_root = m_root;
+    m_loggers[name] = logger;
+    return logger;
+}
+
 } // namespace sylar

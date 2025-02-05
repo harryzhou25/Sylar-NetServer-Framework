@@ -3,6 +3,7 @@
 
 CMakeFiles/sylar.dir/src/log/logger.cpp.o: /home/harry/workspace/sylar/sylar_learn/src/log/logger.cpp \
   /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
+  /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/util.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -509,6 +510,7 @@ CMakeFiles/sylar.dir/src/util/util.cpp.o: /home/harry/workspace/sylar/sylar_lear
 
 CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp \
   /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
+  /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/util.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -807,6 +809,8 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
+
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/include/c++/11/pstl/glue_memory_defs.h:
@@ -945,12 +949,6 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 
 /usr/include/asm-generic/errno.h:
 
-/usr/include/c++/11/bits/codecvt.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
 /usr/include/c++/11/cwchar:
 
 /usr/include/c++/11/bits/basic_string.tcc:
@@ -962,8 +960,6 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 /usr/include/c++/11/bits/stl_algo.h:
 
 /usr/include/c++/11/bits/locale_classes.tcc:
-
-/usr/include/c++/11/filesystem:
 
 /usr/include/c++/11/bits/allocated_ptr.h:
 
@@ -985,6 +981,8 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 
 /usr/include/pthread.h:
 
+/usr/include/alloca.h:
+
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
@@ -1001,12 +999,6 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
-/usr/include/alloca.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/c++/11/bits/char_traits.h:
-
 /usr/include/syscall.h:
 
 /usr/include/c++/11/bits/stl_tree.h:
@@ -1017,7 +1009,23 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 
 /usr/include/c++/11/type_traits:
 
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/c++/11/bits/char_traits.h:
+
+/home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h:
+
+/usr/include/c++/11/bits/nested_exception.h:
+
+/home/harry/workspace/sylar/sylar_learn/src/log/logger.cpp:
+
+/usr/include/c++/11/bits/fs_ops.h:
+
 /usr/include/c++/11/backward/binders.h:
+
+/usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/c++/11/iostream:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
@@ -1028,6 +1036,12 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 /usr/include/c++/11/vector:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/bits/enable_special_members.h:
 
 /usr/include/c++/11/map:
 
@@ -1058,12 +1072,6 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/c++/11/bits/exception_defines.h:
-
-/usr/include/c++/11/bits/nested_exception.h:
-
-/home/harry/workspace/sylar/sylar_learn/src/log/logger.cpp:
-
-/usr/include/c++/11/bits/fs_ops.h:
 
 /usr/include/c++/11/bits/unique_lock.h:
 
@@ -1107,9 +1115,7 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 
 /usr/include/c++/11/bits/locale_classes.h:
 
-/usr/include/c++/11/iostream:
-
-/usr/include/c++/11/bits/node_handle.h:
+/usr/include/c++/11/filesystem:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
@@ -1218,8 +1224,6 @@ CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/syl
 /usr/include/wctype.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
