@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o CMakeFiles/sylar.dir/src/log/logger.cpp.o -o /home/harry/workspace/sylar/sylar_learn/bin/sylar
