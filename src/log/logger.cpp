@@ -363,6 +363,22 @@ void StdoutLogAppender::log(Logger::Ptr logger, LogLevel::Level level, LogEvent:
     }
 }
 
+FileLogAppender::FileLogAppender(const std::string& filepath){
+    m_filepath = std::move(filepath);
+    filePathCheck(m_filepath);
+    m_filestream.open(m_filepath, std::ios::app);
+}
+
+bool FileLogAppender::reopen() {
+    filePathCheck(m_filepath);
+    m_filestream.open(m_filepath, std::ios::app);
+}
+
+void FileLogAppender::log(Logger::Ptr logger, LogLevel::Level level, LogEvent::Ptr event) {
+    if(!m_filestream.is_open()) reopen();
+    m_formatter->format(m_filestream, logger, level, event);
+}
+
 /////////////////// Logger /////////////////////
 
 Logger::Logger(const std::string& name) {

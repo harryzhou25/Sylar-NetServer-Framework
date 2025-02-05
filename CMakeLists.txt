@@ -14,6 +14,6 @@ add_executable(sylar
 set_target_properties(
     sylar
     PROPERTIES
-    CXX_STANDARD 14
+    CXX_STANDARD 17
     COMPILE_FLAGS "${CMAKE_CXX_FLAGS} ${RPCLIB_EXTRA_FLAGS}"
 )

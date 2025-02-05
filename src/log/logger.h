@@ -262,6 +262,19 @@ public:
     // std::string toYamlString() override;
 };
 
+class FileLogAppender : public LogAppender {
+public:
+    using Ptr = std::shared_ptr<FileLogAppender>;
+    FileLogAppender(const std::string& filename);
+    void log(Logger::Ptr logger, LogLevel::Level level, LogEvent::Ptr event) override;
+
+    bool reopen();
+private:
+    std::string m_filepath;
+    std::ofstream m_filestream;
+    uint64_t m_lastTime = 0;
+};
+
 } // namespace sylar
 
 

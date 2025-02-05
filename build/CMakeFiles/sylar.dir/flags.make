@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/harry/workspace/sylar/sylar_learn/src -I/home/harry/workspace/sylar/sylar_learn/tests
 
-CXX_FLAGS = -std=gnu++14
+CXX_FLAGS = -std=gnu++17
 

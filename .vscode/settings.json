@@ -3,6 +3,8 @@
         "fstream": "cpp",
         "functional": "cpp",
         "iostream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "iosfwd": "cpp",
+        "chrono": "cpp"
     }
 }
