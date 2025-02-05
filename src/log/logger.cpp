@@ -72,6 +72,10 @@ LogEventWrap::LogEventWrap(LogEvent::Ptr e) {
     m_event = std::move(e);
 }
 
+LogEventWrap::~LogEventWrap() {
+    m_event->getLogger()->log(m_event->getLevel(), m_event);
+}
+
 std::stringstream& LogEventWrap::getSS() {
     if(m_event) {
         return m_event->getSS();

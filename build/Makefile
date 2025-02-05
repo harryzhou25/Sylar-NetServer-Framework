@@ -153,6 +153,30 @@ src/log/logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/log/logger.cpp.s
 .PHONY : src/log/logger.cpp.s
 
+src/util/util.o: src/util/util.cpp.o
+.PHONY : src/util/util.o
+
+# target to build an object file
+src/util/util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.o
+.PHONY : src/util/util.cpp.o
+
+src/util/util.i: src/util/util.cpp.i
+.PHONY : src/util/util.i
+
+# target to preprocess a source file
+src/util/util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.i
+.PHONY : src/util/util.cpp.i
+
+src/util/util.s: src/util/util.cpp.s
+.PHONY : src/util/util.s
+
+# target to generate assembly for a file
+src/util/util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
+.PHONY : src/util/util.cpp.s
+
 tests/test_log_basic.o: tests/test_log_basic.cpp.o
 .PHONY : tests/test_log_basic.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
+	@echo "... src/util/util.o"
+	@echo "... src/util/util.i"
+	@echo "... src/util/util.s"
 	@echo "... tests/test_log_basic.o"
 	@echo "... tests/test_log_basic.i"
 	@echo "... tests/test_log_basic.s"

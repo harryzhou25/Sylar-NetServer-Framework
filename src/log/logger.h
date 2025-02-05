@@ -16,6 +16,24 @@
 #include <sys/syscall.h>
 #include <unistd.h>
 
+#include "util/util.h"
+
+#define STREAM_LOG_LEVEL(logger, level) \
+    if(logger->getLevel() <= level) \
+        sylar::LogEventWrap(sylar::LogEvent::Ptr(new sylar::LogEvent(logger, level, \
+                        __FILE__, __LINE__, 0, sylar::getThreadId(),\
+                sylar::getFiberId(), time(0), ""))).getSS()
+
+#define Bug_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
+
+#define Info_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::INFO)
+
+#define Warn_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::WARN)
+
+#define Error_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::ERROR)
+
+#define Fatal_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::FATAL)
+
 namespace sylar {
 
 static const std::string DEFAULT_FORMAT = "%d{%Y-%m-%d %H:%M:%S} %T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n";
@@ -93,7 +111,7 @@ public:
     LogEventWrap(LogEvent::Ptr e);
 
 
-    ~LogEventWrap() = default;
+    ~LogEventWrap();
 
     LogEvent::Ptr getEvent() const { return m_event;}
     

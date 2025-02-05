@@ -9,11 +9,10 @@ int main() {
     // appender->setFormatter(fmt);
     // logger->addAppender(appender);
 
-    std::string tmp = "test thread";
+    //sylar::LogEvent::Ptr event(new sylar::LogEvent(logger, sylar::LogLevel::INFO, __FILE__, int32_t(0), uint32_t(0), uint32_t(0), uint32_t(0), uint64_t(0), ""));
+    // event->getSS() << "hello sylar log";
+    // logger->log(sylar::LogLevel::INFO, event);
 
-    sylar::LogEvent::Ptr event(new sylar::LogEvent(logger, sylar::LogLevel::INFO, __FILE__, int32_t(0), uint32_t(0), uint32_t(0), uint32_t(0), uint64_t(0), ""));
-    event->getSS() << "hello sylar log";
-    logger->log(sylar::LogLevel::INFO, event);
-
+    Bug_Log(logger) << "test";
     return 0;
 }

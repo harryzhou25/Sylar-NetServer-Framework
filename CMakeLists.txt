@@ -8,7 +8,8 @@ set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 include_directories(${RPCLIB_INCLUDE_DIR} ${RPCLIB_TEST_DIR})
 add_executable(sylar 
             tests/test_log_basic.cpp 
-            src/log/logger.cpp)
+            src/log/logger.cpp
+            src/util/util.cpp)
 
 set_target_properties(
     sylar
