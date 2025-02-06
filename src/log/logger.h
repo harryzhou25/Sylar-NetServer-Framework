@@ -25,15 +25,15 @@
                         __FILE__, __LINE__, 0, sylar::getThreadId(),\
                 sylar::getFiberId(), time(0), ""))).getSS()
 
-#define Bug_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
+#define Log_Bug(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
 
-#define Info_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::INFO)
+#define Log_Info(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::INFO)
 
-#define Warn_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::WARN)
+#define Log_Warn(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::WARN)
 
-#define Error_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::ERROR)
+#define Log_Error(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::ERROR)
 
-#define Fatal_Log(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::FATAL)
+#define Log_Fatal(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::FATAL)
 
 namespace sylar {
 
