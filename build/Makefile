@@ -129,6 +129,30 @@ sylar/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/build
 .PHONY : sylar/fast
 
+src/config/config.o: src/config/config.cc.o
+.PHONY : src/config/config.o
+
+# target to build an object file
+src/config/config.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/config/config.cc.o
+.PHONY : src/config/config.cc.o
+
+src/config/config.i: src/config/config.cc.i
+.PHONY : src/config/config.i
+
+# target to preprocess a source file
+src/config/config.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/config/config.cc.i
+.PHONY : src/config/config.cc.i
+
+src/config/config.s: src/config/config.cc.s
+.PHONY : src/config/config.s
+
+# target to generate assembly for a file
+src/config/config.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/config/config.cc.s
+.PHONY : src/config/config.cc.s
+
 src/log/logger.o: src/log/logger.cpp.o
 .PHONY : src/log/logger.o
 
@@ -152,6 +176,30 @@ src/log/logger.s: src/log/logger.cpp.s
 src/log/logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/log/logger.cpp.s
 .PHONY : src/log/logger.cpp.s
+
+src/util/env.o: src/util/env.cc.o
+.PHONY : src/util/env.o
+
+# target to build an object file
+src/util/env.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/env.cc.o
+.PHONY : src/util/env.cc.o
+
+src/util/env.i: src/util/env.cc.i
+.PHONY : src/util/env.i
+
+# target to preprocess a source file
+src/util/env.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/env.cc.i
+.PHONY : src/util/env.cc.i
+
+src/util/env.s: src/util/env.cc.s
+.PHONY : src/util/env.s
+
+# target to generate assembly for a file
+src/util/env.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/env.cc.s
+.PHONY : src/util/env.cc.s
 
 src/util/util.o: src/util/util.cpp.o
 .PHONY : src/util/util.o
@@ -210,9 +258,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sylar"
+	@echo "... src/config/config.o"
+	@echo "... src/config/config.i"
+	@echo "... src/config/config.s"
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
+	@echo "... src/util/env.o"
+	@echo "... src/util/env.i"
+	@echo "... src/util/env.s"
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"

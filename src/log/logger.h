@@ -35,6 +35,10 @@
 
 #define Log_Fatal(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::FATAL)
 
+#define Root_Logger() sylar::LoggerMgr::getInstance()->getRoot()
+
+#define Name_Logger(name) sylar::LoggerMgr::getInstance()->addLogger(name)
+
 namespace sylar {
 
 static const std::string DEFAULT_FORMAT = "%d{%Y-%m-%d %H:%M:%S} %T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n";
