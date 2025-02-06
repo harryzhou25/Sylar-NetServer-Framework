@@ -6,12 +6,14 @@ set(RPCLIB_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 
 set (SRCS 
-    tests/test_log_st.cpp
+    tests/test_thread_basic.cpp
     src/log/logger.cpp
     src/util/util.cpp
     src/util/Singleton.h
     src/config/config.cc
     src/util/env.cc
+    src/thread/thread.cpp
+    src/thread/Mutex.h
 )
 
 find_package(yaml-cpp REQUIRED)
@@ -28,3 +30,5 @@ set_target_properties(
     CXX_STANDARD 17
     COMPILE_FLAGS "${CMAKE_CXX_FLAGS} ${RPCLIB_EXTRA_FLAGS}"
 )
+
+target_compile_options(sylar PRIVATE -g)

@@ -17,13 +17,14 @@
 #include <unistd.h>
 
 #include "util/util.h"
+#include "thread/thread.h"
 #include "util/Singleton.h"
 
 #define STREAM_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
         sylar::LogEventWrap(sylar::LogEvent::Ptr(new sylar::LogEvent(logger, level, \
                         __FILE__, __LINE__, 0, sylar::getThreadId(),\
-                sylar::getFiberId(), time(0), ""))).getSS()
+                sylar::getFiberId(), time(0), sylar::Thread::t_getName()))).getSS()
 
 #define Log_Bug(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
 

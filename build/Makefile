@@ -177,6 +177,30 @@ src/log/logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/log/logger.cpp.s
 .PHONY : src/log/logger.cpp.s
 
+src/thread/thread.o: src/thread/thread.cpp.o
+.PHONY : src/thread/thread.o
+
+# target to build an object file
+src/thread/thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/thread/thread.cpp.o
+.PHONY : src/thread/thread.cpp.o
+
+src/thread/thread.i: src/thread/thread.cpp.i
+.PHONY : src/thread/thread.i
+
+# target to preprocess a source file
+src/thread/thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/thread/thread.cpp.i
+.PHONY : src/thread/thread.cpp.i
+
+src/thread/thread.s: src/thread/thread.cpp.s
+.PHONY : src/thread/thread.s
+
+# target to generate assembly for a file
+src/thread/thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/thread/thread.cpp.s
+.PHONY : src/thread/thread.cpp.s
+
 src/util/env.o: src/util/env.cc.o
 .PHONY : src/util/env.o
 
@@ -225,29 +249,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_log_st.o: tests/test_log_st.cpp.o
-.PHONY : tests/test_log_st.o
+tests/test_thread_basic.o: tests/test_thread_basic.cpp.o
+.PHONY : tests/test_thread_basic.o
 
 # target to build an object file
-tests/test_log_st.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_st.cpp.o
-.PHONY : tests/test_log_st.cpp.o
+tests/test_thread_basic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_thread_basic.cpp.o
+.PHONY : tests/test_thread_basic.cpp.o
 
-tests/test_log_st.i: tests/test_log_st.cpp.i
-.PHONY : tests/test_log_st.i
+tests/test_thread_basic.i: tests/test_thread_basic.cpp.i
+.PHONY : tests/test_thread_basic.i
 
 # target to preprocess a source file
-tests/test_log_st.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_st.cpp.i
-.PHONY : tests/test_log_st.cpp.i
+tests/test_thread_basic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_thread_basic.cpp.i
+.PHONY : tests/test_thread_basic.cpp.i
 
-tests/test_log_st.s: tests/test_log_st.cpp.s
-.PHONY : tests/test_log_st.s
+tests/test_thread_basic.s: tests/test_thread_basic.cpp.s
+.PHONY : tests/test_thread_basic.s
 
 # target to generate assembly for a file
-tests/test_log_st.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_st.cpp.s
-.PHONY : tests/test_log_st.cpp.s
+tests/test_thread_basic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_thread_basic.cpp.s
+.PHONY : tests/test_thread_basic.cpp.s
 
 # Help Target
 help:
@@ -264,15 +288,18 @@ help:
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
+	@echo "... src/thread/thread.o"
+	@echo "... src/thread/thread.i"
+	@echo "... src/thread/thread.s"
 	@echo "... src/util/env.o"
 	@echo "... src/util/env.i"
 	@echo "... src/util/env.s"
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_log_st.o"
-	@echo "... tests/test_log_st.i"
-	@echo "... tests/test_log_st.s"
+	@echo "... tests/test_thread_basic.o"
+	@echo "... tests/test_thread_basic.i"
+	@echo "... tests/test_thread_basic.s"
 .PHONY : help
 
 

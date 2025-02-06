@@ -1,5 +1,5 @@
-CMakeFiles/sylar.dir/tests/test_log_st.cpp.o: \
- /home/harry/workspace/sylar/sylar_learn/tests/test_log_st.cpp \
+CMakeFiles/sylar.dir/tests/test_thread_basic.cpp.o: \
+ /home/harry/workspace/sylar/sylar_learn/tests/test_thread_basic.cpp \
  /usr/include/stdc-predef.h \
  /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
  /usr/include/c++/11/string \
@@ -271,4 +271,9 @@ CMakeFiles/sylar.dir/tests/test_log_st.cpp.o: \
  /usr/include/yaml-cpp/node/detail/impl.h /usr/include/c++/11/algorithm \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
  /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
+ /home/harry/workspace/sylar/sylar_learn/src/thread/thread.h \
+ /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /usr/include/c++/11/bits/this_thread_sleep.h \
+ /home/harry/workspace/sylar/sylar_learn/src/thread/Mutex.h \
+ /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
  /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h
