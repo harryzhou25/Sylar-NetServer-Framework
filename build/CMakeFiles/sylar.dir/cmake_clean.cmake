@@ -5,8 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/log/logger.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
-  "CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o"
-  "CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o.d"
+  "CMakeFiles/sylar.dir/tests/test_log_st.cpp.o"
+  "CMakeFiles/sylar.dir/tests/test_log_st.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

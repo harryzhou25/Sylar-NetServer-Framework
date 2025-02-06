@@ -72,19 +72,19 @@ include CMakeFiles/sylar.dir/flags.make
 CMakeFiles/sylar.dir/codegen:
 .PHONY : CMakeFiles/sylar.dir/codegen
 
-CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: CMakeFiles/sylar.dir/flags.make
-CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp
-CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: CMakeFiles/sylar.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o -MF CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o.d -o CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o -c /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp
+CMakeFiles/sylar.dir/tests/test_log_st.cpp.o: CMakeFiles/sylar.dir/flags.make
+CMakeFiles/sylar.dir/tests/test_log_st.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_log_st.cpp
+CMakeFiles/sylar.dir/tests/test_log_st.cpp.o: CMakeFiles/sylar.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sylar.dir/tests/test_log_st.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sylar.dir/tests/test_log_st.cpp.o -MF CMakeFiles/sylar.dir/tests/test_log_st.cpp.o.d -o CMakeFiles/sylar.dir/tests/test_log_st.cpp.o -c /home/harry/workspace/sylar/sylar_learn/tests/test_log_st.cpp
 
-CMakeFiles/sylar.dir/tests/test_log_basic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sylar.dir/tests/test_log_basic.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp > CMakeFiles/sylar.dir/tests/test_log_basic.cpp.i
+CMakeFiles/sylar.dir/tests/test_log_st.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sylar.dir/tests/test_log_st.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/workspace/sylar/sylar_learn/tests/test_log_st.cpp > CMakeFiles/sylar.dir/tests/test_log_st.cpp.i
 
-CMakeFiles/sylar.dir/tests/test_log_basic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sylar.dir/tests/test_log_basic.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp -o CMakeFiles/sylar.dir/tests/test_log_basic.cpp.s
+CMakeFiles/sylar.dir/tests/test_log_st.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sylar.dir/tests/test_log_st.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/workspace/sylar/sylar_learn/tests/test_log_st.cpp -o CMakeFiles/sylar.dir/tests/test_log_st.cpp.s
 
 CMakeFiles/sylar.dir/src/log/logger.cpp.o: CMakeFiles/sylar.dir/flags.make
 CMakeFiles/sylar.dir/src/log/logger.cpp.o: /home/harry/workspace/sylar/sylar_learn/src/log/logger.cpp
@@ -116,14 +116,14 @@ CMakeFiles/sylar.dir/src/util/util.cpp.s: cmake_force
 
 # Object files for target sylar
 sylar_OBJECTS = \
-"CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o" \
+"CMakeFiles/sylar.dir/tests/test_log_st.cpp.o" \
 "CMakeFiles/sylar.dir/src/log/logger.cpp.o" \
 "CMakeFiles/sylar.dir/src/util/util.cpp.o"
 
 # External object files for target sylar
 sylar_EXTERNAL_OBJECTS =
 
-/home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o
+/home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/tests/test_log_st.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/log/logger.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/util/util.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/build.make

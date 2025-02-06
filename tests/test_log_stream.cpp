@@ -6,8 +6,9 @@ int main() {
     logger->addAppender(sylar::LogAppender::Ptr(new sylar::StdoutLogAppender));
     logger->addAppender(sylar::LogAppender::Ptr(new sylar::FileLogAppender("log/log_test")));
 
-    sylar::StdoutLogAppender::Ptr appender(new sylar::StdoutLogAppender);
-    appender->setFormatter(fmt);
-    logger->addAppender(appender);
+    sylar::LogEvent::Ptr event(new sylar::LogEvent(logger, sylar::LogLevel::INFO, __FILE__, int32_t(0), uint32_t(0), uint32_t(0), uint32_t(0), uint64_t(0), ""));
+    logger->log(sylar::LogLevel::INFO, event);
+
+    Bug_Log(logger) << "test";
     return 0;
 }

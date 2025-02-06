@@ -177,29 +177,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_log_basic.o: tests/test_log_basic.cpp.o
-.PHONY : tests/test_log_basic.o
+tests/test_log_st.o: tests/test_log_st.cpp.o
+.PHONY : tests/test_log_st.o
 
 # target to build an object file
-tests/test_log_basic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o
-.PHONY : tests/test_log_basic.cpp.o
+tests/test_log_st.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_st.cpp.o
+.PHONY : tests/test_log_st.cpp.o
 
-tests/test_log_basic.i: tests/test_log_basic.cpp.i
-.PHONY : tests/test_log_basic.i
+tests/test_log_st.i: tests/test_log_st.cpp.i
+.PHONY : tests/test_log_st.i
 
 # target to preprocess a source file
-tests/test_log_basic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_basic.cpp.i
-.PHONY : tests/test_log_basic.cpp.i
+tests/test_log_st.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_st.cpp.i
+.PHONY : tests/test_log_st.cpp.i
 
-tests/test_log_basic.s: tests/test_log_basic.cpp.s
-.PHONY : tests/test_log_basic.s
+tests/test_log_st.s: tests/test_log_st.cpp.s
+.PHONY : tests/test_log_st.s
 
 # target to generate assembly for a file
-tests/test_log_basic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_basic.cpp.s
-.PHONY : tests/test_log_basic.cpp.s
+tests/test_log_st.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_log_st.cpp.s
+.PHONY : tests/test_log_st.cpp.s
 
 # Help Target
 help:
@@ -216,9 +216,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_log_basic.o"
-	@echo "... tests/test_log_basic.i"
-	@echo "... tests/test_log_basic.s"
+	@echo "... tests/test_log_st.o"
+	@echo "... tests/test_log_st.i"
+	@echo "... tests/test_log_st.s"
 .PHONY : help
 
 

@@ -1,5 +1,5 @@
-CMakeFiles/sylar.dir/tests/test_log_basic.cpp.o: \
- /home/harry/workspace/sylar/sylar_learn/tests/test_log_basic.cpp \
+CMakeFiles/sylar.dir/tests/test_log_st.cpp.o: \
+ /home/harry/workspace/sylar/sylar_learn/tests/test_log_st.cpp \
  /usr/include/stdc-predef.h \
  /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
  /usr/include/c++/11/string \
