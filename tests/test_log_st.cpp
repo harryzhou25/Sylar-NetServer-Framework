@@ -2,6 +2,6 @@
 
 int main() {
     auto logger = sylar::LoggerMgr::getInstance()->getRoot();
-    Bug_Log(logger) << "test";
+    Log_Bug(logger) << "test";
     return 0;
 }
