@@ -67,7 +67,7 @@ using TaskFunc = std::function<void()>;
 
 class Thread : public noncopyable {
 public:
-    using Ptr = std::shared_ptr<std::thread>;
+    using Ptr = std::shared_ptr<Thread>;
 
     Thread(TaskFunc task, const std::string name);
 
@@ -92,6 +92,7 @@ private:
     Task::Ptr m_task;
     std::string m_name;
     semaphore m_sem;
+    bool m_running = false;
     std::shared_ptr<std::thread> m_thread;
 };
 

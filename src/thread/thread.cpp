@@ -26,6 +26,7 @@ void Thread::join() {
     if(m_thread->joinable()) {
         m_thread->join();
     }
+    m_running = false;
 }
 
 Thread::Thread(TaskFunc task, const std::string name) {
@@ -33,6 +34,7 @@ Thread::Thread(TaskFunc task, const std::string name) {
     m_task = std::make_shared<Task>(std::forward<TaskFunc>(task));
 
     m_thread = std::make_shared<std::thread>([this] {
+        m_running = true;
         run();
     });
 
@@ -40,7 +42,7 @@ Thread::Thread(TaskFunc task, const std::string name) {
 }
 
 Thread::~Thread() {
-    if(m_thread) {
+    if(m_thread && m_running) {
         m_thread->detach();
     }
 }

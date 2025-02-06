@@ -11,8 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/util/env.cc.o.d"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
-  "CMakeFiles/sylar.dir/tests/test_thread_basic.cpp.o"
-  "CMakeFiles/sylar.dir/tests/test_thread_basic.cpp.o.d"
+  "CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o"
+  "CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

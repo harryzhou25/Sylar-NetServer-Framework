@@ -1,9 +1,14 @@
 #ifndef _SYLAR_MUTEX_H
 #define _SYLAR_MUTEX_H
 #include <stdint.h>
+#include <shared_mutex>
 #include <semaphore.h>
 
 #include "util/util.h"
+
+#define readLock(mtx) std::shared_lock<std::shared_mutex> lock(mtx);
+
+#define writeLock(mtx) std::unique_lock<std::shared_mutex> lock(mtx);
 
 namespace sylar {
 
@@ -44,7 +49,6 @@ public:
 private:
     sem_t m_sem;
 };
-
 } // namespace sylar
 
 

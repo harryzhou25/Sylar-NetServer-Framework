@@ -64,6 +64,7 @@
         "complex": "cpp",
         "set": "cpp",
         "unordered_set": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "shared_mutex": "cpp"
     }
 }
