@@ -2940,15 +2940,17 @@ CMakeFiles/sylar.dir/src/util/util.cpp.o: /home/harry/workspace/sylar/sylar_lear
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h
 
-CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_rwlock.cpp \
+CMakeFiles/sylar.dir/tests/test_bt.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_bt.cpp \
   /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
   /home/harry/workspace/sylar/sylar_learn/src/thread/Mutex.h \
   /home/harry/workspace/sylar/sylar_learn/src/thread/thread.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h \
+  /home/harry/workspace/sylar/sylar_learn/src/util/macro.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/util.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
+  /usr/include/assert.h \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/array \
   /usr/include/c++/11/atomic \
@@ -3291,6 +3293,8 @@ CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o: /home/harry/workspace/sylar/sylar_
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h
 
 
+/home/harry/workspace/sylar/sylar_learn/tests/test_bt.cpp:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
 
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
@@ -3332,8 +3336,6 @@ CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o: /home/harry/workspace/sylar/sylar_
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
-
-/home/harry/workspace/sylar/sylar_learn/tests/test_rwlock.cpp:
 
 /usr/include/yaml-cpp/traits.h:
 
@@ -4822,6 +4824,8 @@ CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o: /home/harry/workspace/sylar/sylar_
 /usr/include/boost/mpl/push_front_fwd.hpp:
 
 /usr/include/boost/preprocessor/arithmetic/dec.hpp:
+
+/home/harry/workspace/sylar/sylar_learn/src/util/macro.h:
 
 /usr/include/boost/preprocessor/identity.hpp:
 

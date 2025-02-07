@@ -23,6 +23,28 @@ uint32_t getFiberId() {
     return 0;
 }
 
+void Backtrace(std::vector<std::string>& bt, int size, int skip) {
+    void** array = (void**)malloc((sizeof(void*) * size));
+    size_t s = ::backtrace(array, size);
+    char** strings = backtrace_symbols(array, s);
+    for(auto i = skip; i < s; ++i) {
+        bt.emplace_back(std::move(strings[i]));
+    }
+    
+    free(strings);
+    free(array);
+}
+
+std::string BacktraceToString(int size, int skip, const std::string& prefix) {
+    std::vector<std::string> bt;
+    Backtrace(bt, size, skip);
+    std::stringstream ss;
+    for(size_t i = 0; i < bt.size(); ++i) {
+        ss << prefix << bt[i] << std::endl;
+    }
+    return ss.str();
+}
+
 void filePathCheck(const std::string& filePath) {
     std::filesystem::path currentPath = std::filesystem::current_path();
     std::filesystem::path fullPath = currentPath / filePath;

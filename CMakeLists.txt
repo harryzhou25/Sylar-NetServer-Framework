@@ -6,12 +6,13 @@ set(RPCLIB_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 
 set (SRCS 
-    tests/test_rwlock.cpp
+    tests/test_bt.cpp
     src/log/logger.cpp
     src/util/util.cpp
     src/util/Singleton.h
     src/config/config.cc
     src/util/env.cc
+    src/util/macro.h
     src/thread/thread.cpp
     src/thread/Mutex.h
 )

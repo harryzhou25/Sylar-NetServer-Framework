@@ -21,6 +21,10 @@ uint32_t getFiberId();
 
 void filePathCheck(const std::string& path);
 
+void Backtrace(std::vector<std::string>& bt, int size = 64, int skip = 1);
+
+std::string BacktraceToString(int size = 64, int skip = 2, const std::string& prefix = "\t");
+
 class noncopyable {
 protected:
     noncopyable() {}

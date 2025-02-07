@@ -249,29 +249,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_rwlock.o: tests/test_rwlock.cpp.o
-.PHONY : tests/test_rwlock.o
+tests/test_bt.o: tests/test_bt.cpp.o
+.PHONY : tests/test_bt.o
 
 # target to build an object file
-tests/test_rwlock.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_rwlock.cpp.o
-.PHONY : tests/test_rwlock.cpp.o
+tests/test_bt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bt.cpp.o
+.PHONY : tests/test_bt.cpp.o
 
-tests/test_rwlock.i: tests/test_rwlock.cpp.i
-.PHONY : tests/test_rwlock.i
+tests/test_bt.i: tests/test_bt.cpp.i
+.PHONY : tests/test_bt.i
 
 # target to preprocess a source file
-tests/test_rwlock.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_rwlock.cpp.i
-.PHONY : tests/test_rwlock.cpp.i
+tests/test_bt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bt.cpp.i
+.PHONY : tests/test_bt.cpp.i
 
-tests/test_rwlock.s: tests/test_rwlock.cpp.s
-.PHONY : tests/test_rwlock.s
+tests/test_bt.s: tests/test_bt.cpp.s
+.PHONY : tests/test_bt.s
 
 # target to generate assembly for a file
-tests/test_rwlock.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_rwlock.cpp.s
-.PHONY : tests/test_rwlock.cpp.s
+tests/test_bt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bt.cpp.s
+.PHONY : tests/test_bt.cpp.s
 
 # Help Target
 help:
@@ -297,9 +297,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_rwlock.o"
-	@echo "... tests/test_rwlock.i"
-	@echo "... tests/test_rwlock.s"
+	@echo "... tests/test_bt.o"
+	@echo "... tests/test_bt.i"
+	@echo "... tests/test_bt.s"
 .PHONY : help
 
 
