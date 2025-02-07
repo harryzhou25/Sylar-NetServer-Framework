@@ -13,6 +13,8 @@
 #include <fstream>
 #include <signal.h>
 
+#include "fiber/fiber.h"
+
 namespace sylar {
 
 pid_t getThreadId() {
@@ -20,7 +22,7 @@ pid_t getThreadId() {
 }
 
 uint32_t getFiberId() {
-    return 0;
+    return Fiber::GetFiberId();
 }
 
 void Backtrace(std::vector<std::string>& bt, int size, int skip) {

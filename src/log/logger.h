@@ -26,7 +26,7 @@
                         __FILE__, __LINE__, 0, sylar::getThreadId(),\
                 sylar::getFiberId(), time(0), sylar::Thread::t_getName()))).getSS()
 
-#define Log_Bug(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
+#define Log_Debug(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
 
 #define Log_Info(logger) STREAM_LOG_LEVEL(logger, sylar::LogLevel::INFO)
 

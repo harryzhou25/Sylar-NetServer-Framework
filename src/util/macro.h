@@ -5,9 +5,15 @@
 #include "log/logger.h"
 #include <assert.h>
 
-#define Log_Assert(x) \
+#define Assert(x) \
     if(!(x)) {\
         Log_Error(Root_Logger()) << "Assertion: " << x << sylar::BacktraceToString();\
+        assert(x); \
+    }
+
+#define Assert_Commit(x, s) \
+    if(!(x)) {\
+        Log_Error(Root_Logger()) << "Assertion: " << x << sylar::BacktraceToString(64, 2, s);\
         assert(x); \
     }
 
