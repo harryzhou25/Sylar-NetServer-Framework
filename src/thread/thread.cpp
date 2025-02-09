@@ -33,6 +33,8 @@ Thread::Thread(TaskFunc task, const std::string name) {
     m_name = name.empty() ? "UNKNOWN" : name.substr(0, 15);
     m_task = std::make_shared<Task>(std::forward<TaskFunc>(task));
 
+    m_id = getThreadId();
+
     m_thread = std::make_shared<std::thread>([this] {
         m_running = true;
         run();

@@ -73,7 +73,7 @@ public:
 
     ~Thread();
 
-    std::thread::id getId() const { return m_thread->get_id(); }
+    int getId() const { return m_id; }
 
     const std::string& getName() const { return std::move(m_name); }
 
@@ -89,6 +89,7 @@ private:
 
     void setup();
 private:
+    int m_id = -1;
     Task::Ptr m_task;
     std::string m_name;
     semaphore m_sem;

@@ -6,7 +6,7 @@ set(RPCLIB_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 
 set (SRCS 
-    tests/test_bt.cpp
+    tests/test_scheduler.cpp
     src/log/logger.cpp
     src/util/util.cpp
     src/util/Singleton.h
@@ -15,6 +15,8 @@ set (SRCS
     src/util/macro.h
     src/thread/thread.cpp
     src/thread/Mutex.h
+    src/fiber/fiber.cpp
+    src/fiber/scheduler.cpp
 )
 
 find_package(yaml-cpp REQUIRED)

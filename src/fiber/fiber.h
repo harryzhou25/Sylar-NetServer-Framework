@@ -26,7 +26,7 @@ private:
 
 public:
     // 栈大小传0表示使用默认大小
-    Fiber(FuncType cb, size_t stacksize = 0);
+    Fiber(FuncType cb, size_t stacksize = 0, bool use_caller = true);
 
     ~Fiber();
 
@@ -37,9 +37,20 @@ public:
     void swapIn();
 
     void swapOut();
+
+    void call();
+
+    void back();
+public:
+    State getState() const { return m_state; }
+
+    uint64_t getId() const { return m_id; }
+
+    void setState(State _state) { m_state = _state; }
 public:
     static void setThis(Fiber* _f);
 
+    // 若当前线程没有协程则自动创建主协程
     static Fiber::Ptr getThis();
 
     static void yieldToReady();
@@ -51,6 +62,8 @@ public:
     static uint64_t GetFiberId();
 
     static void MainFunc();
+
+    static void CallerMainFunc();
 private:
     uint64_t m_id;
 

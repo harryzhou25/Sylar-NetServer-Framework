@@ -3,9 +3,11 @@
 #include "util/macro.h"
 #include "log/logger.h"
 
+#include "fiber/scheduler.h"
+
 namespace sylar {
 
-static Logger::Ptr g_logger = SYLAR_LOG_NAME("system");
+static Logger::Ptr g_logger = Name_Logger("system");
 
 static std::atomic<uint64_t> s_fiber_id {0};
 static std::atomic<uint64_t> s_fiber_count {0};
@@ -33,8 +35,8 @@ Fiber::Fiber() {
     m_id = ++s_fiber_id;
     ++s_fiber_count;
 
-    m_stackSize = g_fiber_stack_size->getValue();
-    m_stack = StackAllocator::Alloc(m_stackSize);
+    // m_stackSize = g_fiber_stack_size->getValue();
+    // m_stack = StackAllocator::Alloc(m_stackSize);
     
     if(getcontext(&m_ctx)) {
         Assert_Commit(false, "Fibier get context failed");
@@ -42,14 +44,17 @@ Fiber::Fiber() {
 
     setThis(this);
 
-    Log_Debug(g_logger) << "Main Fiber created";
+    Log_Info(g_logger) << "Main Fiber created " << m_id;
 }
 
-Fiber::Fiber(FuncType cb, size_t stacksize) {
+Fiber::Fiber(FuncType cb, size_t stacksize, bool use_caller) {
     m_state = INIT;
 
     m_id = ++s_fiber_id;
     ++s_fiber_count;
+
+    Log_Debug(g_logger) << "Fiber::Fiber(...) " << m_id;
+    Log_Debug(g_logger) << "Fiber Count " << s_fiber_count;
 
     m_cb = std::forward<FuncType>(cb);
 
@@ -64,12 +69,13 @@ Fiber::Fiber(FuncType cb, size_t stacksize) {
     m_ctx.uc_stack.ss_sp = m_stack;
     m_ctx.uc_stack.ss_size = m_stackSize;
 
-    makecontext(&m_ctx, &Fiber::MainFunc, 0);
-
-    Log_Debug(g_logger) << "Created Fiber: " << m_id;
+    if(use_caller) {
+        makecontext(&m_ctx, &Fiber::MainFunc, 0);
+    }
 }
 
 Fiber::~Fiber() {
+    Log_Debug(g_logger) << "Fiber::~Fiber " << m_id;
     --s_fiber_count;
     if(m_stack) {
         Assert((m_state == INIT || m_state == TERM));
@@ -83,7 +89,6 @@ Fiber::~Fiber() {
             setThis(nullptr);
         }
     }
-    Log_Debug(g_logger) << "Destoried Fiber: " << m_id;
 }
 
 void Fiber::reset(FuncType cb) {
@@ -103,8 +108,6 @@ void Fiber::reset(FuncType cb) {
     m_state = INIT;
 
     makecontext(&m_ctx, &Fiber::MainFunc, 0);
-
-    Log_Debug(g_logger) << "Fiber " << m_id << " reseted";    
 }
 
 Fiber::Ptr Fiber::getThis() {
@@ -118,20 +121,51 @@ Fiber::Ptr Fiber::getThis() {
     return t_fiber->shared_from_this();
 }
 
+void Fiber::setThis(Fiber* _f) {
+    t_fiber = _f;
+}
+
+void Fiber::call() {
+    Log_Debug(g_logger) << "Fiber: " << m_id << " call " << t_threadFiber->m_id;
+    setThis(this);
+    m_state = EXEC;
+    if(swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
+        Assert_Commit(false, "swapcontext");
+    }
+}
+
+void Fiber::back() {
+    Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
+    setThis(t_threadFiber.get());
+    if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+        Assert_Commit(false, "swapcontext");
+    }
+}
 
 void Fiber::swapIn() {
+    Log_Debug(g_logger) << "Fiber: " << m_id << " swapped in " << Scheduler::getMainFiber()->m_id;
     setThis(this);
-    Assert((m_state == EXEC));
+    Assert((m_state != EXEC));
     m_state = EXEC;
-    if(swapcontext(&t_threadFiber->getContext(), &m_ctx)) {
+    if(swapcontext(&Scheduler::getMainFiber()->m_ctx, &m_ctx)) {
         Assert_Commit(false, "Fiber swap failed");
     }
 }
 
 void Fiber::swapOut() {
-    setThis(t_threadFiber.get());
-    if(swapcontext(&m_ctx, &t_threadFiber->getContext())) {
-        Assert_Commit(false, "Fiber swap failed");
+    if(t_fiber != Scheduler::getMainFiber()) {
+        Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
+        setThis(Scheduler::getMainFiber());
+        if(swapcontext(&m_ctx, &Scheduler::getMainFiber()->m_ctx)) {
+            Assert_Commit(false, "Fiber swap failed");
+        }
+    }
+    else {
+        Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
+        setThis(t_threadFiber.get());
+        if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+            Assert_Commit(false, "swapcontext");
+        }
     }
 }
 
@@ -160,7 +194,6 @@ uint64_t Fiber::GetFiberId() {
     else return 0;
 }
 
-
 void Fiber::MainFunc() {
     auto cur = getThis();
     Assert(cur);
@@ -169,19 +202,21 @@ void Fiber::MainFunc() {
         cur->m_cb();
         cur->m_cb = nullptr;
         cur->m_state = TERM;
+        Log_Debug(g_logger) << "Fiber::MainFunc: " << cur->m_id << " Term";
     }
     catch (std::exception &ex) {
         cur->m_state = EXCEPT;
-        Log_Debug(g_logger) << "Fiber " << cur->m_id << " caught exception: " << ex.what();
+        Log_Warn(g_logger) << "Fiber " << cur->m_id << " caught exception: " << ex.what();
     }
     catch (...) {
         cur->m_state = EXCEPT;
-        Log_Debug(g_logger) << "Fiber " << cur->m_id << " caught exception";
+        Log_Warn(g_logger) << "Fiber " << cur->m_id << " caught exception";
     }
 
     auto raw_ptr = cur.get();
     cur.reset();
     raw_ptr->swapOut();
+    Assert_Commit(false, "never reached");
 }
 
 } // namespace sylar
