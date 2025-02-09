@@ -153,6 +153,54 @@ src/config/config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/config/config.cc.s
 .PHONY : src/config/config.cc.s
 
+src/fiber/fiber.o: src/fiber/fiber.cpp.o
+.PHONY : src/fiber/fiber.o
+
+# target to build an object file
+src/fiber/fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/fiber.cpp.o
+.PHONY : src/fiber/fiber.cpp.o
+
+src/fiber/fiber.i: src/fiber/fiber.cpp.i
+.PHONY : src/fiber/fiber.i
+
+# target to preprocess a source file
+src/fiber/fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/fiber.cpp.i
+.PHONY : src/fiber/fiber.cpp.i
+
+src/fiber/fiber.s: src/fiber/fiber.cpp.s
+.PHONY : src/fiber/fiber.s
+
+# target to generate assembly for a file
+src/fiber/fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/fiber.cpp.s
+.PHONY : src/fiber/fiber.cpp.s
+
+src/fiber/scheduler.o: src/fiber/scheduler.cpp.o
+.PHONY : src/fiber/scheduler.o
+
+# target to build an object file
+src/fiber/scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/scheduler.cpp.o
+.PHONY : src/fiber/scheduler.cpp.o
+
+src/fiber/scheduler.i: src/fiber/scheduler.cpp.i
+.PHONY : src/fiber/scheduler.i
+
+# target to preprocess a source file
+src/fiber/scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/scheduler.cpp.i
+.PHONY : src/fiber/scheduler.cpp.i
+
+src/fiber/scheduler.s: src/fiber/scheduler.cpp.s
+.PHONY : src/fiber/scheduler.s
+
+# target to generate assembly for a file
+src/fiber/scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/scheduler.cpp.s
+.PHONY : src/fiber/scheduler.cpp.s
+
 src/log/logger.o: src/log/logger.cpp.o
 .PHONY : src/log/logger.o
 
@@ -249,29 +297,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_bt.o: tests/test_bt.cpp.o
-.PHONY : tests/test_bt.o
+tests/test_scheduler.o: tests/test_scheduler.cpp.o
+.PHONY : tests/test_scheduler.o
 
 # target to build an object file
-tests/test_bt.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bt.cpp.o
-.PHONY : tests/test_bt.cpp.o
+tests/test_scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_scheduler.cpp.o
+.PHONY : tests/test_scheduler.cpp.o
 
-tests/test_bt.i: tests/test_bt.cpp.i
-.PHONY : tests/test_bt.i
+tests/test_scheduler.i: tests/test_scheduler.cpp.i
+.PHONY : tests/test_scheduler.i
 
 # target to preprocess a source file
-tests/test_bt.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bt.cpp.i
-.PHONY : tests/test_bt.cpp.i
+tests/test_scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_scheduler.cpp.i
+.PHONY : tests/test_scheduler.cpp.i
 
-tests/test_bt.s: tests/test_bt.cpp.s
-.PHONY : tests/test_bt.s
+tests/test_scheduler.s: tests/test_scheduler.cpp.s
+.PHONY : tests/test_scheduler.s
 
 # target to generate assembly for a file
-tests/test_bt.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bt.cpp.s
-.PHONY : tests/test_bt.cpp.s
+tests/test_scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_scheduler.cpp.s
+.PHONY : tests/test_scheduler.cpp.s
 
 # Help Target
 help:
@@ -285,6 +333,12 @@ help:
 	@echo "... src/config/config.o"
 	@echo "... src/config/config.i"
 	@echo "... src/config/config.s"
+	@echo "... src/fiber/fiber.o"
+	@echo "... src/fiber/fiber.i"
+	@echo "... src/fiber/fiber.s"
+	@echo "... src/fiber/scheduler.o"
+	@echo "... src/fiber/scheduler.i"
+	@echo "... src/fiber/scheduler.s"
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
@@ -297,9 +351,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_bt.o"
-	@echo "... tests/test_bt.i"
-	@echo "... tests/test_bt.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 .PHONY : help
 
 
