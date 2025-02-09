@@ -108,9 +108,9 @@ void Scheduler::start() {
             m_threadIds.emplace_back(m_threads[i]->getId());
         }
     }
-    if(m_mainFiber) {
-        m_mainFiber->call();
-    }
+    // if(m_mainFiber) {
+    //     m_mainFiber->call();
+    // }
 }
 
 void Scheduler::stop() {
