@@ -397,7 +397,7 @@ void Logger::setFormatter(LogFormatter::Ptr val) {
 }
 
 void Logger::setFormatter(const std::string& val) {
-    std::cout << "---" << val << std::endl;
+    std::lock_guard<MutexType> lock(m_mutex);
     LogFormatter::Ptr new_formatter = std::make_shared<LogFormatter>(val);
     if(new_formatter->isError()) {
         std::cout << "Logger setFormatter name=" << m_name
@@ -415,6 +415,7 @@ LogFormatter::Ptr Logger::getFormatter() {
 }
 
 void Logger::addAppender(LogAppender::Ptr appender) {
+    std::lock_guard<MutexType> lock(m_mutex);
     if(!appender->getFormatter()) {
         appender->m_formatter = m_formatter;
     }
@@ -422,6 +423,7 @@ void Logger::addAppender(LogAppender::Ptr appender) {
 }
 
 void Logger::delAppender(LogAppender::Ptr appender) {
+    std::lock_guard<MutexType> lock(m_mutex);
     for(auto it = m_appenders.begin();
             it != m_appenders.end(); ++it) {
         if(*it == appender) {
@@ -432,13 +434,14 @@ void Logger::delAppender(LogAppender::Ptr appender) {
 }
 
 void Logger::clearAppenders() {
+    std::lock_guard<MutexType> lock(m_mutex);
     m_appenders.clear();
 }
 
 void Logger::log(LogLevel::Level level, LogEvent::Ptr event) {
     if(level >= m_level) {
         auto self = shared_from_this();
-        // MutexType::Lock lock(m_mutex);
+        std::lock_guard<MutexType> lock(m_mutex);
         if(!m_appenders.empty()) {
             for(auto& i : m_appenders) {
                 i->log(self, level, event);

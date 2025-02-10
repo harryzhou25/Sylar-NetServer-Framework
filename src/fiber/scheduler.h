@@ -62,16 +62,44 @@ public:
     void tickle();
 
     template<class T>
-    void schedule(T cb, int thread = -1);
+    void schedule(T cb, int thread = -1) {
+        bool need_tickle = false;
+        {
+            std::lock_guard<Mutextype> lock(m_mtx);
+            need_tickle = need_tickle | scheduleNonLock(cb, thread);
+        }
+        if(need_tickle) {
+            tickle();
+        }
+    }
 
     template<class Iterator>
-    void schedule(Iterator begin, Iterator end);
+    void schedule(Iterator begin, Iterator end) {
+        bool need_tickle = false;
+        {
+            std::lock_guard<Mutextype> lock(m_mtx);
+            while(begin != end) {
+                need_tickle = need_tickle | scheduleNonLock(&(*begin), -1);
+                ++begin;
+            }
+        }
+        if(need_tickle) {
+            tickle();
+        }
+    }
 
 protected:
     void run();
 
     template<class T>
-    bool scheduleNonLock(T cb, int thread = -1);
+    bool scheduleNonLock(T cb, int thread = -1) {
+        bool need_tickle = m_fibers.empty();
+        auto item = FiberAndThread(cb, thread);
+        if(item.cb || item.fiber) {
+            m_fibers.emplace_back(item);
+        }
+        return need_tickle;
+    }
 
     void idle();
 
@@ -89,11 +117,11 @@ private:
 
     bool m_stopping = false;
 
-    size_t m_threadNum;
+    size_t m_threadNum = 0;
 
-    size_t m_idelThreadNum;
+    size_t m_idelThreadNum = 0;
 
-    size_t m_activeThreadNum;
+    size_t m_activeThreadNum = 0;
 
     std::string m_name;
 

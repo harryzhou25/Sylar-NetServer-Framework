@@ -1,9 +1,11 @@
 #include "thread/thread.h"
+#include "log/logger.h"
 
 #include <iostream>
 
 namespace sylar {
 
+static Logger::Ptr g_logger = Name_Logger("system");
 static thread_local std::string t_thread_name = "UNKNOWN";
 static thread_local std::weak_ptr<std::thread> t_thread;
 
@@ -23,6 +25,7 @@ void Thread::t_setName(const std::string& name) {
 }
 
 void Thread::join() {
+    // Log_Info(g_logger) << "Thread::join " << m_id;
     if(m_thread->joinable()) {
         m_thread->join();
     }
@@ -33,8 +36,6 @@ Thread::Thread(TaskFunc task, const std::string name) {
     m_name = name.empty() ? "UNKNOWN" : name.substr(0, 15);
     m_task = std::make_shared<Task>(std::forward<TaskFunc>(task));
 
-    m_id = getThreadId();
-
     m_thread = std::make_shared<std::thread>([this] {
         m_running = true;
         run();
@@ -44,6 +45,7 @@ Thread::Thread(TaskFunc task, const std::string name) {
 }
 
 Thread::~Thread() {
+    Log_Info(g_logger) << "Thread::~Thread " << m_id;
     if(m_thread && m_running) {
         m_thread->detach();
     }
@@ -51,6 +53,7 @@ Thread::~Thread() {
 
 void Thread::setup() {
     t_thread = m_thread;
+    m_id = getThreadId();
     pthread_setname_np(pthread_self(), m_name.c_str());
     t_thread_name = m_name;
 }

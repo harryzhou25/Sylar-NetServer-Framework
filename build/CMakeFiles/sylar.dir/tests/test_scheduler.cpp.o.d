@@ -273,4 +273,10 @@ CMakeFiles/sylar.dir/tests/test_scheduler.cpp.o: \
  /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
  /home/harry/workspace/sylar/sylar_learn/src/thread/Mutex.h \
  /usr/include/c++/11/shared_mutex /usr/include/semaphore.h \
- /usr/include/x86_64-linux-gnu/bits/semaphore.h
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
+ /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc \
+ /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h

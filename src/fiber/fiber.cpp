@@ -70,6 +70,9 @@ Fiber::Fiber(FuncType cb, size_t stacksize, bool use_caller) {
     m_ctx.uc_stack.ss_size = m_stackSize;
 
     if(use_caller) {
+        makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
+    }
+    else {
         makecontext(&m_ctx, &Fiber::MainFunc, 0);
     }
 }
@@ -152,20 +155,28 @@ void Fiber::swapIn() {
     }
 }
 
+// void Fiber::swapOut() {
+//     if(t_fiber != Scheduler::getMainFiber()) {
+//         Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
+//         setThis(Scheduler::getMainFiber());
+//         if(swapcontext(&m_ctx, &Scheduler::getMainFiber()->m_ctx)) {
+//             Assert_Commit(false, "Fiber swap failed");
+//         }
+//     }
+//     else {
+//         Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
+//         setThis(t_threadFiber.get());
+//         if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+//             Assert_Commit(false, "swapcontext");
+//         }
+//     }
+// }
+
 void Fiber::swapOut() {
-    if(t_fiber != Scheduler::getMainFiber()) {
-        Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
-        setThis(Scheduler::getMainFiber());
-        if(swapcontext(&m_ctx, &Scheduler::getMainFiber()->m_ctx)) {
-            Assert_Commit(false, "Fiber swap failed");
-        }
-    }
-    else {
-        Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
-        setThis(t_threadFiber.get());
-        if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
-            Assert_Commit(false, "swapcontext");
-        }
+    Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
+    setThis(Scheduler::getMainFiber());
+    if(swapcontext(&m_ctx, &Scheduler::getMainFiber()->m_ctx)) {
+        Assert_Commit(false, "Fiber swap failed");
     }
 }
 
@@ -216,6 +227,31 @@ void Fiber::MainFunc() {
     auto raw_ptr = cur.get();
     cur.reset();
     raw_ptr->swapOut();
+    Assert_Commit(false, "never reached");
+}
+
+void Fiber::CallerMainFunc() {
+    auto cur = getThis();
+    Assert(cur);
+
+    try {
+        cur->m_cb();
+        cur->m_cb = nullptr;
+        cur->m_state = TERM;
+        Log_Debug(g_logger) << "Fiber::CallerMainFunc: " << cur->m_id << " Term";
+    }
+    catch (std::exception &ex) {
+        cur->m_state = EXCEPT;
+        Log_Warn(g_logger) << "Fiber " << cur->m_id << " caught exception: " << ex.what();
+    }
+    catch (...) {
+        cur->m_state = EXCEPT;
+        Log_Warn(g_logger) << "Fiber " << cur->m_id << " caught exception";
+    }
+
+    auto raw_ptr = cur.get();
+    cur.reset();
+    raw_ptr->back();
     Assert_Commit(false, "never reached");
 }
 

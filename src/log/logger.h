@@ -42,7 +42,8 @@
 
 namespace sylar {
 
-static const std::string DEFAULT_FORMAT = "%d{%Y-%m-%d %H:%M:%S} %T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n";
+    //%d{%Y-%m-%d %H:%M:%S} 
+static const std::string DEFAULT_FORMAT = "%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n";
 
 class Logger;
 
