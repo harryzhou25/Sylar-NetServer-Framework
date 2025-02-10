@@ -8,7 +8,11 @@
 
 #define readLock(mtx) std::shared_lock<std::shared_mutex> lock(mtx);
 
+#define readUnLock(mtx) m_mtx.unlock_shared();
+
 #define writeLock(mtx) std::unique_lock<std::shared_mutex> lock(mtx);
+
+#define writeUnLock(mtx) m_mtx.unlock();
 
 namespace sylar {
 

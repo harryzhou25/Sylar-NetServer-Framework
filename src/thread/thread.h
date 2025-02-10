@@ -6,7 +6,7 @@
 #include <pthread.h>
 
 #include "util/util.h"
-#include "thread/Mutex.h"
+#include "thread/mutex.h"
 
 namespace sylar {
 
