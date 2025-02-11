@@ -59,8 +59,6 @@ public:
 
     void stop();
 
-    void tickle();
-
     template<class T>
     void schedule(T cb, int thread = -1) {
         bool need_tickle = false;
@@ -89,8 +87,6 @@ public:
     }
 
 protected:
-    void run();
-
     template<class T>
     bool scheduleNonLock(T cb, int thread = -1) {
         bool need_tickle = m_fibers.empty();
@@ -101,9 +97,14 @@ protected:
         return need_tickle;
     }
 
-    void idle();
+    void run();
+
+    virtual void tickle();
+
+    virtual void idle();
 
     virtual bool stopping();
+
 public:
     static Scheduler* getThis();
 

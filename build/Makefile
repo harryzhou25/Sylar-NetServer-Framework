@@ -201,6 +201,30 @@ src/fiber/scheduler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/scheduler.cpp.s
 .PHONY : src/fiber/scheduler.cpp.s
 
+src/iomanager/eventpoller.o: src/iomanager/eventpoller.cpp.o
+.PHONY : src/iomanager/eventpoller.o
+
+# target to build an object file
+src/iomanager/eventpoller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/iomanager/eventpoller.cpp.o
+.PHONY : src/iomanager/eventpoller.cpp.o
+
+src/iomanager/eventpoller.i: src/iomanager/eventpoller.cpp.i
+.PHONY : src/iomanager/eventpoller.i
+
+# target to preprocess a source file
+src/iomanager/eventpoller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/iomanager/eventpoller.cpp.i
+.PHONY : src/iomanager/eventpoller.cpp.i
+
+src/iomanager/eventpoller.s: src/iomanager/eventpoller.cpp.s
+.PHONY : src/iomanager/eventpoller.s
+
+# target to generate assembly for a file
+src/iomanager/eventpoller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/iomanager/eventpoller.cpp.s
+.PHONY : src/iomanager/eventpoller.cpp.s
+
 src/log/logger.o: src/log/logger.cpp.o
 .PHONY : src/log/logger.o
 
@@ -297,29 +321,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_scheduler.o: tests/test_scheduler.cpp.o
-.PHONY : tests/test_scheduler.o
+tests/test_ep.o: tests/test_ep.cpp.o
+.PHONY : tests/test_ep.o
 
 # target to build an object file
-tests/test_scheduler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_scheduler.cpp.o
-.PHONY : tests/test_scheduler.cpp.o
+tests/test_ep.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_ep.cpp.o
+.PHONY : tests/test_ep.cpp.o
 
-tests/test_scheduler.i: tests/test_scheduler.cpp.i
-.PHONY : tests/test_scheduler.i
+tests/test_ep.i: tests/test_ep.cpp.i
+.PHONY : tests/test_ep.i
 
 # target to preprocess a source file
-tests/test_scheduler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_scheduler.cpp.i
-.PHONY : tests/test_scheduler.cpp.i
+tests/test_ep.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_ep.cpp.i
+.PHONY : tests/test_ep.cpp.i
 
-tests/test_scheduler.s: tests/test_scheduler.cpp.s
-.PHONY : tests/test_scheduler.s
+tests/test_ep.s: tests/test_ep.cpp.s
+.PHONY : tests/test_ep.s
 
 # target to generate assembly for a file
-tests/test_scheduler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_scheduler.cpp.s
-.PHONY : tests/test_scheduler.cpp.s
+tests/test_ep.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_ep.cpp.s
+.PHONY : tests/test_ep.cpp.s
 
 # Help Target
 help:
@@ -339,6 +363,9 @@ help:
 	@echo "... src/fiber/scheduler.o"
 	@echo "... src/fiber/scheduler.i"
 	@echo "... src/fiber/scheduler.s"
+	@echo "... src/iomanager/eventpoller.o"
+	@echo "... src/iomanager/eventpoller.i"
+	@echo "... src/iomanager/eventpoller.s"
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
@@ -351,9 +378,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_scheduler.o"
-	@echo "... tests/test_scheduler.i"
-	@echo "... tests/test_scheduler.s"
+	@echo "... tests/test_ep.o"
+	@echo "... tests/test_ep.i"
+	@echo "... tests/test_ep.s"
 .PHONY : help
 
 
