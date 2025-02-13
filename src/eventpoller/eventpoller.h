@@ -60,6 +60,8 @@ public:
 
     void idle() override;
 
+    bool stopping(uint64_t &timeout);
+
     bool stopping() override;
 
 private:

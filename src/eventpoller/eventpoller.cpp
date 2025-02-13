@@ -53,11 +53,17 @@ EventPoller* EventPoller::getThis() {
     return dynamic_cast<EventPoller*>(Scheduler::getThis());
 }
 
-bool EventPoller::stopping() {
+bool EventPoller::stopping(uint64_t &timeout) {
+    timeout = getNextTimer();
     return m_pendingEventCount == 0
-        && !hasTimer()
+        && timeout == ~0ull
         && Scheduler::stopping();
 
+}
+
+bool EventPoller::stopping() {
+    uint64_t timeout = 0;
+    stopping(timeout);
 }
 
 void EventPoller::contextResize(size_t size) {
@@ -282,13 +288,11 @@ void EventPoller::idle() {
 
     int rt = 0;
     while(true) {
-        if(stopping()) {
-            if(!hasTimer()) {
-                break;
-            }
+        uint64_t next_timeout;
+        if(stopping(next_timeout)) {
+            break;
         }
         do {
-            uint64_t next_timeout = getNextTimer();
             if(next_timeout == 0) {
                 next_timeout = MAX_TIMEOUT;
             }
