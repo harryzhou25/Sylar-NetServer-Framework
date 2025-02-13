@@ -25,6 +25,12 @@ uint32_t getFiberId() {
     return Fiber::GetFiberId();
 }
 
+uint64_t getCurrentMS() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000ul  + tv.tv_usec / 1000;
+}
+
 void Backtrace(std::vector<std::string>& bt, int size, int skip) {
     void** array = (void**)malloc((sizeof(void*) * size));
     size_t s = ::backtrace(array, size);

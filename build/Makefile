@@ -153,6 +153,30 @@ src/config/config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/config/config.cc.s
 .PHONY : src/config/config.cc.s
 
+src/eventpoller/eventpoller.o: src/eventpoller/eventpoller.cpp.o
+.PHONY : src/eventpoller/eventpoller.o
+
+# target to build an object file
+src/eventpoller/eventpoller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.o
+.PHONY : src/eventpoller/eventpoller.cpp.o
+
+src/eventpoller/eventpoller.i: src/eventpoller/eventpoller.cpp.i
+.PHONY : src/eventpoller/eventpoller.i
+
+# target to preprocess a source file
+src/eventpoller/eventpoller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.i
+.PHONY : src/eventpoller/eventpoller.cpp.i
+
+src/eventpoller/eventpoller.s: src/eventpoller/eventpoller.cpp.s
+.PHONY : src/eventpoller/eventpoller.s
+
+# target to generate assembly for a file
+src/eventpoller/eventpoller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.s
+.PHONY : src/eventpoller/eventpoller.cpp.s
+
 src/fiber/fiber.o: src/fiber/fiber.cpp.o
 .PHONY : src/fiber/fiber.o
 
@@ -200,30 +224,6 @@ src/fiber/scheduler.s: src/fiber/scheduler.cpp.s
 src/fiber/scheduler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/fiber/scheduler.cpp.s
 .PHONY : src/fiber/scheduler.cpp.s
-
-src/iomanager/eventpoller.o: src/iomanager/eventpoller.cpp.o
-.PHONY : src/iomanager/eventpoller.o
-
-# target to build an object file
-src/iomanager/eventpoller.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/iomanager/eventpoller.cpp.o
-.PHONY : src/iomanager/eventpoller.cpp.o
-
-src/iomanager/eventpoller.i: src/iomanager/eventpoller.cpp.i
-.PHONY : src/iomanager/eventpoller.i
-
-# target to preprocess a source file
-src/iomanager/eventpoller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/iomanager/eventpoller.cpp.i
-.PHONY : src/iomanager/eventpoller.cpp.i
-
-src/iomanager/eventpoller.s: src/iomanager/eventpoller.cpp.s
-.PHONY : src/iomanager/eventpoller.s
-
-# target to generate assembly for a file
-src/iomanager/eventpoller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/iomanager/eventpoller.cpp.s
-.PHONY : src/iomanager/eventpoller.cpp.s
 
 src/log/logger.o: src/log/logger.cpp.o
 .PHONY : src/log/logger.o
@@ -273,6 +273,30 @@ src/thread/thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/thread/thread.cpp.s
 .PHONY : src/thread/thread.cpp.s
 
+src/timer/timer.o: src/timer/timer.cpp.o
+.PHONY : src/timer/timer.o
+
+# target to build an object file
+src/timer/timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/timer/timer.cpp.o
+.PHONY : src/timer/timer.cpp.o
+
+src/timer/timer.i: src/timer/timer.cpp.i
+.PHONY : src/timer/timer.i
+
+# target to preprocess a source file
+src/timer/timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/timer/timer.cpp.i
+.PHONY : src/timer/timer.cpp.i
+
+src/timer/timer.s: src/timer/timer.cpp.s
+.PHONY : src/timer/timer.s
+
+# target to generate assembly for a file
+src/timer/timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/timer/timer.cpp.s
+.PHONY : src/timer/timer.cpp.s
+
 src/util/env.o: src/util/env.cc.o
 .PHONY : src/util/env.o
 
@@ -321,29 +345,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_ep.o: tests/test_ep.cpp.o
-.PHONY : tests/test_ep.o
+tests/test_timer.o: tests/test_timer.cpp.o
+.PHONY : tests/test_timer.o
 
 # target to build an object file
-tests/test_ep.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_ep.cpp.o
-.PHONY : tests/test_ep.cpp.o
+tests/test_timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_timer.cpp.o
+.PHONY : tests/test_timer.cpp.o
 
-tests/test_ep.i: tests/test_ep.cpp.i
-.PHONY : tests/test_ep.i
+tests/test_timer.i: tests/test_timer.cpp.i
+.PHONY : tests/test_timer.i
 
 # target to preprocess a source file
-tests/test_ep.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_ep.cpp.i
-.PHONY : tests/test_ep.cpp.i
+tests/test_timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_timer.cpp.i
+.PHONY : tests/test_timer.cpp.i
 
-tests/test_ep.s: tests/test_ep.cpp.s
-.PHONY : tests/test_ep.s
+tests/test_timer.s: tests/test_timer.cpp.s
+.PHONY : tests/test_timer.s
 
 # target to generate assembly for a file
-tests/test_ep.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_ep.cpp.s
-.PHONY : tests/test_ep.cpp.s
+tests/test_timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_timer.cpp.s
+.PHONY : tests/test_timer.cpp.s
 
 # Help Target
 help:
@@ -357,30 +381,33 @@ help:
 	@echo "... src/config/config.o"
 	@echo "... src/config/config.i"
 	@echo "... src/config/config.s"
+	@echo "... src/eventpoller/eventpoller.o"
+	@echo "... src/eventpoller/eventpoller.i"
+	@echo "... src/eventpoller/eventpoller.s"
 	@echo "... src/fiber/fiber.o"
 	@echo "... src/fiber/fiber.i"
 	@echo "... src/fiber/fiber.s"
 	@echo "... src/fiber/scheduler.o"
 	@echo "... src/fiber/scheduler.i"
 	@echo "... src/fiber/scheduler.s"
-	@echo "... src/iomanager/eventpoller.o"
-	@echo "... src/iomanager/eventpoller.i"
-	@echo "... src/iomanager/eventpoller.s"
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
 	@echo "... src/thread/thread.o"
 	@echo "... src/thread/thread.i"
 	@echo "... src/thread/thread.s"
+	@echo "... src/timer/timer.o"
+	@echo "... src/timer/timer.i"
+	@echo "... src/timer/timer.s"
 	@echo "... src/util/env.o"
 	@echo "... src/util/env.i"
 	@echo "... src/util/env.s"
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_ep.o"
-	@echo "... tests/test_ep.i"
-	@echo "... tests/test_ep.s"
+	@echo "... tests/test_timer.o"
+	@echo "... tests/test_timer.i"
+	@echo "... tests/test_timer.s"
 .PHONY : help
 
 
