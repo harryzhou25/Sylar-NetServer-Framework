@@ -1,7 +1,10 @@
 #include "timer/timer.h"
 #include "util/util.h"
+#include "log/logger.h"
 
 namespace sylar {
+static Logger::Ptr g_logger = Name_Logger("system");
+
 bool Timer::Comparator::operator()(const Timer::Ptr& lhs, const Timer::Ptr& rhs) const{
     if(!lhs && !rhs) {
         return false;
@@ -24,6 +27,7 @@ Timer::Timer(uint64_t ms, std::function<void()> cb,
             bool recurring, TimerManager* manager)
             : m_ms(ms), m_recurring(recurring), m_manager(manager) {
     m_cb = std::forward<std::function<void()>>(cb);
+    m_next = getCurrentMS() + ms;
 }
 
 Timer::Timer(uint64_t next)
@@ -94,16 +98,17 @@ Timer::Ptr TimerManager::addTimer(uint64_t ms, Func cb, bool recurring) {
     {
         std::shared_lock<Mutex> lock(m_mtx);
         auto it = m_timers.insert(timer).first;
-        at_front = (it == m_timers.begin()) && !m_tickled;
+        at_front = (it == m_timers.begin());
     }
     if(at_front) {
         flushTimer();
     }
+    return timer;
 }
 
 void TimerManager::addTimer(Timer::Ptr val, Mutex& lock) {
     auto it = m_timers.insert(val).first;
-    bool at_front = (it == m_timers.begin()) && !m_tickled;
+    bool at_front = (it == m_timers.begin());
     lock.unlock();
     if(at_front) {
         flushTimer();

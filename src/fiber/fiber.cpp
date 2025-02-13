@@ -213,7 +213,6 @@ void Fiber::MainFunc() {
         cur->m_cb();
         cur->m_cb = nullptr;
         cur->m_state = TERM;
-        Log_Debug(g_logger) << "Fiber::MainFunc: " << cur->m_id << " Term";
     }
     catch (std::exception &ex) {
         cur->m_state = EXCEPT;

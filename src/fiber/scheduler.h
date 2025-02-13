@@ -8,6 +8,7 @@
 #include <string>
 #include <functional>
 
+#include "util/hook.h"
 #include "fiber/fiber.h"
 #include "thread/thread.h"
 

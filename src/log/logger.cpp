@@ -69,7 +69,7 @@ void LogEvent::format(const char* fmt, va_list al) {
 }
 
 LogEventWrap::LogEventWrap(LogEvent::Ptr e) {
-    m_event = std::move(e);
+    m_event = e;
 }
 
 LogEventWrap::~LogEventWrap() {
@@ -214,7 +214,7 @@ LogFormatter::LogFormatter(const std::string& pattern)
 }
 
 void LogFormatter::reset(const std::string& pattern) {
-    m_pattern = std::move(pattern);
+    m_pattern = pattern;
     init();
     std::cout << "[LogFormatter] reset : " << m_pattern << '\n';
 }
@@ -382,7 +382,7 @@ void FileLogAppender::log(Logger::Ptr logger, LogLevel::Level level, LogEvent::P
 /////////////////// Logger /////////////////////
 
 Logger::Logger(const std::string& name) {
-    m_name = std::move(name);
+    m_name = name;
     m_level = LogLevel::DEBUG;
     m_formatter = std::make_shared<LogFormatter>(DEFAULT_FORMAT);
 }

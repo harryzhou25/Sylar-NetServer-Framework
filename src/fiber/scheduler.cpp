@@ -63,6 +63,7 @@ void Scheduler::start() {
     if(m_running) {
         return;
     }
+    set_hook_enable(true);
     m_running = true;
     {
         std::lock_guard<std::mutex> lock(m_mtx);
@@ -166,7 +167,6 @@ void Scheduler::run() {
         }
         if(ft.fiber && ft.fiber->getState() != Fiber::TERM 
                     && ft.fiber->getState() != Fiber::EXCEPT) {
-            Log_Debug(g_logger) << "Scheduler::run get fiber task";
             ft.fiber->swapIn();
             --m_activeThreadNum;
             if(ft.fiber->getState() == Fiber::READY) {
@@ -180,7 +180,6 @@ void Scheduler::run() {
             }
         }
         else if(ft.cb) {
-            Log_Debug(g_logger) << "Scheduler::run get function task";
             if(cb_fiber) {
                 cb_fiber->reset(ft.cb);
             } else {

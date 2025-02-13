@@ -321,6 +321,30 @@ src/util/env.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/env.cc.s
 .PHONY : src/util/env.cc.s
 
+src/util/hook.o: src/util/hook.cpp.o
+.PHONY : src/util/hook.o
+
+# target to build an object file
+src/util/hook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/hook.cpp.o
+.PHONY : src/util/hook.cpp.o
+
+src/util/hook.i: src/util/hook.cpp.i
+.PHONY : src/util/hook.i
+
+# target to preprocess a source file
+src/util/hook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/hook.cpp.i
+.PHONY : src/util/hook.cpp.i
+
+src/util/hook.s: src/util/hook.cpp.s
+.PHONY : src/util/hook.s
+
+# target to generate assembly for a file
+src/util/hook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/hook.cpp.s
+.PHONY : src/util/hook.cpp.s
+
 src/util/util.o: src/util/util.cpp.o
 .PHONY : src/util/util.o
 
@@ -345,29 +369,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_timer.o: tests/test_timer.cpp.o
-.PHONY : tests/test_timer.o
+tests/test_hook.o: tests/test_hook.cpp.o
+.PHONY : tests/test_hook.o
 
 # target to build an object file
-tests/test_timer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_timer.cpp.o
-.PHONY : tests/test_timer.cpp.o
+tests/test_hook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_hook.cpp.o
+.PHONY : tests/test_hook.cpp.o
 
-tests/test_timer.i: tests/test_timer.cpp.i
-.PHONY : tests/test_timer.i
+tests/test_hook.i: tests/test_hook.cpp.i
+.PHONY : tests/test_hook.i
 
 # target to preprocess a source file
-tests/test_timer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_timer.cpp.i
-.PHONY : tests/test_timer.cpp.i
+tests/test_hook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_hook.cpp.i
+.PHONY : tests/test_hook.cpp.i
 
-tests/test_timer.s: tests/test_timer.cpp.s
-.PHONY : tests/test_timer.s
+tests/test_hook.s: tests/test_hook.cpp.s
+.PHONY : tests/test_hook.s
 
 # target to generate assembly for a file
-tests/test_timer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_timer.cpp.s
-.PHONY : tests/test_timer.cpp.s
+tests/test_hook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_hook.cpp.s
+.PHONY : tests/test_hook.cpp.s
 
 # Help Target
 help:
@@ -402,12 +426,15 @@ help:
 	@echo "... src/util/env.o"
 	@echo "... src/util/env.i"
 	@echo "... src/util/env.s"
+	@echo "... src/util/hook.o"
+	@echo "... src/util/hook.i"
+	@echo "... src/util/hook.s"
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_timer.o"
-	@echo "... tests/test_timer.i"
-	@echo "... tests/test_timer.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
 .PHONY : help
 
 
