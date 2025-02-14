@@ -321,6 +321,30 @@ src/util/env.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/env.cc.s
 .PHONY : src/util/env.cc.s
 
+src/util/fdManager.o: src/util/fdManager.cpp.o
+.PHONY : src/util/fdManager.o
+
+# target to build an object file
+src/util/fdManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/fdManager.cpp.o
+.PHONY : src/util/fdManager.cpp.o
+
+src/util/fdManager.i: src/util/fdManager.cpp.i
+.PHONY : src/util/fdManager.i
+
+# target to preprocess a source file
+src/util/fdManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/fdManager.cpp.i
+.PHONY : src/util/fdManager.cpp.i
+
+src/util/fdManager.s: src/util/fdManager.cpp.s
+.PHONY : src/util/fdManager.s
+
+# target to generate assembly for a file
+src/util/fdManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/fdManager.cpp.s
+.PHONY : src/util/fdManager.cpp.s
+
 src/util/hook.o: src/util/hook.cpp.o
 .PHONY : src/util/hook.o
 
@@ -426,6 +450,9 @@ help:
 	@echo "... src/util/env.o"
 	@echo "... src/util/env.i"
 	@echo "... src/util/env.s"
+	@echo "... src/util/fdManager.o"
+	@echo "... src/util/fdManager.i"
+	@echo "... src/util/fdManager.s"
 	@echo "... src/util/hook.o"
 	@echo "... src/util/hook.i"
 	@echo "... src/util/hook.s"

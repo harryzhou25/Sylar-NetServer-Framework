@@ -89,7 +89,7 @@ FdCtx::Ptr FdManager::get(int fd, bool auto_create) {
         }
     }
 
-    std::unique_lock<Mutex> lock2(m_mtx);
+    std::unique_lock<Mutex> lock(m_mtx);
     FdCtx::Ptr ctx(new FdCtx(fd));
     if(fd >= (int)m_datas.size()) {
         m_datas.resize(fd * 1.5);

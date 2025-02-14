@@ -13,6 +13,7 @@ set (SRCS
     src/util/hook.cpp
     src/util/env.cc
     src/util/macro.h
+    src/util/fdManager.cpp
     src/config/config.cc
     src/thread/thread.cpp
     src/thread/Mutex.h

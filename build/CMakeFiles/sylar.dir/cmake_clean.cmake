@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/timer/timer.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/env.cc.o"
   "CMakeFiles/sylar.dir/src/util/env.cc.o.d"
+  "CMakeFiles/sylar.dir/src/util/fdManager.cpp.o"
+  "CMakeFiles/sylar.dir/src/util/fdManager.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/hook.cpp.o"
   "CMakeFiles/sylar.dir/src/util/hook.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o"

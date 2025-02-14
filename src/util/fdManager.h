@@ -9,11 +9,6 @@
 
 namespace sylar {
 
-/**
- * @brief 文件句柄上下文类
- * @details 管理文件句柄类型(是否socket)
- *          是否阻塞,是否关闭,读/写超时时间
- */
 class FdCtx : public std::enable_shared_from_this<FdCtx> {
 public:
     using Ptr = std::shared_ptr<FdCtx>;

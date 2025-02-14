@@ -2,6 +2,10 @@
 #define _SYLAR_HOOK_H_
 
 #include <fcntl.h>
+#include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdint.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -64,6 +68,7 @@ extern sendto_fun sendto_f;
 typedef ssize_t (*sendmsg_fun)(int s, const struct msghdr *msg, int flags);
 extern sendmsg_fun sendmsg_f;
 
+// 
 typedef int (*close_fun)(int fd);
 extern close_fun close_f;
 
@@ -72,6 +77,15 @@ extern fcntl_fun fcntl_f;
 
 typedef int (*ioctl_fun)(int d, unsigned long int request, ...);
 extern ioctl_fun ioctl_f;
+
+typedef int (*getsockopt_fun)(int sockfd, int level, int optname, void *optval, socklen_t *optlen);
+extern getsockopt_fun getsockopt_f;
+
+typedef int (*setsockopt_fun)(int sockfd, int level, int optname, const void *optval, socklen_t optlen);
+extern setsockopt_fun setsockopt_f;
+
+extern int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms);
+
 }
 
 #endif //_SYLAR_HOOK_H_
