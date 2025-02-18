@@ -84,7 +84,7 @@ CMakeFiles/sylar.dir/src/util/hook.cpp.o: \
  /usr/include/linux/close_range.h /usr/include/dlfcn.h \
  /usr/include/x86_64-linux-gnu/bits/dlfcn.h \
  /usr/include/x86_64-linux-gnu/bits/dl_find_object.h \
- /home/harry/workspace/sylar/sylar_learn/src/util/fdManager.h \
+ /home/harry/workspace/sylar/sylar_learn/src/socket/fdManager.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

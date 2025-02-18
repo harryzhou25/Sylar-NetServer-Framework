@@ -13,14 +13,16 @@ set (SRCS
     src/util/hook.cpp
     src/util/env.cc
     src/util/macro.h
-    src/util/fdManager.cpp
     src/config/config.cc
     src/thread/thread.cpp
     src/thread/Mutex.h
     src/fiber/fiber.cpp
     src/fiber/scheduler.cpp
-    src/timer/timer.cpp
     src/eventpoller/eventpoller.cpp
+    src/timer/timer.cpp
+    src/socket/endian.h
+    src/socket/fdManager.cpp
+    src/socket/address.cpp
 )
 
 find_package(yaml-cpp REQUIRED)
