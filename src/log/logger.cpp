@@ -47,7 +47,6 @@ LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level
     ,m_threadName(thread_name)
     ,m_logger(logger)
     ,m_level(level) {
-        
 }
 
 // ???
@@ -80,6 +79,7 @@ std::stringstream& LogEventWrap::getSS() {
     if(m_event) {
         return m_event->getSS();
     }
+    std::cout << "ss not found\n";
     std::stringstream _ss;
     return _ss;
 }

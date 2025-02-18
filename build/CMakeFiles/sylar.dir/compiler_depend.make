@@ -6208,23 +6208,18 @@ CMakeFiles/sylar.dir/src/util/util.cpp.o: /home/harry/workspace/sylar/sylar_lear
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h
 
-CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_hook.cpp \
-  /home/harry/workspace/sylar/sylar_learn/src/eventpoller/eventpoller.h \
-  /home/harry/workspace/sylar/sylar_learn/src/fiber/fiber.h \
-  /home/harry/workspace/sylar/sylar_learn/src/fiber/scheduler.h \
+CMakeFiles/sylar.dir/tests/test_address.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_address.cpp \
   /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
+  /home/harry/workspace/sylar/sylar_learn/src/socket/address.h \
   /home/harry/workspace/sylar/sylar_learn/src/thread/Mutex.h \
   /home/harry/workspace/sylar/sylar_learn/src/thread/thread.h \
-  /home/harry/workspace/sylar/sylar_learn/src/timer/timer.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h \
-  /home/harry/workspace/sylar/sylar_learn/src/util/hook.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/util.h \
   /usr/include/alloca.h \
+  /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
-  /usr/include/asm-generic/ioctl.h \
-  /usr/include/asm-generic/ioctls.h \
   /usr/include/asm-generic/posix_types.h \
   /usr/include/asm-generic/socket.h \
   /usr/include/asm-generic/sockios.h \
@@ -6412,18 +6407,16 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
-  /usr/include/fcntl.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/libintl.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
-  /usr/include/linux/falloc.h \
-  /usr/include/linux/ioctl.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/stddef.h \
   /usr/include/locale.h \
   /usr/include/math.h \
+  /usr/include/netinet/in.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/semaphore.h \
@@ -6431,16 +6424,15 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/syscall.h \
   /usr/include/time.h \
-  /usr/include/ucontext.h \
   /usr/include/unistd.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
   /usr/include/x86_64-linux-gnu/asm/errno.h \
-  /usr/include/x86_64-linux-gnu/asm/ioctl.h \
-  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
   /usr/include/x86_64-linux-gnu/asm/posix_types.h \
   /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
   /usr/include/x86_64-linux-gnu/asm/socket.h \
@@ -6455,8 +6447,6 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
-  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
-  /usr/include/x86_64-linux-gnu/bits/fcntl.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
@@ -6464,9 +6454,7 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
-  /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
-  /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
-  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
+  /usr/include/x86_64-linux-gnu/bits/in.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -6487,14 +6475,12 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
-  /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
-  /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/time.h \
@@ -6516,7 +6502,6 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
@@ -6556,14 +6541,12 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
-  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/sys/syscall.h \
-  /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+  /usr/include/x86_64-linux-gnu/sys/un.h \
   /usr/include/yaml-cpp/binary.h \
   /usr/include/yaml-cpp/dll.h \
   /usr/include/yaml-cpp/emitter.h \
@@ -6600,7 +6583,7 @@ CMakeFiles/sylar.dir/tests/test_hook.cpp.o: /home/harry/workspace/sylar/sylar_le
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h
 
 
-/home/harry/workspace/sylar/sylar_learn/tests/test_hook.cpp:
+/home/harry/workspace/sylar/sylar_learn/tests/test_address.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
 
