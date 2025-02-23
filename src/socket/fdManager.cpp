@@ -89,13 +89,15 @@ FdCtx::Ptr FdManager::get(int fd, bool auto_create) {
         }
     }
 
-    std::unique_lock<Mutex> lock(m_mtx);
-    FdCtx::Ptr ctx(new FdCtx(fd));
-    if(fd >= (int)m_datas.size()) {
-        m_datas.resize(fd * 1.5);
+    {   
+        std::unique_lock<Mutex> lock(m_mtx);
+        FdCtx::Ptr ctx(new FdCtx(fd));
+        if(fd >= (int)m_datas.size()) {
+            m_datas.resize(fd * 1.5);
+        }
+        m_datas[fd] = ctx;
+        return ctx;
     }
-    m_datas[fd] = ctx;
-    return ctx;
 }
 
 void FdManager::del(int fd) {

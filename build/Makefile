@@ -273,6 +273,30 @@ src/socket/address.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/address.cpp.s
 .PHONY : src/socket/address.cpp.s
 
+src/socket/bytearray.o: src/socket/bytearray.cpp.o
+.PHONY : src/socket/bytearray.o
+
+# target to build an object file
+src/socket/bytearray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/bytearray.cpp.o
+.PHONY : src/socket/bytearray.cpp.o
+
+src/socket/bytearray.i: src/socket/bytearray.cpp.i
+.PHONY : src/socket/bytearray.i
+
+# target to preprocess a source file
+src/socket/bytearray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/bytearray.cpp.i
+.PHONY : src/socket/bytearray.cpp.i
+
+src/socket/bytearray.s: src/socket/bytearray.cpp.s
+.PHONY : src/socket/bytearray.s
+
+# target to generate assembly for a file
+src/socket/bytearray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/bytearray.cpp.s
+.PHONY : src/socket/bytearray.cpp.s
+
 src/socket/fdManager.o: src/socket/fdManager.cpp.o
 .PHONY : src/socket/fdManager.o
 
@@ -296,6 +320,30 @@ src/socket/fdManager.s: src/socket/fdManager.cpp.s
 src/socket/fdManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/fdManager.cpp.s
 .PHONY : src/socket/fdManager.cpp.s
+
+src/socket/socket.o: src/socket/socket.cpp.o
+.PHONY : src/socket/socket.o
+
+# target to build an object file
+src/socket/socket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/socket.cpp.o
+.PHONY : src/socket/socket.cpp.o
+
+src/socket/socket.i: src/socket/socket.cpp.i
+.PHONY : src/socket/socket.i
+
+# target to preprocess a source file
+src/socket/socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/socket.cpp.i
+.PHONY : src/socket/socket.cpp.i
+
+src/socket/socket.s: src/socket/socket.cpp.s
+.PHONY : src/socket/socket.s
+
+# target to generate assembly for a file
+src/socket/socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/socket/socket.cpp.s
+.PHONY : src/socket/socket.cpp.s
 
 src/thread/thread.o: src/thread/thread.cpp.o
 .PHONY : src/thread/thread.o
@@ -417,29 +465,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_address.o: tests/test_address.cpp.o
-.PHONY : tests/test_address.o
+tests/test_bytearray.o: tests/test_bytearray.cpp.o
+.PHONY : tests/test_bytearray.o
 
 # target to build an object file
-tests/test_address.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_address.cpp.o
-.PHONY : tests/test_address.cpp.o
+tests/test_bytearray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o
+.PHONY : tests/test_bytearray.cpp.o
 
-tests/test_address.i: tests/test_address.cpp.i
-.PHONY : tests/test_address.i
+tests/test_bytearray.i: tests/test_bytearray.cpp.i
+.PHONY : tests/test_bytearray.i
 
 # target to preprocess a source file
-tests/test_address.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_address.cpp.i
-.PHONY : tests/test_address.cpp.i
+tests/test_bytearray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bytearray.cpp.i
+.PHONY : tests/test_bytearray.cpp.i
 
-tests/test_address.s: tests/test_address.cpp.s
-.PHONY : tests/test_address.s
+tests/test_bytearray.s: tests/test_bytearray.cpp.s
+.PHONY : tests/test_bytearray.s
 
 # target to generate assembly for a file
-tests/test_address.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_address.cpp.s
-.PHONY : tests/test_address.cpp.s
+tests/test_bytearray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bytearray.cpp.s
+.PHONY : tests/test_bytearray.cpp.s
 
 # Help Target
 help:
@@ -468,9 +516,15 @@ help:
 	@echo "... src/socket/address.o"
 	@echo "... src/socket/address.i"
 	@echo "... src/socket/address.s"
+	@echo "... src/socket/bytearray.o"
+	@echo "... src/socket/bytearray.i"
+	@echo "... src/socket/bytearray.s"
 	@echo "... src/socket/fdManager.o"
 	@echo "... src/socket/fdManager.i"
 	@echo "... src/socket/fdManager.s"
+	@echo "... src/socket/socket.o"
+	@echo "... src/socket/socket.i"
+	@echo "... src/socket/socket.s"
 	@echo "... src/thread/thread.o"
 	@echo "... src/thread/thread.i"
 	@echo "... src/thread/thread.s"
@@ -486,9 +540,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_address.o"
-	@echo "... tests/test_address.i"
-	@echo "... tests/test_address.s"
+	@echo "... tests/test_bytearray.o"
+	@echo "... tests/test_bytearray.i"
+	@echo "... tests/test_bytearray.s"
 .PHONY : help
 
 

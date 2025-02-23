@@ -17,4 +17,12 @@
         assert(x); \
     }
 
+#if defined __GNUC__ || defined __llvm__
+    #define LIKELY(x) __builtin_expect(!!(x), true)
+    #define UNLIKELY(x) __builtin_expect(!!(x), false)
+#else
+    #define LIKELY(x) (x)
+    #define UNLIKELY(x) (x)
+#endif
+
 #endif //_SYLAR_MACRO_H

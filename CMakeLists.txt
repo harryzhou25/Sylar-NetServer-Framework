@@ -6,7 +6,7 @@ set(RPCLIB_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 
 set (SRCS 
-    tests/test_address.cpp
+    tests/test_bytearray.cpp
     src/log/logger.cpp
     src/util/util.cpp
     src/util/Singleton.h
@@ -23,6 +23,8 @@ set (SRCS
     src/socket/endian.h
     src/socket/fdManager.cpp
     src/socket/address.cpp
+    src/socket/socket.cpp
+    src/socket/bytearray.cpp
 )
 
 find_package(yaml-cpp REQUIRED)
