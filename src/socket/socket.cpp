@@ -58,6 +58,9 @@ Socket::Socket(int family, int type, int protocol):
 
 Socket::~Socket() {
     close();
+    if(m_remoteAddress && m_localAddress) {
+        Log_Debug(g_logger) << "~Socket" << m_localAddress->toString() << ' ' << m_remoteAddress->toString();
+    }
 }
 
 int64_t Socket::getSendTimeout() {
@@ -144,6 +147,7 @@ void Socket::initSock() {
 }
 
 Socket::Ptr Socket::accept() {
+    // std::cout << m_sock << '\n';
     int sockFd = ::accept(m_sock, nullptr, nullptr);
     if(sockFd == -1) {
         Log_Error(g_logger) << "accept(" << m_sock << ") errno="

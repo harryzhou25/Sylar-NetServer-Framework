@@ -40,7 +40,6 @@ Address::Ptr Address::Create(const sockaddr* addr, socklen_t addrlen) {
 
 bool Address::Lookup(std::vector<Address::Ptr> &result, const std::string& host, 
     int family, int type, int protocol) {
-    Log_Debug(g_logger) << "!!!";
     addrinfo hints, *results;
     hints.ai_flags = 0;
     hints.ai_family = family;

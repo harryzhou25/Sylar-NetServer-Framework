@@ -44,7 +44,7 @@ public:
 public:
     State getState() const { return m_state; }
 
-    uint64_t getId() const { return m_id; }
+    uint64_t getId() { return m_id; }
 
     void setState(State _state) { m_state = _state; }
 public:

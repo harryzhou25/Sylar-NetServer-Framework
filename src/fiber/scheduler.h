@@ -50,7 +50,7 @@ public:
     };
 
 public:
-    Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "");
+    Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "test");
 
     virtual ~Scheduler();
 

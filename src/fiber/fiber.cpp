@@ -7,6 +7,8 @@
 
 namespace sylar {
 
+// #define FIBER_SWAP_DEBUG
+
 static Logger::Ptr g_logger = Name_Logger("system");
 
 static std::atomic<uint64_t> s_fiber_id {0};
@@ -129,7 +131,9 @@ void Fiber::setThis(Fiber* _f) {
 }
 
 void Fiber::call() {
-    // Log_Debug(g_logger) << "Fiber: " << m_id << " call " << t_threadFiber->m_id;
+#ifdef FIBER_SWAP_DEBUG
+    Log_Debug(g_logger) << "Fiber: " << m_id << " call " << t_threadFiber->m_id;
+#endif //FIBER_SWAP_DEBUG
     setThis(this);
     m_state = EXEC;
     if(swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
@@ -138,7 +142,9 @@ void Fiber::call() {
 }
 
 void Fiber::back() {
-    // Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
+#ifdef FIBER_SWAP_DEBUG
+    Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
+#endif
     setThis(t_threadFiber.get());
     if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
         Assert_Commit(false, "swapcontext");
@@ -146,7 +152,9 @@ void Fiber::back() {
 }
 
 void Fiber::swapIn() {
-    // Log_Debug(g_logger) << "Fiber: " << m_id << " swapped in " << Scheduler::getMainFiber()->m_id;
+#ifdef FIBER_SWAP_DEBUG
+    Log_Debug(g_logger) << "Fiber: " << m_id << " swapped in " << Scheduler::getMainFiber()->m_id;
+#endif
     setThis(this);
     Assert((m_state != EXEC));
     m_state = EXEC;
@@ -173,7 +181,9 @@ void Fiber::swapIn() {
 // }
 
 void Fiber::swapOut() {
-    // Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
+#ifdef FIBER_SWAP_DEBUG
+    Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
+#endif
     setThis(Scheduler::getMainFiber());
     if(swapcontext(&m_ctx, &Scheduler::getMainFiber()->m_ctx)) {
         Assert_Commit(false, "Fiber swap failed");

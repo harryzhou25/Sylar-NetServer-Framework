@@ -1,6 +1,7 @@
 #include "eventpoller/eventpoller.h"
 #include "log/logger.h"
 #include "util/macro.h"
+#include "util/hook.h"
 
 #include <errno.h>
 #include <fcntl.h>
@@ -47,6 +48,7 @@ EventPoller::~EventPoller() {
             delete m_fdContexts[i];
         }
     }
+    Log_Debug(g_logger) << "~EventPoller()";
 }
 
 EventPoller* EventPoller::getThis() {

@@ -72,19 +72,19 @@ include CMakeFiles/sylar.dir/flags.make
 CMakeFiles/sylar.dir/codegen:
 .PHONY : CMakeFiles/sylar.dir/codegen
 
-CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o: CMakeFiles/sylar.dir/flags.make
-CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_bytearray.cpp
-CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o: CMakeFiles/sylar.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o -MF CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o.d -o CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o -c /home/harry/workspace/sylar/sylar_learn/tests/test_bytearray.cpp
+CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o: CMakeFiles/sylar.dir/flags.make
+CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o: /home/harry/workspace/sylar/sylar_learn/samples/EchoServer/main.cpp
+CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o: CMakeFiles/sylar.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o -MF CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o.d -o CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o -c /home/harry/workspace/sylar/sylar_learn/samples/EchoServer/main.cpp
 
-CMakeFiles/sylar.dir/tests/test_bytearray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sylar.dir/tests/test_bytearray.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/workspace/sylar/sylar_learn/tests/test_bytearray.cpp > CMakeFiles/sylar.dir/tests/test_bytearray.cpp.i
+CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/workspace/sylar/sylar_learn/samples/EchoServer/main.cpp > CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.i
 
-CMakeFiles/sylar.dir/tests/test_bytearray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sylar.dir/tests/test_bytearray.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/workspace/sylar/sylar_learn/tests/test_bytearray.cpp -o CMakeFiles/sylar.dir/tests/test_bytearray.cpp.s
+CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/workspace/sylar/sylar_learn/samples/EchoServer/main.cpp -o CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.s
 
 CMakeFiles/sylar.dir/src/log/logger.cpp.o: CMakeFiles/sylar.dir/flags.make
 CMakeFiles/sylar.dir/src/log/logger.cpp.o: /home/harry/workspace/sylar/sylar_learn/src/log/logger.cpp
@@ -282,9 +282,23 @@ CMakeFiles/sylar.dir/src/socket/bytearray.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sylar.dir/src/socket/bytearray.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/workspace/sylar/sylar_learn/src/socket/bytearray.cpp -o CMakeFiles/sylar.dir/src/socket/bytearray.cpp.s
 
+CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o: CMakeFiles/sylar.dir/flags.make
+CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o: /home/harry/workspace/sylar/sylar_learn/src/server/TCPserver.cpp
+CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o: CMakeFiles/sylar.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o -MF CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o.d -o CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o -c /home/harry/workspace/sylar/sylar_learn/src/server/TCPserver.cpp
+
+CMakeFiles/sylar.dir/src/server/TCPserver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sylar.dir/src/server/TCPserver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harry/workspace/sylar/sylar_learn/src/server/TCPserver.cpp > CMakeFiles/sylar.dir/src/server/TCPserver.cpp.i
+
+CMakeFiles/sylar.dir/src/server/TCPserver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sylar.dir/src/server/TCPserver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harry/workspace/sylar/sylar_learn/src/server/TCPserver.cpp -o CMakeFiles/sylar.dir/src/server/TCPserver.cpp.s
+
 # Object files for target sylar
 sylar_OBJECTS = \
-"CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o" \
+"CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o" \
 "CMakeFiles/sylar.dir/src/log/logger.cpp.o" \
 "CMakeFiles/sylar.dir/src/util/util.cpp.o" \
 "CMakeFiles/sylar.dir/src/util/hook.cpp.o" \
@@ -298,12 +312,13 @@ sylar_OBJECTS = \
 "CMakeFiles/sylar.dir/src/socket/fdManager.cpp.o" \
 "CMakeFiles/sylar.dir/src/socket/address.cpp.o" \
 "CMakeFiles/sylar.dir/src/socket/socket.cpp.o" \
-"CMakeFiles/sylar.dir/src/socket/bytearray.cpp.o"
+"CMakeFiles/sylar.dir/src/socket/bytearray.cpp.o" \
+"CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o"
 
 # External object files for target sylar
 sylar_EXTERNAL_OBJECTS =
 
-/home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o
+/home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/log/logger.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/util/util.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/util/hook.cpp.o
@@ -318,10 +333,11 @@ sylar_EXTERNAL_OBJECTS =
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/socket/address.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/socket/socket.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/socket/bytearray.cpp.o
+/home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/build.make
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so.0.7.0
 /home/harry/workspace/sylar/sylar_learn/bin/sylar: CMakeFiles/sylar.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable /home/harry/workspace/sylar/sylar_learn/bin/sylar"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable /home/harry/workspace/sylar/sylar_learn/bin/sylar"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sylar.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

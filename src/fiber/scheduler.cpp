@@ -33,6 +33,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name)
         
         m_mainFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
         t_scheduler_fiber = m_mainFiber.get();
+        Log_Debug(g_logger) << "scheduler_fiber id: " << t_scheduler_fiber->getId();
 
         Thread::t_setName(m_name);
         m_rootThread = getThreadId();
@@ -63,7 +64,7 @@ void Scheduler::start() {
     if(m_running) {
         return;
     }
-    set_hook_enable(true);
+    // set_hook_enable(true);
     m_running = true;
     {
         std::lock_guard<std::mutex> lock(m_mtx);
@@ -125,12 +126,12 @@ void Scheduler::stop() {
 
 void Scheduler::run() {
     Scheduler::setThis();
+    set_hook_enable(true);
     if(getThreadId() != m_rootThread) {
         t_scheduler_fiber = Fiber::getThis().get();
     }
 
     Fiber::Ptr cb_fiber;
-    Log_Debug(g_logger) << "scheduler run";
     FiberAndThread ft;
     Fiber::Ptr idle_fiber(new Fiber(std::bind(&Scheduler::idle, this), 0, false));
     while(true) {
@@ -162,9 +163,11 @@ void Scheduler::run() {
             }
             needTickle |= (it == m_fibers.end());
         }
+
         if(needTickle) {
             tickle();
         }
+
         if(ft.fiber && ft.fiber->getState() != Fiber::TERM 
                     && ft.fiber->getState() != Fiber::EXCEPT) {
             ft.fiber->swapIn();
@@ -201,6 +204,7 @@ void Scheduler::run() {
                 }
                 else {
                     cb_fiber->reset(nullptr);
+                    Log_Debug(g_logger) << "scheduler cb terminated " << m_fibers.size();
                 }
             }
         }

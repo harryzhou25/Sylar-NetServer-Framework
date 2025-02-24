@@ -129,6 +129,30 @@ sylar/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/build
 .PHONY : sylar/fast
 
+samples/EchoServer/main.o: samples/EchoServer/main.cpp.o
+.PHONY : samples/EchoServer/main.o
+
+# target to build an object file
+samples/EchoServer/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o
+.PHONY : samples/EchoServer/main.cpp.o
+
+samples/EchoServer/main.i: samples/EchoServer/main.cpp.i
+.PHONY : samples/EchoServer/main.i
+
+# target to preprocess a source file
+samples/EchoServer/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.i
+.PHONY : samples/EchoServer/main.cpp.i
+
+samples/EchoServer/main.s: samples/EchoServer/main.cpp.s
+.PHONY : samples/EchoServer/main.s
+
+# target to generate assembly for a file
+samples/EchoServer/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.s
+.PHONY : samples/EchoServer/main.cpp.s
+
 src/config/config.o: src/config/config.cc.o
 .PHONY : src/config/config.o
 
@@ -248,6 +272,30 @@ src/log/logger.s: src/log/logger.cpp.s
 src/log/logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/log/logger.cpp.s
 .PHONY : src/log/logger.cpp.s
+
+src/server/TCPserver.o: src/server/TCPserver.cpp.o
+.PHONY : src/server/TCPserver.o
+
+# target to build an object file
+src/server/TCPserver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o
+.PHONY : src/server/TCPserver.cpp.o
+
+src/server/TCPserver.i: src/server/TCPserver.cpp.i
+.PHONY : src/server/TCPserver.i
+
+# target to preprocess a source file
+src/server/TCPserver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/server/TCPserver.cpp.i
+.PHONY : src/server/TCPserver.cpp.i
+
+src/server/TCPserver.s: src/server/TCPserver.cpp.s
+.PHONY : src/server/TCPserver.s
+
+# target to generate assembly for a file
+src/server/TCPserver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/server/TCPserver.cpp.s
+.PHONY : src/server/TCPserver.cpp.s
 
 src/socket/address.o: src/socket/address.cpp.o
 .PHONY : src/socket/address.o
@@ -465,30 +513,6 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_bytearray.o: tests/test_bytearray.cpp.o
-.PHONY : tests/test_bytearray.o
-
-# target to build an object file
-tests/test_bytearray.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o
-.PHONY : tests/test_bytearray.cpp.o
-
-tests/test_bytearray.i: tests/test_bytearray.cpp.i
-.PHONY : tests/test_bytearray.i
-
-# target to preprocess a source file
-tests/test_bytearray.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bytearray.cpp.i
-.PHONY : tests/test_bytearray.cpp.i
-
-tests/test_bytearray.s: tests/test_bytearray.cpp.s
-.PHONY : tests/test_bytearray.s
-
-# target to generate assembly for a file
-tests/test_bytearray.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_bytearray.cpp.s
-.PHONY : tests/test_bytearray.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -498,6 +522,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sylar"
+	@echo "... samples/EchoServer/main.o"
+	@echo "... samples/EchoServer/main.i"
+	@echo "... samples/EchoServer/main.s"
 	@echo "... src/config/config.o"
 	@echo "... src/config/config.i"
 	@echo "... src/config/config.s"
@@ -513,6 +540,9 @@ help:
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
+	@echo "... src/server/TCPserver.o"
+	@echo "... src/server/TCPserver.i"
+	@echo "... src/server/TCPserver.s"
 	@echo "... src/socket/address.o"
 	@echo "... src/socket/address.i"
 	@echo "... src/socket/address.s"
@@ -540,9 +570,6 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_bytearray.o"
-	@echo "... tests/test_bytearray.i"
-	@echo "... tests/test_bytearray.s"
 .PHONY : help
 
 

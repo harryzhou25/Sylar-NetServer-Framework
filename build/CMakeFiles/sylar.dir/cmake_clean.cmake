@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "/home/harry/workspace/sylar/sylar_learn/bin/sylar"
   "/home/harry/workspace/sylar/sylar_learn/bin/sylar.pdb"
+  "CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o"
+  "CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o.d"
   "CMakeFiles/sylar.dir/src/config/config.cc.o"
   "CMakeFiles/sylar.dir/src/config/config.cc.o.d"
   "CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.o"
@@ -11,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/fiber/scheduler.cpp.o.d"
   "CMakeFiles/sylar.dir/src/log/logger.cpp.o"
   "CMakeFiles/sylar.dir/src/log/logger.cpp.o.d"
+  "CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o"
+  "CMakeFiles/sylar.dir/src/server/TCPserver.cpp.o.d"
   "CMakeFiles/sylar.dir/src/socket/address.cpp.o"
   "CMakeFiles/sylar.dir/src/socket/address.cpp.o.d"
   "CMakeFiles/sylar.dir/src/socket/bytearray.cpp.o"
@@ -29,8 +33,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/util/hook.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
-  "CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o"
-  "CMakeFiles/sylar.dir/tests/test_bytearray.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.
