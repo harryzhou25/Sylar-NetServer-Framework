@@ -129,30 +129,6 @@ sylar/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/build
 .PHONY : sylar/fast
 
-samples/EchoServer/main.o: samples/EchoServer/main.cpp.o
-.PHONY : samples/EchoServer/main.o
-
-# target to build an object file
-samples/EchoServer/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o
-.PHONY : samples/EchoServer/main.cpp.o
-
-samples/EchoServer/main.i: samples/EchoServer/main.cpp.i
-.PHONY : samples/EchoServer/main.i
-
-# target to preprocess a source file
-samples/EchoServer/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.i
-.PHONY : samples/EchoServer/main.cpp.i
-
-samples/EchoServer/main.s: samples/EchoServer/main.cpp.s
-.PHONY : samples/EchoServer/main.s
-
-# target to generate assembly for a file
-samples/EchoServer/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.s
-.PHONY : samples/EchoServer/main.cpp.s
-
 src/config/config.o: src/config/config.cc.o
 .PHONY : src/config/config.o
 
@@ -441,6 +417,30 @@ src/timer/timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/timer/timer.cpp.s
 .PHONY : src/timer/timer.cpp.s
 
+src/util/daemon.o: src/util/daemon.cpp.o
+.PHONY : src/util/daemon.o
+
+# target to build an object file
+src/util/daemon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/daemon.cpp.o
+.PHONY : src/util/daemon.cpp.o
+
+src/util/daemon.i: src/util/daemon.cpp.i
+.PHONY : src/util/daemon.i
+
+# target to preprocess a source file
+src/util/daemon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/daemon.cpp.i
+.PHONY : src/util/daemon.cpp.i
+
+src/util/daemon.s: src/util/daemon.cpp.s
+.PHONY : src/util/daemon.s
+
+# target to generate assembly for a file
+src/util/daemon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/daemon.cpp.s
+.PHONY : src/util/daemon.cpp.s
+
 src/util/env.o: src/util/env.cc.o
 .PHONY : src/util/env.o
 
@@ -513,6 +513,30 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
+tests/test_daemon.o: tests/test_daemon.cpp.o
+.PHONY : tests/test_daemon.o
+
+# target to build an object file
+tests/test_daemon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_daemon.cpp.o
+.PHONY : tests/test_daemon.cpp.o
+
+tests/test_daemon.i: tests/test_daemon.cpp.i
+.PHONY : tests/test_daemon.i
+
+# target to preprocess a source file
+tests/test_daemon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_daemon.cpp.i
+.PHONY : tests/test_daemon.cpp.i
+
+tests/test_daemon.s: tests/test_daemon.cpp.s
+.PHONY : tests/test_daemon.s
+
+# target to generate assembly for a file
+tests/test_daemon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_daemon.cpp.s
+.PHONY : tests/test_daemon.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -522,9 +546,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sylar"
-	@echo "... samples/EchoServer/main.o"
-	@echo "... samples/EchoServer/main.i"
-	@echo "... samples/EchoServer/main.s"
 	@echo "... src/config/config.o"
 	@echo "... src/config/config.i"
 	@echo "... src/config/config.s"
@@ -561,6 +582,9 @@ help:
 	@echo "... src/timer/timer.o"
 	@echo "... src/timer/timer.i"
 	@echo "... src/timer/timer.s"
+	@echo "... src/util/daemon.o"
+	@echo "... src/util/daemon.i"
+	@echo "... src/util/daemon.s"
 	@echo "... src/util/env.o"
 	@echo "... src/util/env.i"
 	@echo "... src/util/env.s"
@@ -570,6 +594,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
+	@echo "... tests/test_daemon.o"
+	@echo "... tests/test_daemon.i"
+	@echo "... tests/test_daemon.s"
 .PHONY : help
 
 

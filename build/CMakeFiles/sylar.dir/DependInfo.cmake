@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/harry/workspace/sylar/sylar_learn/samples/EchoServer/main.cpp" "CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o" "gcc" "CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/config/config.cc" "CMakeFiles/sylar.dir/src/config/config.cc.o" "gcc" "CMakeFiles/sylar.dir/src/config/config.cc.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/eventpoller/eventpoller.cpp" "CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/fiber/fiber.cpp" "CMakeFiles/sylar.dir/src/fiber/fiber.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/fiber/fiber.cpp.o.d"
@@ -21,9 +20,11 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/harry/workspace/sylar/sylar_learn/src/socket/socket.cpp" "CMakeFiles/sylar.dir/src/socket/socket.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/socket/socket.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/thread/thread.cpp" "CMakeFiles/sylar.dir/src/thread/thread.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/thread/thread.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/timer/timer.cpp" "CMakeFiles/sylar.dir/src/timer/timer.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/timer/timer.cpp.o.d"
+  "/home/harry/workspace/sylar/sylar_learn/src/util/daemon.cpp" "CMakeFiles/sylar.dir/src/util/daemon.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/util/daemon.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/util/env.cc" "CMakeFiles/sylar.dir/src/util/env.cc.o" "gcc" "CMakeFiles/sylar.dir/src/util/env.cc.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/util/hook.cpp" "CMakeFiles/sylar.dir/src/util/hook.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/util/hook.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/util/util.cpp" "CMakeFiles/sylar.dir/src/util/util.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
+  "/home/harry/workspace/sylar/sylar_learn/tests/test_daemon.cpp" "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o" "gcc" "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

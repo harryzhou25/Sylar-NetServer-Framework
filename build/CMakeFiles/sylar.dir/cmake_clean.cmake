@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "/home/harry/workspace/sylar/sylar_learn/bin/sylar"
   "/home/harry/workspace/sylar/sylar_learn/bin/sylar.pdb"
-  "CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o"
-  "CMakeFiles/sylar.dir/samples/EchoServer/main.cpp.o.d"
   "CMakeFiles/sylar.dir/src/config/config.cc.o"
   "CMakeFiles/sylar.dir/src/config/config.cc.o.d"
   "CMakeFiles/sylar.dir/src/eventpoller/eventpoller.cpp.o"
@@ -27,12 +25,16 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/thread/thread.cpp.o.d"
   "CMakeFiles/sylar.dir/src/timer/timer.cpp.o"
   "CMakeFiles/sylar.dir/src/timer/timer.cpp.o.d"
+  "CMakeFiles/sylar.dir/src/util/daemon.cpp.o"
+  "CMakeFiles/sylar.dir/src/util/daemon.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/env.cc.o"
   "CMakeFiles/sylar.dir/src/util/env.cc.o.d"
   "CMakeFiles/sylar.dir/src/util/hook.cpp.o"
   "CMakeFiles/sylar.dir/src/util/hook.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
+  "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o"
+  "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.
