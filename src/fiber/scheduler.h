@@ -13,8 +13,44 @@
 #include "thread/thread.h"
 
 namespace sylar {
+
+class LoadCounter {
+public:
+    using MutexType = std::shared_mutex;
+    LoadCounter(size_t max_size = 10);
+
+    ~LoadCounter() = default;
+
+    int getLoad();
     
-class Scheduler {
+protected:
+    void startSleep();
+
+    void startWork();
+
+    private:
+    struct TimeRecord {
+        TimeRecord(uint64_t tm, bool slp) {
+            sleep = slp;
+            duration = tm;
+        }
+
+        bool sleep;
+        uint64_t duration;
+    };
+private:
+    bool m_sleeping = true;
+    
+    size_t m_max_size;
+    
+    uint64_t m_last_wake;
+    uint64_t m_last_sleep;
+
+    MutexType m_mtx;
+    std::list<TimeRecord> m_records;
+};
+
+class Scheduler : public LoadCounter {
 public:
     using Ptr = std::shared_ptr<Scheduler>;
     using Mutextype = std::mutex;
@@ -50,7 +86,7 @@ public:
     };
 
 public:
-    Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "test");
+    Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "test", const size_t load_size = 10);
 
     virtual ~Scheduler();
 

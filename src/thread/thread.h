@@ -65,47 +65,11 @@ protected:
 using Task = TaskBody<void()>;
 using TaskFunc = std::function<void()>;
 
-class LoadCounter : public noncopyable {
-public:
-    using MutexType = std::shared_mutex;
-    LoadCounter(size_t max_size = 10);
-
-    ~LoadCounter() = default;
-
-protected:
-    void startSleep();
-
-    void startWork();
-
-    int getLoad();
-
-    private:
-    struct TimeRecord {
-        TimeRecord(uint64_t tm, bool slp) {
-            sleep = slp;
-            duration = tm;
-        }
-
-        bool sleep;
-        uint64_t duration;
-    };
-private:
-    bool m_sleeping = true;
-    
-    size_t m_max_size;
-    
-    uint64_t m_last_wake;
-    uint64_t m_last_sleep;
-
-    MutexType m_mtx;
-    std::list<TimeRecord> m_records;
-};
-
-class Thread : public LoadCounter {
+class Thread : public noncopyable {
 public:
     using Ptr = std::shared_ptr<Thread>;
 
-    Thread(TaskFunc task, const std::string name, size_t load_size = 10);
+    Thread(TaskFunc task, const std::string name);
 
     ~Thread();
 

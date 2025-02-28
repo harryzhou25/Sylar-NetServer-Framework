@@ -24,7 +24,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/harry/workspace/sylar/sylar_learn/src/util/env.cc" "CMakeFiles/sylar.dir/src/util/env.cc.o" "gcc" "CMakeFiles/sylar.dir/src/util/env.cc.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/util/hook.cpp" "CMakeFiles/sylar.dir/src/util/hook.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/util/hook.cpp.o.d"
   "/home/harry/workspace/sylar/sylar_learn/src/util/util.cpp" "CMakeFiles/sylar.dir/src/util/util.cpp.o" "gcc" "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
-  "/home/harry/workspace/sylar/sylar_learn/tests/test_daemon.cpp" "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o" "gcc" "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o.d"
+  "/home/harry/workspace/sylar/sylar_learn/tests/test_loadcounter.cpp" "CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.o" "gcc" "CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

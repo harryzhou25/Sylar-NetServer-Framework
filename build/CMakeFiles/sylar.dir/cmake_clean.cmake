@@ -33,8 +33,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/src/util/hook.cpp.o.d"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o"
   "CMakeFiles/sylar.dir/src/util/util.cpp.o.d"
-  "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o"
-  "CMakeFiles/sylar.dir/tests/test_daemon.cpp.o.d"
+  "CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.o"
+  "CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

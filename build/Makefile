@@ -513,29 +513,29 @@ src/util/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/src/util/util.cpp.s
 .PHONY : src/util/util.cpp.s
 
-tests/test_daemon.o: tests/test_daemon.cpp.o
-.PHONY : tests/test_daemon.o
+tests/test_loadcounter.o: tests/test_loadcounter.cpp.o
+.PHONY : tests/test_loadcounter.o
 
 # target to build an object file
-tests/test_daemon.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_daemon.cpp.o
-.PHONY : tests/test_daemon.cpp.o
+tests/test_loadcounter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.o
+.PHONY : tests/test_loadcounter.cpp.o
 
-tests/test_daemon.i: tests/test_daemon.cpp.i
-.PHONY : tests/test_daemon.i
+tests/test_loadcounter.i: tests/test_loadcounter.cpp.i
+.PHONY : tests/test_loadcounter.i
 
 # target to preprocess a source file
-tests/test_daemon.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_daemon.cpp.i
-.PHONY : tests/test_daemon.cpp.i
+tests/test_loadcounter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.i
+.PHONY : tests/test_loadcounter.cpp.i
 
-tests/test_daemon.s: tests/test_daemon.cpp.s
-.PHONY : tests/test_daemon.s
+tests/test_loadcounter.s: tests/test_loadcounter.cpp.s
+.PHONY : tests/test_loadcounter.s
 
 # target to generate assembly for a file
-tests/test_daemon.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_daemon.cpp.s
-.PHONY : tests/test_daemon.cpp.s
+tests/test_loadcounter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.s
+.PHONY : tests/test_loadcounter.cpp.s
 
 # Help Target
 help:
@@ -594,9 +594,9 @@ help:
 	@echo "... src/util/util.o"
 	@echo "... src/util/util.i"
 	@echo "... src/util/util.s"
-	@echo "... tests/test_daemon.o"
-	@echo "... tests/test_daemon.i"
-	@echo "... tests/test_daemon.s"
+	@echo "... tests/test_loadcounter.o"
+	@echo "... tests/test_loadcounter.i"
+	@echo "... tests/test_loadcounter.s"
 .PHONY : help
 
 

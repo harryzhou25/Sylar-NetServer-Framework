@@ -7759,15 +7759,15 @@ CMakeFiles/sylar.dir/src/util/util.cpp.o: /home/harry/workspace/sylar/sylar_lear
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h
 
-CMakeFiles/sylar.dir/tests/test_daemon.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_daemon.cpp \
+CMakeFiles/sylar.dir/tests/test_loadcounter.cpp.o: /home/harry/workspace/sylar/sylar_learn/tests/test_loadcounter.cpp \
   /home/harry/workspace/sylar/sylar_learn/src/eventpoller/eventpoller.h \
   /home/harry/workspace/sylar/sylar_learn/src/fiber/fiber.h \
   /home/harry/workspace/sylar/sylar_learn/src/fiber/scheduler.h \
+  /home/harry/workspace/sylar/sylar_learn/src/log/logger.h \
   /home/harry/workspace/sylar/sylar_learn/src/thread/Mutex.h \
   /home/harry/workspace/sylar/sylar_learn/src/thread/thread.h \
   /home/harry/workspace/sylar/sylar_learn/src/timer/timer.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/Singleton.h \
-  /home/harry/workspace/sylar/sylar_learn/src/util/daemon.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/hook.h \
   /home/harry/workspace/sylar/sylar_learn/src/util/util.h \
   /usr/include/alloca.h \
@@ -7812,6 +7812,7 @@ CMakeFiles/sylar.dir/tests/test_daemon.cpp.o: /home/harry/workspace/sylar/sylar_
   /usr/include/c++/11/bits/fs_fwd.h \
   /usr/include/c++/11/bits/fs_ops.h \
   /usr/include/c++/11/bits/fs_path.h \
+  /usr/include/c++/11/bits/fstream.tcc \
   /usr/include/c++/11/bits/functexcept.h \
   /usr/include/c++/11/bits/functional_hash.h \
   /usr/include/c++/11/bits/hash_bytes.h \
@@ -7910,6 +7911,7 @@ CMakeFiles/sylar.dir/tests/test_daemon.cpp.o: /home/harry/workspace/sylar/sylar_
   /usr/include/c++/11/ext/string_conversions.h \
   /usr/include/c++/11/ext/type_traits.h \
   /usr/include/c++/11/filesystem \
+  /usr/include/c++/11/fstream \
   /usr/include/c++/11/functional \
   /usr/include/c++/11/initializer_list \
   /usr/include/c++/11/iomanip \
@@ -8087,8 +8089,10 @@ CMakeFiles/sylar.dir/tests/test_daemon.cpp.o: /home/harry/workspace/sylar/sylar_
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
@@ -8460,6 +8464,8 @@ CMakeFiles/sylar.dir/tests/test_daemon.cpp.o: /home/harry/workspace/sylar/sylar_
 /usr/include/linux/posix_types.h:
 
 /usr/include/linux/close_range.h:
+
+/home/harry/workspace/sylar/sylar_learn/tests/test_loadcounter.cpp:
 
 /usr/include/features.h:
 
@@ -8996,8 +9002,6 @@ CMakeFiles/sylar.dir/tests/test_daemon.cpp.o: /home/harry/workspace/sylar/sylar_
 /usr/include/boost/mpl/aux_/config/workaround.hpp:
 
 /usr/include/boost/core/addressof.hpp:
-
-/home/harry/workspace/sylar/sylar_learn/tests/test_daemon.cpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/greater_equal.hpp:
 
