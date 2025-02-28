@@ -23,7 +23,7 @@ void Scheduler::setThis() {
 }
 
 Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name) 
-:m_name(name) {
+                    :m_name(name) {
     Assert((threads > 0));
     
     if(use_caller) {
@@ -64,19 +64,16 @@ void Scheduler::start() {
     if(m_running) {
         return;
     }
-    // set_hook_enable(true);
+    set_hook_enable(true);
     m_running = true;
     {
-        std::lock_guard<std::mutex> lock(m_mtx);
+        std::unique_lock<std::shared_mutex> lock(m_threads_mtx);
         m_threads.resize(m_threadNum);
         for(size_t i = 0; i < m_threadNum; ++i) {
             m_threads[i].reset(new Thread(std::bind(&Scheduler::run, this), m_name + "_" + std::to_string(i)));
             m_threadIds.emplace_back(m_threads[i]->getId());
         }
     }
-    // if(m_mainFiber) {
-    //     m_mainFiber->call();
-    // }
 }
 
 void Scheduler::stop() {
@@ -105,13 +102,12 @@ void Scheduler::stop() {
     m_running = false;
     std::vector<Thread::Ptr> thrs;
     {
-        std::lock_guard<std::mutex> lock(m_mtx);
+        std::unique_lock<std::shared_mutex> lock(m_threads_mtx);
         thrs.swap(m_threads);
     }
 
     /* REDO */
     for(auto &i : thrs) {
-        Log_Debug(g_logger) << getThreadId() << " going to join " << i->getId();
         i->join();
     }
 
@@ -139,7 +135,7 @@ void Scheduler::run() {
         bool needTickle = false;
         bool isActive = false;
         {
-            std::lock_guard<std::mutex> lock(m_mtx);
+            std::lock_guard<std::mutex> lock(m_fibers_mtx);
             auto it = m_fibers.begin();
             while(it != m_fibers.end()) {
                 if(it->thread_id != -1 && it->thread_id != getThreadId()) {
@@ -240,7 +236,7 @@ void Scheduler::tickle() {
 
 bool Scheduler::stopping() {
     Log_Debug(g_logger) << "Scheduler::stopping " << m_autoStop << ',' << m_running << ',' << m_fibers.empty() << ',' << m_activeThreadNum;
-    std::lock_guard<std::mutex> lokc(m_mtx);
+    std::lock_guard<std::mutex> lokc(m_fibers_mtx);
     return m_autoStop && !m_running
         && m_fibers.empty() && (m_activeThreadNum == 0);
 }

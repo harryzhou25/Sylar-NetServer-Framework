@@ -17,6 +17,67 @@ const std::string& Thread::t_getName() {
     return t_thread_name;
 }
 
+static uint64_t getTimeUsec() {
+    auto now = std::chrono::high_resolution_clock::now();
+    return std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count();
+}
+
+LoadCounter::LoadCounter(size_t max_size) 
+    :m_max_size(max_size) {
+    m_last_sleep = m_last_wake = getTimeUsec();
+}
+
+void LoadCounter::startSleep() {
+    std::unique_lock<MutexType> lock(m_mtx);
+    m_sleeping = true;
+    auto current_time = getTimeUsec();
+    auto run_time = current_time - m_last_wake;
+    m_last_sleep = current_time;
+    m_records.emplace_back(run_time, false);
+    if (m_records.size() > m_max_size) {
+        m_records.pop_front();
+    }
+}
+
+void LoadCounter::startWork() {
+    std::unique_lock<MutexType> lock(m_mtx);
+    m_sleeping = false;
+    auto current_time = getTimeUsec();
+    auto sleep_time = current_time - m_last_sleep;
+    m_last_wake = current_time;
+    m_records.emplace_back(sleep_time, true);
+    if (m_records.size() > m_max_size) {
+        m_records.pop_front();
+    }
+}
+
+int LoadCounter::getLoad() {
+    std::shared_lock<MutexType> lock(m_mtx);
+    uint64_t totalSleepTime = 0;
+    uint64_t totalRunTime = 0;
+    for(auto i : m_records) {
+        if(i.sleep) {
+            totalSleepTime += i.duration;
+        }
+        else {
+            totalRunTime += i.duration;
+        }
+    }
+
+    if(m_sleeping) {
+        totalSleepTime += (getTimeUsec() - m_last_sleep);
+    } 
+    else {
+        totalRunTime += (getTimeUsec() - m_last_wake);
+    }
+
+    auto totalTime = totalSleepTime + totalRunTime;
+    if(totalTime == 0) {
+        return 0;
+    }
+    return int(100 * totalRunTime / totalTime);
+}
+
 void Thread::t_setName(const std::string& name) {
     if(name.empty()) {
         return;
@@ -32,7 +93,8 @@ void Thread::join() {
     m_running = false;
 }
 
-Thread::Thread(TaskFunc task, const std::string name) {
+Thread::Thread(TaskFunc task, const std::string name, size_t load_size)
+    :LoadCounter(load_size) {
     m_name = name.empty() ? "UNKNOWN" : name.substr(0, 15);
     m_task = std::make_shared<Task>(std::forward<TaskFunc>(task));
 

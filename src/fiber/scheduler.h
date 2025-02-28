@@ -64,7 +64,7 @@ public:
     void schedule(T cb, int thread = -1) {
         bool need_tickle = false;
         {
-            std::lock_guard<Mutextype> lock(m_mtx);
+            std::unique_lock<std::shared_mutex> lock(m_threads_mtx);
             need_tickle = need_tickle | scheduleNonLock(cb, thread);
         }
         if(need_tickle) {
@@ -76,7 +76,7 @@ public:
     void schedule(Iterator begin, Iterator end) {
         bool need_tickle = false;
         {
-            std::lock_guard<Mutextype> lock(m_mtx);
+            std::unique_lock<std::shared_mutex> lock(m_threads_mtx);
             while(begin != end) {
                 need_tickle = need_tickle | scheduleNonLock(&(*begin), -1);
                 ++begin;
@@ -114,30 +114,26 @@ public:
     static Fiber* getMainFiber();    
 private:
     bool m_running = false;
-
     bool m_autoStop = false;
-
     bool m_stopping = false;
 
     size_t m_threadNum = 0;
-
     size_t m_idelThreadNum = 0;
-
     size_t m_activeThreadNum = 0;
 
     std::string m_name;
 
-    std::mutex m_mtx;
-
     int m_rootThread;
-
-    std::vector<int> m_threadIds;
-
-    std::vector<Thread::Ptr> m_threads;
-
     Fiber::Ptr m_mainFiber; //调度协程
 
-    std::list<FiberAndThread> m_fibers; //重封装 优化取出不属于自己的线程的协程的情况
+    std::shared_mutex m_ids_mtx;
+    std::vector<int> m_threadIds;
+
+    std::shared_mutex m_threads_mtx;
+    std::vector<Thread::Ptr> m_threads;
+
+    std::mutex m_fibers_mtx;
+    std::list<FiberAndThread> m_fibers;
 };
 
 } // namespace sylar
