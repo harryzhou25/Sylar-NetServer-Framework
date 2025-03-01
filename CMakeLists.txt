@@ -6,7 +6,7 @@ set(RPCLIB_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 
 set (SRCS 
-    tests/test_loadcounter.cpp
+    tests/test_ep_loop.cpp
     src/log/logger.cpp
     src/util/util.cpp
     src/util/Singleton.h

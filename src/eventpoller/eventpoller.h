@@ -64,6 +64,7 @@ public:
 
     bool stopping() override;
 
+    int m_tickleFds[2];
 private:
     void contextResize(size_t size);
 
@@ -72,8 +73,6 @@ private:
 private:
     int m_epfd;
     
-    int m_tickleFds[2]; // 读写管道
-
     MutexType m_mtx;
 
     std::atomic<size_t> m_pendingEventCount = {0};

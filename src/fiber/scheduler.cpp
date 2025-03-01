@@ -1,7 +1,7 @@
 #include "fiber/scheduler.h"
-
 #include "util/macro.h"
 #include "util/util.h"
+#include "thread/Mutex.h"
 
 namespace sylar {
 
@@ -22,50 +22,56 @@ void Scheduler::setThis() {
     t_scheduler = this;
 }
 
-static uint64_t getTimeUsec() {
-    auto now = std::chrono::high_resolution_clock::now();
-    return std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count();
-}
-
 LoadCounter::LoadCounter(size_t max_size) 
     :m_max_size(max_size) {
     m_last_sleep = m_last_wake = getTimeUsec();
 }
 
 void LoadCounter::startSleep() {
-    std::unique_lock<MutexType> lock(m_mtx);
     m_sleeping = true;
     auto current_time = getTimeUsec();
     auto run_time = current_time - m_last_wake;
     m_last_sleep = current_time;
-    m_records.emplace_back(run_time, false);
+    {
+        std::unique_lock<MutexType> lock(m_mtx);
+        m_records.emplace_back(run_time, false);
+    }
     if (m_records.size() > m_max_size) {
         m_records.pop_front();
     }
 }
 
 void LoadCounter::startWork() {
-    std::unique_lock<MutexType> lock(m_mtx);
     m_sleeping = false;
     auto current_time = getTimeUsec();
     auto sleep_time = current_time - m_last_sleep;
     m_last_wake = current_time;
-    m_records.emplace_back(sleep_time, true);
+    {
+        std::unique_lock<MutexType> lock(m_mtx);
+        m_records.emplace_back(sleep_time, true);
+    }
     if (m_records.size() > m_max_size) {
         m_records.pop_front();
     }
 }
 
 int LoadCounter::getLoad() {
-    std::shared_lock<MutexType> lock(m_mtx);
     uint64_t totalSleepTime = 0;
     uint64_t totalRunTime = 0;
-    for(auto i : m_records) {
-        if(i.sleep) {
-            totalSleepTime += i.duration;
-        }
-        else {
-            totalRunTime += i.duration;
+
+    if(m_records.size() == 0) {
+        return 0;
+    }
+
+    {
+        std::shared_lock<MutexType> lock(m_mtx);
+        for(auto& i : m_records) {
+            if(i.sleep) {
+                totalSleepTime += i.duration;
+            }
+            else {
+                totalRunTime += i.duration;
+            }
         }
     }
 
@@ -105,10 +111,10 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name, c
         m_rootThread = -1;
     }
     m_threadNum = threads;
+    Log_Debug(g_logger) << getThreadId() << " created scheduler: " << m_name;
 }
 
 Scheduler::~Scheduler() {
-    Log_Debug(g_logger) << "~Scheduler::Scheduler";
     Assert((m_running == false));
 
     if(!m_autoStop) {
@@ -118,14 +124,14 @@ Scheduler::~Scheduler() {
     if(Scheduler::getThis() == this) {
         t_scheduler = nullptr;
     }
+    Log_Debug(g_logger) << "~Scheduler::Scheduler " << m_name;
 }
 
 void Scheduler::start() {
-    Log_Info(g_logger) << "Scheduler::start";
     if(m_running) {
         return;
     }
-    set_hook_enable(true);
+    Log_Info(g_logger) << "Scheduler::start";
     m_running = true;
     {
         std::unique_lock<std::shared_mutex> lock(m_threads_mtx);
@@ -182,7 +188,8 @@ void Scheduler::stop() {
 }
 
 void Scheduler::run() {
-    startWork();
+    Log_Debug(g_logger) << "Scheduler::run()";
+    // startWork();
     Scheduler::setThis();
     set_hook_enable(true);
     if(getThreadId() != m_rootThread) {
@@ -190,7 +197,7 @@ void Scheduler::run() {
     }
 
     Fiber::Ptr cb_fiber;
-    FiberAndThread ft;
+    FiberTask ft;
     Fiber::Ptr idle_fiber(new Fiber(std::bind(&Scheduler::idle, this), 0, false));
     while(true) {
         ft.reset();
@@ -277,9 +284,9 @@ void Scheduler::run() {
             }
 
             ++m_idelThreadNum;
-            startSleep();
+            // startSleep();
             idle_fiber->swapIn();
-            startWork();
+            // startWork();
             --m_idelThreadNum;
             if(idle_fiber->getState() != Fiber::TERM 
                 && idle_fiber->getState() != Fiber::EXCEPT) {

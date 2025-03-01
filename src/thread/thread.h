@@ -84,6 +84,10 @@ public:
     static const std::string& t_getName();
 
     static void t_setName(const std::string& name);
+
+    bool isRunning() { return m_running; }
+
+    bool joinable() { return m_thread->joinable(); }
 private:
     void run();
 

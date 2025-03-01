@@ -78,6 +78,35 @@ private:
     ucontext_t m_ctx;
 };
 
+struct FiberTask {
+    Fiber::Ptr fiber;
+    std::function<void()> cb;
+    int thread_id;
+
+    FiberTask(): thread_id(-1) {}
+
+    FiberTask(Fiber::Ptr _fiber, int _thread)
+        : fiber(_fiber), thread_id (_thread) {}
+
+    FiberTask(Fiber::Ptr* _fiber, int _thread) : thread_id(_thread) {
+        fiber.swap(*_fiber);
+    }
+
+    FiberTask(std::function<void()> _cb, int _thread)  : thread_id(_thread) {
+        cb = std::forward<std::function<void()>>(_cb);
+    }
+
+    FiberTask(std::function<void()>* _cb, int _thread) : thread_id(_thread) {
+        cb.swap(*_cb);
+    }
+
+    void reset() {
+        fiber = nullptr;
+        cb = nullptr;
+        thread_id = -1;
+    }
+};
+
 } // namespace sylar
 
 

@@ -27,6 +27,11 @@ std::string BacktraceToString(int size = 64, int skip = 2, const std::string& pr
 
 uint64_t getCurrentMS();
 
+static uint64_t getTimeUsec() {
+    auto now = std::chrono::high_resolution_clock::now();
+    return std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count();
+}
+
 class noncopyable {
 protected:
     noncopyable() {}

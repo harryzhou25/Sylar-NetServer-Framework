@@ -34,7 +34,6 @@ protected:
             sleep = slp;
             duration = tm;
         }
-
         bool sleep;
         uint64_t duration;
     };
@@ -55,35 +54,6 @@ public:
     using Ptr = std::shared_ptr<Scheduler>;
     using Mutextype = std::mutex;
     using FuncType = std::function<void()>;
-public:
-    struct FiberAndThread {
-        Fiber::Ptr fiber;
-        FuncType cb;
-        int thread_id;
-
-        FiberAndThread(): thread_id(-1) {}
-
-        FiberAndThread(Fiber::Ptr _fiber, int _thread)
-            : fiber(_fiber), thread_id (_thread) {}
-
-        FiberAndThread(Fiber::Ptr* _fiber, int _thread) : thread_id(_thread) {
-            fiber.swap(*_fiber);
-        }
-
-        FiberAndThread(std::function<void()> _cb, int _thread)  : thread_id(_thread) {
-            cb = std::forward<FuncType>(_cb);
-        }
-
-        FiberAndThread(std::function<void()>* _cb, int _thread) : thread_id(_thread) {
-            cb.swap(*_cb);
-        }
-
-        void reset() {
-            fiber = nullptr;
-            cb = nullptr;
-            thread_id = -1;
-        }
-    };
 
 public:
     Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "test", const size_t load_size = 10);
@@ -127,7 +97,7 @@ protected:
     template<class T>
     bool scheduleNonLock(T cb, int thread = -1) {
         bool need_tickle = m_fibers.empty();
-        auto item = FiberAndThread(cb, thread);
+        auto item = FiberTask(cb, thread);
         if(item.cb || item.fiber) {
             m_fibers.emplace_back(item);
         }
@@ -147,7 +117,7 @@ public:
 
     void setThis();
 
-    static Fiber* getMainFiber();    
+    static Fiber* getMainFiber();
 private:
     bool m_running = false;
     bool m_autoStop = false;
@@ -169,7 +139,7 @@ private:
     std::vector<Thread::Ptr> m_threads;
 
     std::mutex m_fibers_mtx;
-    std::list<FiberAndThread> m_fibers;
+    std::list<FiberTask> m_fibers;
 };
 
 } // namespace sylar
