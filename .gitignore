@@ -1,0 +1,4 @@
+/bin/
+/build/
+/src/eventpoller/epManager.cpp
+/src/eventpoller/epManager.h

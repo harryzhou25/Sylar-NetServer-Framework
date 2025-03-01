@@ -1,3 +1,0 @@
-/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles/sylar.dir
-/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles/edit_cache.dir
-/home/harry/workspace/sylar/sylar_learn/build/CMakeFiles/rebuild_cache.dir
