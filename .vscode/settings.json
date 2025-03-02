@@ -72,6 +72,10 @@
         "io_context": "cpp",
         "netfwd": "cpp",
         "socket": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "cassert": "cpp",
+        "cerrno": "cpp",
+        "cfloat": "cpp",
+        "climits": "cpp"
     }
 }
