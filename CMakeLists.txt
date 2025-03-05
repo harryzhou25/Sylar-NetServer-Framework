@@ -31,11 +31,16 @@ set (SRCS
 
 find_package(yaml-cpp REQUIRED)
 
+find_library(ZOOKEEPER_LIB
+    NAMES zookeeper_mt zookeeper
+    PATHS /usr/lib /usr/local/lib
+)
+
 include_directories(${RPCLIB_INCLUDE_DIR} ${RPCLIB_TEST_DIR})
 
 add_executable(sylar ${SRCS})
 
-target_link_libraries(sylar PRIVATE ${YAML_CPP_LIBRARIES})
+target_link_libraries(sylar PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB})
 
 set_target_properties(
     sylar
