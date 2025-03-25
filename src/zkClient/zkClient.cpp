@@ -9,81 +9,82 @@ namespace sylar {
 //static const int SESSION = ZOO_SESSION_EVENT;
 //static const int NOWATCHING = ZOO_NOTWATCHING_EVENT;
 
-const int ZKClient::EventType::CREATED = ZOO_CREATED_EVENT;
-const int ZKClient::EventType::DELETED = ZOO_DELETED_EVENT;
-const int ZKClient::EventType::CHANGED = ZOO_CHANGED_EVENT;
-const int ZKClient::EventType::CHILD   = ZOO_CHILD_EVENT;
-const int ZKClient::EventType::SESSION = ZOO_SESSION_EVENT;
-const int ZKClient::EventType::NOWATCHING = ZOO_NOTWATCHING_EVENT;
+const int zkClient::EventType::CREATED = ZOO_CREATED_EVENT;
+const int zkClient::EventType::DELETED = ZOO_DELETED_EVENT;
+const int zkClient::EventType::CHANGED = ZOO_CHANGED_EVENT;
+const int zkClient::EventType::CHILD   = ZOO_CHILD_EVENT;
+const int zkClient::EventType::SESSION = ZOO_SESSION_EVENT;
+const int zkClient::EventType::NOWATCHING = ZOO_NOTWATCHING_EVENT;
 
-const int ZKClient::FlagsType::EPHEMERAL = ZOO_EPHEMERAL;
-const int ZKClient::FlagsType::SEQUENCE  = ZOO_SEQUENCE;
-const int ZKClient::FlagsType::CONTAINER = ZOO_CONTAINER;
+const int zkClient::FlagsType::EPHEMERAL = ZOO_EPHEMERAL;
+const int zkClient::FlagsType::SEQUENCE  = ZOO_SEQUENCE;
+// const int zkClient::FlagsType::CONTAINER = CONTAINER;
 
-const int ZKClient::StateType::EXPIRED_SESSION = ZOO_EXPIRED_SESSION_STATE;
-const int ZKClient::StateType::AUTH_FAILED = ZOO_AUTH_FAILED_STATE;
-const int ZKClient::StateType::CONNECTING = ZOO_CONNECTING_STATE;
-const int ZKClient::StateType::ASSOCIATING = ZOO_ASSOCIATING_STATE;
-const int ZKClient::StateType::CONNECTED = ZOO_CONNECTED_STATE;
-const int ZKClient::StateType::READONLY = ZOO_READONLY_STATE;
-const int ZKClient::StateType::NOTCONNECTED = ZOO_NOTCONNECTED_STATE;
+const int zkClient::StateType::EXPIRED_SESSION = ZOO_EXPIRED_SESSION_STATE;
+const int zkClient::StateType::AUTH_FAILED = ZOO_AUTH_FAILED_STATE;
+const int zkClient::StateType::CONNECTING = ZOO_CONNECTING_STATE;
+const int zkClient::StateType::ASSOCIATING = ZOO_ASSOCIATING_STATE;
+const int zkClient::StateType::CONNECTED = ZOO_CONNECTED_STATE;
+// const int zkClient::StateType::READONLY = ZOO_READONLY_STATE;
+// const int zkClient::StateType::NOTCONNECTED = ZOO_NOTCONNECTED_STATE;
 
-
-ZKClient::ZKClient()
+zkClient::zkClient()
     :m_handle(nullptr)
     ,m_recvTimeout(0) {
 }
 
-ZKClient::~ZKClient() {
+zkClient::~zkClient() {
     if(m_handle) {
         close();
     }
 }
 
-void ZKClient::OnWatcher(zhandle_t *zh, int type, int stat, const char *path,void *watcherCtx) {
-    ZKClient* client = (ZKClient*)watcherCtx;
+void zkClient::OnWatcher(zhandle_t *zh, int type, int stat, const char *path,void *watcherCtx) {
+    zkClient* client = (zkClient*)watcherCtx;
     client->m_watcherCb(type, stat, path);
 }
 
-bool ZKClient::reconnect() {
+bool zkClient::reconnect() {
     if(m_handle) {
         zookeeper_close(m_handle);
     }
-    m_handle = zookeeper_init(m_hosts.c_str(), &ZKClient::OnWatcher, m_recvTimeout, nullptr, this, 0);
-    // m_handle = zookeeper_init2(m_hosts.c_str(), &ZKClient::OnWatcher, m_recvTimeout, nullptr, this, 0, m_logCb);
+    m_handle = zookeeper_init(m_hosts.c_str(), &zkClient::OnWatcher, m_recvTimeout, nullptr, this, 0);
+    // m_handle = zookeeper_init2(m_hosts.c_str(), &zkClient::OnWatcher, m_recvTimeout, nullptr, this, 0, m_logCb);
     return m_handle != nullptr;
 }
 
-bool ZKClient::init(const std::string& hosts, int recv_timeout, watcher_callback cb) {
+bool zkClient::init(const std::string& host, int recv_timeout, watcher_callback cb) {
     if(m_handle) {
         return true;
     }
-    m_hosts = hosts;
+    m_hosts = host;
     m_recvTimeout = recv_timeout;
-    m_watcherCb = std::bind(cb, std::placeholders::_1,
-                            std::placeholders::_2,
-                            std::placeholders::_3,
-                            shared_from_this());
-    m_handle = zookeeper_init(m_hosts.c_str(), &ZKClient::OnWatcher, m_recvTimeout, nullptr, this, 0);
-    // m_handle = zookeeper_init2(hosts.c_str(), &ZKClient::OnWatcher, m_recvTimeout, nullptr, this, 0, lcb);
+    if(cb != nullptr) {
+        m_watcherCb = std::bind(cb, std::placeholders::_1,
+                                std::placeholders::_2,
+                                std::placeholders::_3,
+                                shared_from_this());
+    }
+    m_handle = zookeeper_init(m_hosts.c_str(), &zkClient::OnWatcher, m_recvTimeout, nullptr, this, 0);
+    // m_handle = zookeeper_init2(hosts.c_str(), &zkClient::OnWatcher, m_recvTimeout, nullptr, this, 0, lcb);
     return m_handle != nullptr;
 }
 
-int32_t ZKClient::create(const std::string& path, const std::string& val, std::string& new_path
+int32_t zkClient::create(const std::string& path, const std::string& val, std::string& new_path
                          ,const struct ACL_vector* acl
                          ,int flags) {
     return zoo_create(m_handle, path.c_str(), val.c_str(), val.size(), acl, flags, &new_path[0], new_path.size());
 }
 
-int32_t ZKClient::exists(const std::string& path, bool watch, Stat* stat) {
+int32_t zkClient::exists(const std::string& path, bool watch, Stat* stat) {
     return zoo_exists(m_handle, path.c_str(), watch, stat);
 }
 
-int32_t ZKClient::del(const std::string& path, int version) {
+int32_t zkClient::del(const std::string& path, int version) {
     return zoo_delete(m_handle, path.c_str(), version);
 }
 
-int32_t ZKClient::get(const std::string& path, std::string& val, bool watch, Stat* stat) {
+int32_t zkClient::get(const std::string& path, std::string& val, bool watch, Stat* stat) {
     int len = val.size();
     int32_t rt = zoo_get(m_handle, path.c_str(), watch, &val[0], &len, stat);
     if(rt == ZOK) {
@@ -92,11 +93,11 @@ int32_t ZKClient::get(const std::string& path, std::string& val, bool watch, Sta
     return rt;
 }
 
-int32_t ZKClient::set(const std::string& path, const std::string& val, int version, Stat* stat) {
+int32_t zkClient::set(const std::string& path, const std::string& val, int version, Stat* stat) {
     return zoo_set2(m_handle, path.c_str(), val.c_str(), val.size(), version, stat);
 }
 
-int32_t ZKClient::getChildren(const std::string& path, std::vector<std::string>& val, bool watch, Stat* stat) {
+int32_t zkClient::getChildren(const std::string& path, std::vector<std::string>& val, bool watch, Stat* stat) {
     String_vector strings;
     Stat tmp;
     if(stat == nullptr) {
@@ -112,7 +113,7 @@ int32_t ZKClient::getChildren(const std::string& path, std::vector<std::string>&
     return rt;
 }
 
-int32_t ZKClient::close() {
+int32_t zkClient::close() {
     m_watcherCb = nullptr;
     int32_t rt = ZOK;
     if(m_handle) {
@@ -122,7 +123,7 @@ int32_t ZKClient::close() {
     return rt;
 }
 
-int32_t ZKClient::getState() {
+int32_t zkClient::getState() {
     return zoo_state(m_handle);
 }
 

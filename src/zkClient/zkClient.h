@@ -15,8 +15,9 @@
 
 namespace sylar {
 
-class ZKClient : public std::enable_shared_from_this<ZKClient> {
+class zkClient : public std::enable_shared_from_this<zkClient> {
 public:
+    using Ptr = std::shared_ptr<zkClient>;
     class EventType {
     public:
         static const int CREATED; // = ZOO_CREATED_EVENT;
@@ -43,12 +44,12 @@ public:
         static const int NOTCONNECTED; // = ZOO_NOTCONNECTED_STATE;
     };
 
-    typedef std::shared_ptr<ZKClient> ptr;
-    typedef std::function<void(int type, int stat, const std::string& path, ZKClient::ptr)> watcher_callback;
+    typedef std::shared_ptr<zkClient> ptr;
+    typedef std::function<void(int type, int stat, const std::string& path, zkClient::ptr)> watcher_callback;
     typedef void(*log_callback)(const char *message);
 
-    ZKClient();
-    ~ZKClient();
+    zkClient();
+    ~zkClient();
 
     bool init(const std::string& hosts, int recv_timeout, watcher_callback cb); 
 

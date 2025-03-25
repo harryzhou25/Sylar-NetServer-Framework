@@ -3,6 +3,8 @@
 #include "socket/address.h"
 #include "socket/socket.h"
 #include "eventpoller/eventpoller.h"
+#include "rpc/echo_msg.pb.h"
+#include "rpc/header.pb.h"
 
 #include<vector>
 #include<map>
@@ -35,6 +37,16 @@ void EchoServer::handleClient(sylar::Socket::Ptr client) {
         }
         ba->setPosition(ba->getPosition() + rt);
         ba->setPosition(0);
+        std::string msg_byte = ba->toString();
+        sylar_rpc::Echo_message msg;
+        if(!msg.ParseFromString(msg_byte)) {
+            std::cout << "failed to parse: " << msg_byte << '\n';
+        }
+        else {
+            std::cout << "--- Received echo message ---\n";
+            std::cout << "Header: " << msg.header().service_name() << ',' << msg.header().method_name() << ',' << msg.header().args_size() << '\n';
+            std::cout << "Message: " << msg.echo_message() << '\n';
+        }
         std::cout << ba->toString() << '\n';
         std::cout.flush();
     }

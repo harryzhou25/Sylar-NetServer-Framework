@@ -82,7 +82,6 @@ template<typename OriginFun, typename... Args>
 static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
         uint32_t event, int timeout_so, Args&&... args) {
     if(!sylar::is_hook_enable()) {
-        Log_Debug(g_logger) << "hook not enabled";
         return fun(fd, std::forward<Args>(args)...);
     }
 

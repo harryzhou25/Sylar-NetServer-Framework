@@ -6,7 +6,6 @@ set(RPCLIB_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(RPCLIB_TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
 
 set (SRCS 
-    tests/test_ConcurVec.cpp
     src/log/logger.cpp
     src/util/util.cpp
     src/util/Singleton.h
@@ -27,26 +26,44 @@ set (SRCS
     src/socket/socket.cpp
     src/socket/bytearray.cpp
     src/server/TCPserver.cpp
+    src/rpc/header.pb.cc
+    src/rpc/echo_msg.pb.cc
+    src/zkClient/zkClient.cpp
 )
 
 find_package(yaml-cpp REQUIRED)
+
+find_package(Protobuf REQUIRED)
 
 find_library(ZOOKEEPER_LIB
     NAMES zookeeper_mt zookeeper
     PATHS /usr/lib /usr/local/lib
 )
 
-include_directories(${RPCLIB_INCLUDE_DIR} ${RPCLIB_TEST_DIR})
+include_directories(${RPCLIB_INCLUDE_DIR} ${RPCLIB_TEST_DIR})# ${PROTOBUF_INCLUDE_DIRS})
 
-add_executable(sylar ${SRCS})
+add_executable(test_zk_client tests/test_zk_client.cpp ${SRCS})
 
-target_link_libraries(sylar PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB})
+add_executable(test_zk_server tests/test_zk_server.cpp ${SRCS})
 
-set_target_properties(
-    sylar
-    PROPERTIES
+add_executable(client samples/EchoServer/client.cpp ${SRCS})
+
+add_executable(server samples/EchoServer/main.cpp ${SRCS})
+
+target_link_libraries(test_zk_client PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
+
+target_link_libraries(test_zk_server PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
+
+target_link_libraries(client PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
+
+target_link_libraries(server PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
+
+set_target_properties(client PROPERTIES
     CXX_STANDARD 17
     COMPILE_FLAGS "${CMAKE_CXX_FLAGS} ${RPCLIB_EXTRA_FLAGS}"
 )
 
-target_compile_options(sylar PRIVATE -g)
+target_compile_options(client PRIVATE -g -lprotobuf)
+target_compile_options(server PRIVATE -g -lprotobuf)
+target_compile_options(test_zk_client PRIVATE -g -lprotobuf)
+target_compile_options(test_zk_server PRIVATE -g -lprotobuf)
