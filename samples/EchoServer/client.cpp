@@ -5,21 +5,55 @@
 #include "eventpoller/eventpoller.h"
 #include "rpc/echo_msg.pb.h"
 #include "rpc/header.pb.h"
+#include "zkClient/zkClient.h"
 #include <string>
 const char* ip = nullptr;
 uint16_t port = 8080;
 
-int main(int argc, char** argv) {
-    if(argc != 3) {
-        std::cout << "Usage [target ip] [target port]\n";
-        return -1;
+void on_watcher(int type, int stat, const std::string& path, sylar::zkClient::ptr client) {
+    std::cout << "received event type: " << type << ',' << stat << '\n';
+    if(stat == ZOO_CONNECTED_STATE) {
+        std::cout << "connected server\n";
     }
+    if(!path.empty()) {
+        std::cout << " path: " << path << '\n';
+    }
+}
 
-    ip = argv[1];
-    port = atoi(argv[2]);
+int main(int argc, char** argv) {
+    // if(argc != 3) {
+    //     std::cout << "Usage [target ip] [target port]\n";
+    //     return -1;
+    // }
 
-    sylar::IPAddress::Ptr local_addr = sylar::Address::LookupAnyIPAddress(ip);
-    // local_addr->setPort(port);
+    // ip = argv[1];
+    // port = atoi(argv[2]);
+
+    sylar::IPAddress::Ptr local_addr = sylar::Address::LookupAnyIPAddress("127.0.0.1");
+
+    sylar::zkClient::Ptr zk_client(new sylar::zkClient);
+    
+    zk_client->init("127.0.0.1:2181", 5000, on_watcher);
+    std::string path = "/echo";
+    std::vector<std::string> nodes;
+    zk_client->getChildren(path, nodes, 0);
+
+    if(nodes.size() <= 0) return 0;
+
+    auto node = nodes[0];
+
+    std::string remote_addr;
+    remote_addr.resize(512);
+    zk_client->get(path + '/' + node, remote_addr, false);
+
+    auto pos = remote_addr.find(':');
+
+    std::cout << remote_addr << ' ' << pos << '\n';
+
+    ip = remote_addr.substr(0, pos).c_str();
+    port = std::stoi(remote_addr.substr(pos+1));
+
+    std::cout << "get remote ip from zookeeper : " << remote_addr << '\n';
 
     sylar::IPAddress::Ptr server_addr = sylar::Address::LookupAnyIPAddress(ip);
     server_addr->setPort(port);

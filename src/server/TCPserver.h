@@ -48,7 +48,7 @@ public:
     virtual void handleClient(Socket::Ptr client);
 protected:
     void startListen(Socket::Ptr sock);
-private:
+protected:
     bool m_running;
     std::string m_name;
     uint64_t m_recvTimeout;

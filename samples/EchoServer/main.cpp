@@ -5,18 +5,88 @@
 #include "eventpoller/eventpoller.h"
 #include "rpc/echo_msg.pb.h"
 #include "rpc/header.pb.h"
+#include "zkClient/zkClient.h"
 
 #include<vector>
 #include<map>
+#include<string>
 
 // static sylar::Logger::Ptr r_logger = Root_Logger();
 
 class EchoServer : public sylar::TcpServer {
 public:
-    EchoServer() = default;
+    EchoServer();
     void getname() override {std::cout << "echo server\n";}
+    void on_watcher(int type, int stat, const std::string& path, sylar::zkClient::ptr client);
     void handleClient(sylar::Socket::Ptr client) override;
+    virtual bool bind(const std::vector<sylar::Address::Ptr>& addrs, 
+                            std::vector<sylar::Address::Ptr>& fails, 
+                            bool ssl = false);
+private:
+    sylar::zkClient::Ptr m_zk;
 };
+
+EchoServer::EchoServer()
+    :m_zk(new sylar::zkClient) {
+    m_zk->init("127.0.0.1:2181", 3000, std::bind(&EchoServer::on_watcher, this,
+                                                std::placeholders::_1,
+                                                std::placeholders::_2,
+                                                std::placeholders::_3,
+                                                std::placeholders::_4));
+}
+
+bool EchoServer::bind(const std::vector<sylar::Address::Ptr>& addrs, 
+                    std::vector<sylar::Address::Ptr>& fails, 
+                    bool ssl) {
+    bool failFlag = false;
+    for(auto& addr: addrs) {
+        sylar::Socket::Ptr sock = sylar::Socket::CreateTCP(addr);
+        if(!sock->bind(addr)) {
+            std::cout << "bind fail errno="
+            << errno << " errstr=" << strerror(errno)
+            << " addr=[" << addr->toString() << "]";
+            fails.push_back(addr);
+            failFlag = true;
+            continue;
+        }
+        if(!sock->listen()) {
+            std::cout << "listen fail errno="
+                << errno << " errstr=" << strerror(errno)
+                << " addr=[" << addr->toString() << "]";
+            fails.push_back(addr);
+            failFlag = true;
+            continue;
+        }
+        m_socks.push_back(sock);
+    }
+    
+    if(failFlag) {
+        m_socks.clear();
+        return false;
+    }
+
+    std::string path = "/echo";
+    std::string data_prefix = "/echo_";
+    std::string realPathBuffer;
+    m_zk->create(path, "", realPathBuffer);
+    for(auto& i : m_socks) {
+        std::cout << "binded :" << i->toString();
+        auto local_addr = i->getLocalAddr();
+        std::string data = local_addr->toString();
+        m_zk->create(path + data_prefix + data, data, realPathBuffer, &ZOO_OPEN_ACL_UNSAFE, ZOO_EPHEMERAL | ZOO_SEQUENCE);
+    }
+    return true;
+}
+
+void EchoServer::on_watcher(int type, int stat, const std::string& path, sylar::zkClient::ptr client) {
+    std::cout << "received event type: " << type << ',' << stat << '\n';
+    if(stat == ZOO_CONNECTED_STATE) {
+        std::cout << "connected server\n";
+    }
+    if(!path.empty()) {
+        std::cout << " path: " << path << '\n';
+    }
+}
 
 void EchoServer::handleClient(sylar::Socket::Ptr client) {
     std::cout << "EchoServer::handleClient()" << client->toString() << '\n';
@@ -61,7 +131,7 @@ void run() {
     es->start();
 }
 
-int main() {
+int main(int argc, char** argv) {
     sylar::EventPoller sch(2);
     sch.schedule(run);
     return 0;

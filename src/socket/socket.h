@@ -54,6 +54,8 @@ public:
         return getOption(level, option, &result, &length);
     }
 
+    Address::Ptr getLocalAddr() const {return m_localAddress;}
+
     bool setOption(int level, int option, const void* result, socklen_t len);
 
     template<class T>
