@@ -19,7 +19,7 @@ public:
     void getname() override {std::cout << "echo server\n";}
     void on_watcher(int type, int stat, const std::string& path, sylar::zkClient::ptr client);
     void handleClient(sylar::Socket::Ptr client) override;
-    virtual bool bind(const std::vector<sylar::Address::Ptr>& addrs, 
+    bool bind(const std::vector<sylar::Address::Ptr>& addrs, 
                             std::vector<sylar::Address::Ptr>& fails, 
                             bool ssl = false);
 private:

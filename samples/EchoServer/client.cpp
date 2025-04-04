@@ -69,10 +69,10 @@ int main(int argc, char** argv) {
     sylar_rpc::Header* header = msg.mutable_header();
 
     std::string service_name = "echo";
-    std::string method_name = "echo repeat";
+    std::string method_name = "echo";
 
-    header->set_service_name("echo");
-    header->set_method_name("echo repeat");
+    header->set_service_name(service_name);
+    header->set_method_name(method_name);
     header->set_args_size(1);
     // msg.set_allocated_header(&header);
     msg.set_echo_message("hello rpc");

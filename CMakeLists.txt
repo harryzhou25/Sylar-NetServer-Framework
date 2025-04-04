@@ -26,6 +26,7 @@ set (SRCS
     src/socket/socket.cpp
     src/socket/bytearray.cpp
     src/server/TCPserver.cpp
+    src/server/RPCserver.cpp
     src/rpc/header.pb.cc
     src/rpc/echo_msg.pb.cc
     src/zkClient/zkClient.cpp
@@ -48,7 +49,7 @@ add_executable(test_zk_server tests/test_zk_server.cpp ${SRCS})
 
 add_executable(client samples/EchoServer/client.cpp ${SRCS})
 
-add_executable(server samples/EchoServer/main.cpp ${SRCS})
+add_executable(server samples/EchoServer/server.cpp ${SRCS})
 
 target_link_libraries(test_zk_client PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
 

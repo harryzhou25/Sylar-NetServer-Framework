@@ -11,27 +11,20 @@
 #include "zkClient/zkClient.h"
 #include "timer/timer.h"
 #include "server/TCPserver.h"
+#include "socket/bytearray.h"
 
 namespace sylar {
 
-class RPCserver : public TcpServer, std::enable_shared_from_this<RPCserver>{
+class RPCserver : public TcpServer{
 public:
     using Ptr = std::shared_ptr<RPCserver>;
-    using FuncType = std::function<void()>;
+    using FuncType = std::function<void(std::string)>;
     using FuncPtr = std::shared_ptr<FuncType>;
-
-private:
-    struct Service {
-        std::string service_name;
-        std::unordered_map<std::string, FuncPtr> method_list;
-    };
-
 public:
-    RPCserver(EventPoller* worker, EventPoller* listener, const std::string& zk_host);
+    RPCserver(EventPoller* worker = EventPoller::getThis(), EventPoller* listener = EventPoller::getThis(), 
+            const std::string& zk_host = "127.0.0.1:2181");
 
-    ~RPCserver() = default;
-
-    bool addMethod(std::string service, std::string method, FuncType& cb);
+    bool registMethod(std::string service, std::string method, std::string data, FuncType cb);
 
     void setTimeout(uint64_t timeout) {m_recvTimeout = timeout;}
 
@@ -44,7 +37,7 @@ private:
     void onDeleted(const std::string& path, zkClient::ptr client);
     void onExpiredSession(const std::string& path, zkClient::ptr client);
     void onWatch(int type, int stat, const std::string& path, zkClient::ptr);
-
+    virtual void handleClient(Socket::Ptr client) override;
 private:
     bool m_running;
     semaphore* m_sem;
@@ -62,9 +55,9 @@ private:
     EventPoller* m_listener; 
 
     zkClient::Ptr m_zkClient;
-
+protected:
     std::shared_mutex m_service_mtx;
-    std::unordered_map<std::string, Service> m_services;
+    std::unordered_map<std::string, FuncPtr> m_methods;
 };
 
 } // namespace sylar
