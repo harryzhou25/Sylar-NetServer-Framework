@@ -17,6 +17,7 @@ public:
     ~SkipList() = default;
     int getRandomLevel();
     bool search(K key);
+    bool searchValue(K key, V& val);
     void erase(K val);
     void insert(K key, V val);
     int getSize() const {return m_length;};

@@ -68,7 +68,7 @@ SkipList<K,V>::SkipList(int max_level)
 }
 
 template<class K, class V>
-bool SkipList<K, V>::search(K key) {
+bool SkipList<K, V>::searchValue(K key, V& val) {
     auto cur = m_head;
     for(int i = m_current_level; i >= 0 ; --i) {
         while(cur->find(i) && cur->m_next[i]->getKey() < key) {
@@ -77,9 +77,16 @@ bool SkipList<K, V>::search(K key) {
     }
     cur = cur->m_next[0];
     if (cur && cur->getKey() == key) {
+        val = cur->getValue();
         return true;
     }
     return false;
+}
+
+template<class K, class V>
+bool SkipList<K, V>::search(K key) {
+    V v;
+    return searchValue(key, v);
 }
 
 template<class K, class V>
