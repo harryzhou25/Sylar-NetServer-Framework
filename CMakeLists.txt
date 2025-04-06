@@ -29,6 +29,7 @@ set (SRCS
     src/server/RPCserver.cpp
     src/rpc/header.pb.cc
     src/rpc/echo_msg.pb.cc
+    src/skipList/skipList.cpp
     src/zkClient/zkClient.cpp
 )
 
@@ -43,17 +44,13 @@ find_library(ZOOKEEPER_LIB
 
 include_directories(${RPCLIB_INCLUDE_DIR} ${RPCLIB_TEST_DIR})# ${PROTOBUF_INCLUDE_DIRS})
 
-add_executable(test_zk_client tests/test_zk_client.cpp ${SRCS})
-
-add_executable(test_zk_server tests/test_zk_server.cpp ${SRCS})
+add_executable(test_skList tests/test_skList.cpp ${SRCS})
 
 add_executable(client samples/EchoServer/client.cpp ${SRCS})
 
 add_executable(server samples/EchoServer/server.cpp ${SRCS})
 
-target_link_libraries(test_zk_client PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
-
-target_link_libraries(test_zk_server PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
+target_link_libraries(test_skList PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
 
 target_link_libraries(client PRIVATE ${YAML_CPP_LIBRARIES} ${ZOOKEEPER_LIB} ${PROTOBUF_LIBRARIES})
 
@@ -66,5 +63,4 @@ set_target_properties(client PROPERTIES
 
 target_compile_options(client PRIVATE -g -lprotobuf)
 target_compile_options(server PRIVATE -g -lprotobuf)
-target_compile_options(test_zk_client PRIVATE -g -lprotobuf)
-target_compile_options(test_zk_server PRIVATE -g -lprotobuf)
+target_compile_options(test_skList PRIVATE -g -lprotobuf)
