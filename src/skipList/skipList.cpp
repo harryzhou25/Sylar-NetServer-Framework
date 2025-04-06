@@ -93,12 +93,12 @@ template<class K, class V>
 void SkipList<K, V>::insert(K key, V val) {
     std::unique_lock<std::shared_mutex> lock(m_listMtx);
     auto cur = m_head;
-    typename Node::Ptr update(new Node(key, val, m_max_level));
+    std::vector<typename Node::Ptr> update(m_max_level+1, nullptr);
     for(int i = m_current_level; i >= 0 ; --i) {
         while(cur->find(i) && cur->m_next[i] && cur->m_next[i]->getKey() < key) {
             cur = cur->m_next[i];
         }
-        update->m_next[i] = cur;
+        update[i] = cur;
     }
     cur = cur->m_next[0];
     if(cur && cur->getKey() == key) {
@@ -108,15 +108,15 @@ void SkipList<K, V>::insert(K key, V val) {
         int random_level = getRandomLevel();
         if(random_level > m_current_level) {
             for(int i = m_current_level+1; i <= random_level; ++i) {
-                update->m_next[i] = m_head;
+                update[i] = m_head;
             }
         }
         typename Node::Ptr new_node(new Node(key, val, random_level));
         m_current_level = std::max(m_current_level, random_level);
         for(int i = 0; i <= random_level; ++i) {
-            if(update->m_next[i]) {
-                new_node->m_next[i] = update->m_next[i]->m_next[i];
-                update->m_next[i]->m_next[i] = new_node;
+            if(update[i]) {
+                new_node->m_next[i] = update[i]->m_next[i];
+                update[i]->m_next[i] = new_node;
             }
         }
         ++m_length;
