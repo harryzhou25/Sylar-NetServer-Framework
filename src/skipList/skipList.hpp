@@ -45,19 +45,20 @@ protected:
             std::vector<MutexPtr> m_mtxs;
         private:
             K m_key;
-            V m_value;
             MutexType m_mtx;
+            V m_value;
+            size_t m_span;
             size_t m_level;
     };
 private:
     int m_length;
     int m_max_level;
-    int m_current_level;
     uint64_t m_curVersion;
-    std::shared_mutex m_listMtx;
-    std::string m_dumpAddr = "../storage/";
     typename Node::Ptr m_head;
+    std::string m_dumpAddr = "../storage/";
+    std::shared_mutex m_listMtx;
     std::ofstream m_fileWriter;
+    int m_current_level;
 };
 } // namespace sylar
 

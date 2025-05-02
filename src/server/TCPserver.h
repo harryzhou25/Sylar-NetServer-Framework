@@ -35,13 +35,14 @@ public:
 
     std::string getName() const {return m_name;}
 
-    void setName(const std::string& name) { m_name = name;}
 
     uint64_t getRecvTimeout() const {return m_recvTimeout;}
 
     void setRecvTimeout(const uint64_t timeout) {m_recvTimeout = timeout;}
 
     std::vector<Socket::Ptr> getSocks() const { return m_socks;}
+
+    virtual void setName(const std::string& name) { m_name = name;}
 
     virtual void getname() {std::cout << "tcp server\n";}
 

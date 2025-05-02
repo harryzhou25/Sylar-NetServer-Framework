@@ -1,0 +1,24 @@
+{
+    "configurations": [
+      {
+        "name": "Linux",
+        "compilerPath": "/usr/bin/g++",
+        "includePath": [
+          "${workspaceFolder}/**",
+          "/usr/include/jsoncpp",          // ← 加上这行
+        ],
+        "browse": {
+          "path": [
+            "${workspaceFolder}/**",
+            "/usr/include/jsoncpp",
+            "/usr/local/include/jsoncpp"
+          ]
+        },
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "linux-gcc-x64"
+      }
+    ],
+    "version": 4
+  }
+  

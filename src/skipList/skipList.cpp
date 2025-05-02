@@ -74,6 +74,7 @@ SkipList<K,V>::SkipList(int max_level)
 
 template<class K, class V>
 bool SkipList<K, V>::searchValue(K key, V& val) {
+    std::shared_lock<std::shared_mutex> lock(m_listMtx);
     auto cur = m_head;
     for(int i = m_current_level; i >= 0 ; --i) {
         while(cur->find(i) && cur->m_next[i]->getKey() < key) {
@@ -96,7 +97,7 @@ bool SkipList<K, V>::search(K key) {
 
 template<class K, class V>
 void SkipList<K, V>::insert(K key, V val) {
-    std::unique_lock<std::shared_mutex> lock(m_listMtx);
+    std::shared_lock<std::shared_mutex> lock(m_listMtx);
     auto cur = m_head;
     std::vector<typename Node::Ptr> update(m_max_level+1, nullptr);
     for(int i = m_current_level; i >= 0 ; --i) {
@@ -107,7 +108,7 @@ void SkipList<K, V>::insert(K key, V val) {
     }
     cur = cur->m_next[0];
     if(cur && cur->getKey() == key) {
-        cur->setValue(val);   
+        cur->setValue(val);
     }
     else {
         int random_level = getRandomLevel();
@@ -130,20 +131,23 @@ void SkipList<K, V>::insert(K key, V val) {
 
 template<class K, class V>
 void SkipList<K, V>::erase(K key) {
-    std::unique_lock<std::shared_mutex> lock(m_listMtx);
+    std::shared_lock<std::shared_mutex> lock(m_listMtx);
     auto cur = m_head;
     std::vector<typename Node::Ptr> update(m_current_level+1, nullptr);
-    for(int i = m_current_level; i>=0; --i) {
+    for(int i = m_current_level; i >= 0; --i) {
         while(cur->find(i) && cur->m_next[i]->getKey() < key) {
             cur = cur->m_next[i];
         }
         update[i] = cur;
+        cur->m_mtxs[i]->lock();
     }
     cur = cur->m_next[0];
     if(cur && cur->getKey() == key) {
         for(int i = 0; i <= m_current_level; ++i) {
-            if(update[i]->m_next[i] != cur) break;
-            update[i]->m_next[i] = cur->m_next[i];
+            if(update[i]->m_next[i] == cur) {
+                update[i]->m_next[i] = cur->m_next[i];
+            }
+            update[i]->m_mtxs[i]->unlock();
         }
     }
     while(m_current_level && m_head->m_next[m_current_level] == nullptr) {
@@ -155,7 +159,6 @@ template<class K, class V>
 void SkipList<K, V>::dump() {
     auto cur = m_head->m_next[0];
     std::string cur_addr = m_dumpAddr + std::to_string(m_curVersion);
-    std::cout << "dump into " << cur_addr << '\n';
     m_fileWriter.open(cur_addr);
     while(cur) {
         m_fileWriter << '{' << cur->getKey() << ':' << cur->getValue() << ':' << cur->getLevel() << '}' << '\n';

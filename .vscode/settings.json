@@ -81,6 +81,7 @@
         "typeindex": "cpp",
         "bitset": "cpp",
         "optional": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "filesystem": "cpp"
     }
 }
