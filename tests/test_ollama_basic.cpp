@@ -14,7 +14,6 @@ int main() {
         "prompt": "Who is Kimi Raikkonen.",
         "stream": false
     })");
-    sylar::http::HttpResponseParser parser;
     std::string jsonStr = r->response->getBody();
     std::istringstream json_ss(jsonStr);
     Json::CharReaderBuilder builder;

@@ -15,8 +15,6 @@ int32_t FunctionServlet::handle(sylar::http::HttpRequest::ptr request
     return m_cb(request, response, session);
 }
 
-
-
 ServletDispatch::ServletDispatch()
     :Servlet("ServletDispatch") {
     m_default.reset(new NotFoundServlet("sylar/1.0"));

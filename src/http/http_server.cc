@@ -50,6 +50,6 @@ void HttpServer::handleClient(Socket::Ptr client) {
     } while(true);
     session->close();
 }
-
 }
+
 }
