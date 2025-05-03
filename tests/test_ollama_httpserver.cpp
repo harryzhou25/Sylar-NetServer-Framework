@@ -51,6 +51,7 @@ int32_t generate(sylar::http::HttpRequest::ptr req,
         }
         else {
             std::cout << "=== " << "Response empty" << " ===\n";
+            rsp->setBody("");
         }
     }
     return 0;
