@@ -55,7 +55,7 @@ Fiber::Fiber(FuncType cb, size_t stacksize, bool use_caller) {
     m_id = ++s_fiber_id;
     ++s_fiber_count;
 
-    Log_Debug(g_logger) << "Fiber::Fiber(...) " << m_id;
+    Log_Debug(g_logger) << "Fiber::Fiber() " << m_id;
     Log_Debug(g_logger) << "Fiber Count " << s_fiber_count;
 
     m_cb = std::forward<FuncType>(cb);

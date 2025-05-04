@@ -17,7 +17,8 @@ public:
     using Ptr = std::shared_ptr<TcpServer>;
 
     TcpServer(EventPoller* worker = EventPoller::getThis(),
-            EventPoller* listener = EventPoller::getThis());
+            EventPoller* listener = EventPoller::getThis(),
+            EventPoller* accept_worker = EventPoller::getThis());
 
     virtual ~TcpServer();
 
@@ -55,7 +56,8 @@ protected:
     uint64_t m_recvTimeout;
     std::vector<Socket::Ptr> m_socks;
     EventPoller* m_worker;
-    EventPoller* m_listener;  
+    EventPoller* m_ioWorker;  
+    EventPoller* m_acceptWorker;
 };
 
 } // namespace sylar

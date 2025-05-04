@@ -51,11 +51,12 @@ set(LIB_SRC
     src/server/TCPserver.cpp
     src/server/RPCserver.cpp
 
-    src/skipList/skipList.cpp
     src/zkClient/zkClient.cpp
 
     src/skipList/skipList.hpp
     src/skipList/messageQueue.hpp
+
+    samples/mqServer/mqServer.hpp
 )
 
 ragelmaker(src/http/http11_parser.rl   LIB_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/http)
@@ -85,9 +86,9 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/tests
 )
 
-add_executable(test_ollama tests/test_ollama_httpserver.cpp ${LIB_SRC})
+add_executable(test_simple_mqserver tests/test_simple_mqserver.cpp ${LIB_SRC})
 
-target_link_libraries(test_ollama PRIVATE
+target_link_libraries(test_simple_mqserver PRIVATE
     ZLIB::ZLIB
     yaml-cpp
     ${PROTOBUF_LIBRARIES}
@@ -95,6 +96,6 @@ target_link_libraries(test_ollama PRIVATE
     ${JSONCPP_LIBRARIES}
 )
 
-target_include_directories(test_ollama PRIVATE
+target_include_directories(test_simple_mqserver PRIVATE
     ${Protobuf_INCLUDE_DIRS}
 )

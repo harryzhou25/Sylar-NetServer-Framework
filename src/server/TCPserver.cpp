@@ -7,9 +7,10 @@ namespace sylar {
 
 static Logger::Ptr g_logger = Name_Logger("system");
 
-TcpServer::TcpServer(EventPoller* worker, EventPoller* listener) 
+TcpServer::TcpServer(EventPoller* worker, EventPoller* ioWorker, EventPoller* accept_worker) 
                 : m_worker(worker),
-                m_listener(listener),
+                m_ioWorker(ioWorker),
+                m_acceptWorker(accept_worker),
                 m_recvTimeout((uint64_t)(60 * 1000 * 2)),
                 m_name("test"),
                 m_running(false){}
@@ -73,7 +74,7 @@ bool TcpServer::start() {
     auto self = shared_from_this();
     for(auto sock : m_socks) {
         Log_Debug(g_logger) << "scheduled startListen";
-        m_listener->schedule([self, sock]() {
+        m_acceptWorker->schedule([self, sock]() {
             self->startListen(sock);
         });
     }
@@ -82,7 +83,7 @@ bool TcpServer::start() {
 void TcpServer::stop() {
     m_running = false;
     auto self = shared_from_this();
-    m_listener->schedule([this, self]() {
+    m_acceptWorker->schedule([this, self]() {
         for(auto& sock : m_socks) {
             sock->cancelAll();
             sock->close();
@@ -97,7 +98,7 @@ void TcpServer::startListen(Socket::Ptr sock) {
         Socket::Ptr client = sock->accept();
         if(client) {
             client->setRecvTimeout(m_recvTimeout);
-            m_worker->schedule([self, client]() {
+            m_ioWorker->schedule([self, client]() {
                 self->handleClient(client);
             });
         }

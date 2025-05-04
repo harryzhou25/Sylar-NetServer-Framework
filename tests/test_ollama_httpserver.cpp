@@ -69,7 +69,8 @@ void run() {
 }
 
 int main() {
-    sylar::EventPoller ep;
+    sylar::EventPoller worker(3, true, "worker");
+    sylar::EventPoller ep(1, true, "main");
     ep.schedule(run);
     return 0;
 }

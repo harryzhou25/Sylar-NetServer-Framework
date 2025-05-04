@@ -7,6 +7,7 @@
 #include <queue>
 
 namespace sylar {
+
 template <class V> 
 class messageQueue{
 public:
@@ -31,13 +32,18 @@ public:
         return m_queue.front();        
     }
 
-    void pop_back() {
+    V pop_back() {
         std::unique_lock lock(m_mtx);
+        auto val = m_queue.back();
         m_queue.pop_back();
+        return val;
     }
-    void pop_front() {
+
+    V pop_front() {
         std::unique_lock lock(m_mtx);
-        m_queue.pop_front();        
+        auto val = m_queue.front();
+        m_queue.pop_front();
+        return val; 
     }
 
     void push_back(V val) {
