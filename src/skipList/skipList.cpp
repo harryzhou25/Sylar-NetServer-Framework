@@ -30,9 +30,14 @@ size_t SkipList<K, V>::Node::getLevel() {
 }
 
 template <class K, class V>
-void SkipList<K, V>::Node::setValue(V val) {
+void SkipList<K, V>::Node::setValue(V&& val) {
     std::unique_lock<MutexType> lock(*m_mtxs[0]);
-    m_value = val;
+    m_value = std::move(val);
+}
+
+template <class K, class V>
+void SkipList<K, V>::Node::setValue(V& val) {
+    setValue(std::move(val));
 }
 
 template <class K, class V>
@@ -95,7 +100,7 @@ bool SkipList<K, V>::search(K key) {
 }
 
 template<class K, class V>
-void SkipList<K, V>::insert(K key, V val) {
+void SkipList<K, V>::insert(K key, V&& val) {
     std::unique_lock<std::shared_mutex> lock(m_listMtx);
     auto cur = m_head;
     std::vector<typename Node::Ptr> update(m_max_level+1, nullptr);
@@ -107,7 +112,7 @@ void SkipList<K, V>::insert(K key, V val) {
     }
     cur = cur->m_next[0];
     if(cur && cur->getKey() == key) {
-        cur->setValue(val);   
+        cur->setValue(val);
     }
     else {
         int random_level = getRandomLevel();
@@ -126,6 +131,11 @@ void SkipList<K, V>::insert(K key, V val) {
         }
         ++m_length;
     }
+}
+
+template<class K, class V>
+void SkipList<K, V>::insert(K key, V& val) {
+    insert(key, std::move(val));
 }
 
 template<class K, class V>

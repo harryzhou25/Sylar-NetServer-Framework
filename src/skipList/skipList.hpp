@@ -15,13 +15,15 @@ template <class K, class V>
 class SkipList {
 public:
     using Ptr = std::shared_ptr<SkipList<K, V>>;
+    using ValPtr = std::shared_ptr<V>;
     SkipList(int max_level);
-    ~SkipList() = default;
+    virtual ~SkipList() = default;
     int getRandomLevel();
     bool search(K key);
-    bool searchValue(K key, V& val);
+    bool searchValue(K key, V& val_ptr);
     void erase(K val);
-    void insert(K key, V val);
+    void insert(K key, V& val);
+    void insert(K key, V&& val);
     void dump();
     void load();
     void modifyDumpAddr(std::string& addr) {m_dumpAddr = addr;}
@@ -40,7 +42,8 @@ protected:
             K getKey();
             V getValue();
             size_t getLevel();
-            void setValue(V val);
+            void setValue(V& val);
+            void setValue(V&& val);
             std::vector<Node::Ptr> m_next;
             std::vector<MutexPtr> m_mtxs;
         private:
