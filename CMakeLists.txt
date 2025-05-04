@@ -53,6 +53,9 @@ set(LIB_SRC
 
     src/skipList/skipList.cpp
     src/zkClient/zkClient.cpp
+
+    src/skipList/skipList.hpp
+    src/skipList/messageQueue.hpp
 )
 
 ragelmaker(src/http/http11_parser.rl   LIB_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/http)
