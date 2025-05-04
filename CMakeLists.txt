@@ -29,8 +29,10 @@ set (SRCS
     src/server/RPCserver.cpp
     src/rpc/header.pb.cc
     src/rpc/echo_msg.pb.cc
-    src/skipList/skipList.cpp
     src/zkClient/zkClient.cpp
+
+    src/skipList/skipList.hpp
+    src/skipList/messageQueue.hpp
 )
 
 find_package(yaml-cpp REQUIRED)
@@ -44,7 +46,7 @@ find_library(ZOOKEEPER_LIB
 
 include_directories(${RPCLIB_INCLUDE_DIR} ${RPCLIB_TEST_DIR})# ${PROTOBUF_INCLUDE_DIRS})
 
-add_executable(test_skList tests/test_skList.cpp ${SRCS})
+add_executable(test_skList tests/test_messageQueue.cpp ${SRCS})
 
 add_executable(client samples/EchoServer/client.cpp ${SRCS})
 
