@@ -29,7 +29,7 @@ void HttpServer::setName(const std::string& v) {
 void HttpServer::handleClient(Socket::Ptr client) {
     HttpSession::ptr session(new HttpSession(client));
     do {
-        std::cout << "HttpServer::handleClient\n";
+        // std::cout << "HttpServer::handleClient\n";
         auto req = session->recvRequest();
         if(!req) {
             // Log_Debug(g_logger) << "recv http request fail, errno="

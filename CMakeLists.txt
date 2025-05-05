@@ -86,9 +86,9 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/tests
 )
 
-add_executable(test_simple_mqserver tests/test_simple_mqserver.cpp ${LIB_SRC})
+add_executable(ollama_client samples/mqServer/ollama_client.cpp ${LIB_SRC})
 
-target_link_libraries(test_simple_mqserver PRIVATE
+target_link_libraries(ollama_client PRIVATE
     ZLIB::ZLIB
     yaml-cpp
     ${PROTOBUF_LIBRARIES}
@@ -96,6 +96,6 @@ target_link_libraries(test_simple_mqserver PRIVATE
     ${JSONCPP_LIBRARIES}
 )
 
-target_include_directories(test_simple_mqserver PRIVATE
+target_include_directories(ollama_client PRIVATE
     ${Protobuf_INCLUDE_DIRS}
 )

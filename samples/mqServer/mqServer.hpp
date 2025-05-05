@@ -17,7 +17,7 @@ public:
     using Ptr = std::shared_ptr<mqServer>;
 public:
 mqServer(uint64_t timeoutms, Address::Ptr addr) :m_timeoutms(timeoutms), m_addr(addr){
-    m_server = std::shared_ptr<http::HttpServer>(new http::HttpServer(true));
+    m_server = std::shared_ptr<http::HttpServer>(new http::HttpServer(false));
     m_mq = std::shared_ptr<messageQueue<std::string>>(new messageQueue<std::string>);
 }
 
