@@ -9,6 +9,8 @@
 
 // static sylar::Logger::Ptr r_logger = Root_Logger();
 
+static std::string resp = "HTTP/1.1 200 OK\r\nServer: test\r\nconnection: close\r\ncontent-length:0\r\n\r\n";
+
 class EchoServer : public sylar::TcpServer {
 public:
     EchoServer() = default;
@@ -33,16 +35,17 @@ void EchoServer::handleClient(sylar::Socket::Ptr client) {
             std::cout << "client error rt=" << rt << " errno=" << errno << " errstr=" << strerror(errno);
             break;
         }
-        ba->setPosition(ba->getPosition() + rt);
-        ba->setPosition(0);
-        std::cout << ba->toString() << '\n';
-        std::cout.flush();
+        // ba->setPosition(ba->getPosition() + rt);
+        // ba->setPosition(0);
+        // std::cout << ba->toString() << '\n';
+        // std::cout.flush();
+        client->send(resp.c_str(), resp.length());
     }
 }
 
 void run() {
     EchoServer::Ptr es(new EchoServer);
-    auto addr = sylar::Address::LookupAny("127.0.0.1:34280");
+    auto addr = sylar::Address::LookupAny("127.0.0.1:8042");
     while(!es->bind(addr)) {
         sleep(2);
     }

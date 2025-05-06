@@ -9,10 +9,9 @@ namespace http {
 static sylar::Logger::Ptr g_logger = Name_Logger("system");
 
 HttpServer::HttpServer(bool keepalive
-               ,sylar::EventPoller* worker
                ,sylar::EventPoller* io_worker
                ,sylar::EventPoller* accept_worker)
-    :TcpServer(worker, io_worker, accept_worker)
+    :TcpServer(io_worker, accept_worker)
     ,m_isKeepalive(keepalive) {
     m_dispatch.reset(new ServletDispatch);
 
@@ -27,16 +26,20 @@ void HttpServer::setName(const std::string& v) {
 }
 
 void HttpServer::handleClient(Socket::Ptr client) {
+    // Log_Debug(g_logger) << "HttpServer handeling client:" << client->toString();
     HttpSession::ptr session(new HttpSession(client));
     do {
-        // std::cout << "HttpServer::handleClient\n";
         auto req = session->recvRequest();
         if(!req) {
-            // Log_Debug(g_logger) << "recv http request fail, errno="
-            //     << errno << " errstr=" << strerror(errno)
-            //     << " cliet:" << *client << " keep_alive=" << m_isKeepalive;
+            Log_Debug(g_logger) << "recv http request fail, errno="
+                << errno << " errstr=" << strerror(errno)
+                << " cliet:" << client->toString() << " keep_alive=" << m_isKeepalive;
             break;
         }
+        // else {
+        //     Log_Debug(g_logger) << "recv http request successeed, handeled client:"
+        //         << client->toString() << " keep_alive=" << m_isKeepalive;
+        // }
 
         HttpResponse::ptr rsp(new HttpResponse(req->getVersion()
                             ,req->isClose() || !m_isKeepalive));
@@ -45,11 +48,13 @@ void HttpServer::handleClient(Socket::Ptr client) {
         session->sendResponse(rsp);
 
         if(!m_isKeepalive || req->isClose()) {
+            // Log_Debug(g_logger) << "Httpserver handler break";
             break;
         }
     } while(true);
     session->close();
 }
+
 }
 
 }

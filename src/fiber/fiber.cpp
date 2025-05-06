@@ -55,8 +55,8 @@ Fiber::Fiber(FuncType cb, size_t stacksize, bool use_caller) {
     m_id = ++s_fiber_id;
     ++s_fiber_count;
 
-    Log_Debug(g_logger) << "Fiber::Fiber() " << m_id;
-    Log_Debug(g_logger) << "Fiber Count " << s_fiber_count;
+    // Log_Debug(g_logger) << "Fiber::Fiber() " << m_id;
+    // Log_Debug(g_logger) << "Fiber Count " << s_fiber_count;
 
     m_cb = std::forward<FuncType>(cb);
 
@@ -80,7 +80,7 @@ Fiber::Fiber(FuncType cb, size_t stacksize, bool use_caller) {
 }
 
 Fiber::~Fiber() {
-    Log_Debug(g_logger) << "Fiber::~Fiber " << m_id;
+    // Log_Debug(g_logger) << "Fiber::~Fiber " << m_id;
     --s_fiber_count;
     if(m_stack) {
         Assert((m_state == INIT || m_state == TERM));
@@ -119,7 +119,6 @@ Fiber::Ptr Fiber::getThis() {
     if(t_fiber) {
         return t_fiber->shared_from_this();
     }
-    // 没创建主协程
     Fiber::Ptr tmp(new Fiber);
     Assert((t_fiber == tmp.get()));
     t_threadFiber = tmp;
@@ -163,23 +162,6 @@ void Fiber::swapIn() {
     }
 }
 
-// void Fiber::swapOut() {
-//     if(t_fiber != Scheduler::getMainFiber()) {
-//         Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
-//         setThis(Scheduler::getMainFiber());
-//         if(swapcontext(&m_ctx, &Scheduler::getMainFiber()->m_ctx)) {
-//             Assert_Commit(false, "Fiber swap failed");
-//         }
-//     }
-//     else {
-//         Log_Debug(g_logger) << "Fiber: " << m_id << " back " << t_threadFiber->m_id;
-//         setThis(t_threadFiber.get());
-//         if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
-//             Assert_Commit(false, "swapcontext");
-//         }
-//     }
-// }
-
 void Fiber::swapOut() {
 #ifdef FIBER_SWAP_DEBUG
     Log_Debug(g_logger) << "Fiber: " << m_id << " swapped out to " << Scheduler::getMainFiber()->m_id;
@@ -220,6 +202,7 @@ void Fiber::MainFunc() {
     Assert(cur);
 
     try {
+        // Log_Debug(g_logger) << "Fiber running cb";
         cur->m_cb();
         cur->m_cb = nullptr;
         cur->m_state = TERM;

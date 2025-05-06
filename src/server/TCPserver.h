@@ -16,8 +16,7 @@ class TcpServer : public std::enable_shared_from_this<TcpServer>, noncopyable{
 public:
     using Ptr = std::shared_ptr<TcpServer>;
 
-    TcpServer(EventPoller* worker = EventPoller::getThis(),
-            EventPoller* listener = EventPoller::getThis(),
+    TcpServer(EventPoller* listener = EventPoller::getThis(),
             EventPoller* accept_worker = EventPoller::getThis());
 
     virtual ~TcpServer();

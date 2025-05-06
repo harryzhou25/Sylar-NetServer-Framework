@@ -131,7 +131,7 @@ void Scheduler::start() {
     if(m_running) {
         return;
     }
-    Log_Info(g_logger) << "Scheduler::start";
+    // Log_Info(g_logger) << "Scheduler::start";
     m_running = true;
     {
         std::unique_lock<std::shared_mutex> lock(m_threads_mtx);
@@ -144,13 +144,13 @@ void Scheduler::start() {
 }
 
 void Scheduler::stop() {
-    Log_Info(g_logger) << "scheduler stop " << getFiberId();
+    // Log_Info(g_logger) << "scheduler stop " << getFiberId();
     m_autoStop = true;
     if(m_mainFiber 
         && (m_mainFiber->getState() == Fiber::TERM 
             || m_mainFiber->getState() == Fiber::INIT)
         && m_threadNum == 0) {
-        Log_Info(g_logger) << this << " stopped";
+        // Log_Info(g_logger) << this << " stopped";
         m_running = false;
 
         if(stopping()) {
@@ -206,6 +206,7 @@ void Scheduler::run() {
         {
             std::lock_guard<std::mutex> lock(m_fibers_mtx);
             auto it = m_fibers.begin();
+            bool flag = false;
             while(it != m_fibers.end()) {
                 if(it->thread_id != -1 && it->thread_id != getThreadId()) {
                     needTickle = true;
@@ -216,15 +217,20 @@ void Scheduler::run() {
                 Assert((it->fiber || it->cb));
                 if(it->fiber && it->fiber->getState() == Fiber::EXEC) {
                     ++it;
+                    // Log_Debug(g_logger) << "Found task for other thread";
                     continue;
                 }
 
                 isActive = true;
 
                 ft = *it;
+                flag = true;
                 m_fibers.erase(it);
                 ++m_activeThreadNum;
                 break;
+            }
+            if(flag) {
+                // Log_Debug(g_logger) << "Get Task";
             }
             needTickle |= (it == m_fibers.end());
         }
@@ -235,7 +241,9 @@ void Scheduler::run() {
 
         if(ft.fiber && ft.fiber->getState() != Fiber::TERM 
                     && ft.fiber->getState() != Fiber::EXCEPT) {
+            // Log_Debug(g_logger) << "Swapping in to task fiber";
             ft.fiber->swapIn();
+            // Log_Debug(g_logger) << "Swapped back to scheduler from task fiber";
             --m_activeThreadNum;
             if(ft.fiber->getState() == Fiber::READY) {
                 schedule(ft.fiber, ft.thread_id);
@@ -255,7 +263,9 @@ void Scheduler::run() {
             }
             int _thread = ft.thread_id;
             ft.reset();
+            // Log_Debug(g_logger) << "Swapping in to task fiber";
             cb_fiber->swapIn();
+            // Log_Debug(g_logger) << "Swapped back to scheduler from task fiber";
             --m_activeThreadNum;
             if(cb_fiber->getState() == Fiber::READY) {
                 schedule(cb_fiber, _thread);
@@ -269,7 +279,7 @@ void Scheduler::run() {
                 }
                 else {
                     cb_fiber->reset(nullptr);
-                    Log_Debug(g_logger) << "scheduler cb terminated " << m_fibers.size();
+                    // Log_Debug(g_logger) << "scheduler cb terminated " << m_fibers.size();
                 }
             }
         }
@@ -285,7 +295,9 @@ void Scheduler::run() {
 
             ++m_idelThreadNum;
             // startSleep();
+            // Log_Debug(g_logger) << "Scheduler going to idle";
             idle_fiber->swapIn();
+            // Log_Debug(g_logger) << "Scheduler finished idle";
             // startWork();
             --m_idelThreadNum;
             if(idle_fiber->getState() != Fiber::TERM 

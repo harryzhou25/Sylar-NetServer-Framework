@@ -70,8 +70,9 @@ bool EventPoller::stopping() {
 }
 
 void EventPoller::contextResize(size_t size) {
-    // writeLock(m_mtx);
+    // Log_Debug(g_logger) << "EventPoller::contextResize";
     std::unique_lock<MutexType> lock(m_mtx);
+    // Log_Debug(g_logger) << "EventPoller::contextResize get unique lock";
     if(size <= m_fdContexts.size())  {
         return;
     }
@@ -82,6 +83,7 @@ void EventPoller::contextResize(size_t size) {
             m_fdContexts[i]->fd = i;
         }
     }
+    // Log_Debug(g_logger) << "EventPoller::contextResize released unique lock";
 }
 
 void EventPoller::FdContext::triggerEvent(Event event) {
@@ -118,16 +120,22 @@ void EventPoller::FdContext::resetContext(EventContext& ctx) {
 
 int EventPoller::addEvent(int fd, Event event, std::function<void()> cb) {
     FdContext* fd_ctx = nullptr;
-    std::shared_lock<MutexType> readlock(m_mtx);
-    if((int)m_fdContexts.size() > fd) {
-        fd_ctx = m_fdContexts[fd];
-        readlock.unlock();
-    } else {
-        readlock.unlock();
-        std::unique_lock<MutexType> writelock(m_mtx);
-        contextResize(fd * 1.5);
-        fd_ctx = m_fdContexts[fd];
+    // Log_Debug(g_logger) << "EventPoller::addEvent";
+    bool resize_flag = false;
+    {
+        std::shared_lock<MutexType> readlock(m_mtx);
+        // Log_Debug(g_logger) << "EventPoller::addEvent get readlock";
+        if((int)m_fdContexts.size() < fd) {
+            resize_flag = true;
+        }
     }
+    // Log_Debug(g_logger) << "EventPoller::addEvent released readlock";
+
+    if(resize_flag) {
+        contextResize(fd * 1.5);
+    }
+
+    fd_ctx = m_fdContexts[fd];
 
     std::lock_guard<FdContext::MutexType> fd_lock(fd_ctx->mutex);
     if(fd_ctx->events & event) {
@@ -169,13 +177,14 @@ int EventPoller::addEvent(int fd, Event event, std::function<void()> cb) {
 }
 
 bool EventPoller::delEvent(int fd, Event event) {
-    //readLock(m_mtx);
-    std::shared_lock<MutexType> lock(m_mtx);
-    if((int)m_fdContexts.size() <= fd) {
-        return false;
+    FdContext* fd_ctx = nullptr;
+    {   
+        std::shared_lock<MutexType> lock(m_mtx);
+        if((int)m_fdContexts.size() <= fd) {
+            return false;
+        }
+        fd_ctx = m_fdContexts[fd];
     }
-    FdContext* fd_ctx = m_fdContexts[fd];
-    m_mtx.unlock_shared();
     
     std::lock_guard<std::mutex> lokc(fd_ctx->mutex);
     if(!(fd_ctx->events & event)) {
@@ -204,13 +213,15 @@ bool EventPoller::delEvent(int fd, Event event) {
 
 bool EventPoller::cancelEvent(int fd, Event event) {
     // readLock(m_mtx);
-    std::shared_lock<MutexType> lock(m_mtx);
-    if((int)m_fdContexts.size() <= fd) {
-        return false;
+    FdContext* fd_ctx = nullptr;
+    {
+        std::shared_lock<MutexType> lock(m_mtx);
+        if((int)m_fdContexts.size() <= fd) {
+            return false;
+        }
+        fd_ctx = m_fdContexts[fd];
     }
-    FdContext* fd_ctx = m_fdContexts[fd];
     // readUnLock(m_mtx);
-    m_mtx.unlock_shared();
     
     std::lock_guard<std::mutex> lokc(fd_ctx->mutex);
     if(!(fd_ctx->events & event)) {
@@ -237,14 +248,14 @@ bool EventPoller::cancelEvent(int fd, Event event) {
 }
 
 bool EventPoller::cancelAll(int fd) {
-    //readLock(m_mtx);
-    std::shared_lock<MutexType> lock(m_mtx);
-    if((int)m_fdContexts.size() <= fd) {
-        return false;
+    FdContext* fd_ctx = nullptr;
+    {
+        std::shared_lock<MutexType> lock(m_mtx);
+        if((int)m_fdContexts.size() <= fd) {
+            return false;
+        }
+        fd_ctx = m_fdContexts[fd];
     }
-    FdContext* fd_ctx = m_fdContexts[fd];
-    // readUnLock(m_mtx);
-    m_mtx.unlock_shared();
     
     std::lock_guard<std::mutex> lokc(fd_ctx->mutex);
     if(!(fd_ctx->events)) {

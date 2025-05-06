@@ -32,7 +32,6 @@ public:
      * @param[in] accept_worker 接收连接调度器
      */
     HttpServer(bool keepalive = false
-               ,sylar::EventPoller* worker = sylar::EventPoller::getThis()
                ,sylar::EventPoller* io_worker = sylar::EventPoller::getThis()
                ,sylar::EventPoller* accept_worker = sylar::EventPoller::getThis());
 

@@ -5,8 +5,8 @@
 
 sylar::EventPoller::Ptr worker;
 void run() {
-    //sylar::http::HttpServer::ptr server(new sylar::http::HttpServer(true, worker.get(), sylar::IOManager::GetThis()));
-    sylar::http::HttpServer::ptr server(new sylar::http::HttpServer);
+    sylar::http::HttpServer::ptr server(new sylar::http::HttpServer(false, worker.get(), sylar::EventPoller::getThis()));
+    // sylar::http::HttpServer::ptr server(new sylar::http::HttpServer);
     sylar::Address::Ptr addr = sylar::Address::LookupAnyIPAddress("0.0.0.0:8020");
     while(!server->bind(addr)) {
         sleep(2);
@@ -16,6 +16,7 @@ void run() {
                 ,sylar::http::HttpResponse::ptr rsp
                 ,sylar::http::HttpSession::ptr session) {
             rsp->setBody(req->toString());
+            // std::cout << rsp->toString() << '\n';
             return 0;
     });
 
@@ -51,7 +52,7 @@ void run() {
 
 int main(int argc, char** argv) {
     sylar::EventPoller iom(1, true, "main");
-    worker.reset(new sylar::EventPoller(3, false, "worker"));
+    worker.reset(new sylar::EventPoller(6, false, "worker"));
     iom.schedule(run);
     return 0;
 }
