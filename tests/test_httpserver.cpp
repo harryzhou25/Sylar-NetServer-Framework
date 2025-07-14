@@ -1,7 +1,6 @@
 #include "http/http_server.h"
-
+#include<json/json.h>
 #define XX(...) #__VA_ARGS__
-
 
 sylar::EventPoller::Ptr worker;
 void run() {
@@ -20,12 +19,12 @@ void run() {
             return 0;
     });
 
-    sd->addGlobServlet("/sylar/*", [](sylar::http::HttpRequest::ptr req
-                ,sylar::http::HttpResponse::ptr rsp
-                ,sylar::http::HttpSession::ptr session) {
-            rsp->setBody("Glob:\r\n" + req->toString());
-            return 0;
-    });
+    // sd->addGlobServlet("/sylar/*", [](sylar::http::HttpRequest::ptr req
+    //             ,sylar::http::HttpResponse::ptr rsp
+    //             ,sylar::http::HttpSession::ptr session) {
+    //         rsp->setBody("Glob:\r\n" + req->toString());
+    //         return 0;
+    // });
 
     sd->addGlobServlet("/sylarx/*", [](sylar::http::HttpRequest::ptr req
                 ,sylar::http::HttpResponse::ptr rsp
@@ -52,7 +51,7 @@ void run() {
 
 int main(int argc, char** argv) {
     sylar::EventPoller iom(1, true, "main");
-    worker.reset(new sylar::EventPoller(6, false, "worker"));
+    worker.reset(new sylar::EventPoller(14, false, "worker"));
     iom.schedule(run);
     return 0;
 }
