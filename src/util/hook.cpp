@@ -82,7 +82,6 @@ template<typename OriginFun, typename... Args>
 static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
         uint32_t event, int timeout_so, Args&&... args) {
     if(!sylar::is_hook_enable()) {
-        Log_Debug(g_logger) << "hook not enabled";
         return fun(fd, std::forward<Args>(args)...);
     }
 
@@ -105,7 +104,7 @@ static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
 
 retry:
     ssize_t n = fun(fd, std::forward<Args>(args)...);
-    Log_Debug(g_logger) << "hook do io: " << hook_fun_name << ": " << n << " " << to;
+    // Log_Debug(g_logger) << "hook do io: " << hook_fun_name << ": " << n << " " << to;
     while(n == -1 && errno == EINTR) {
         n = fun(fd, std::forward<Args>(args)...);
     }
@@ -133,7 +132,8 @@ retry:
                 timer->cancel();
             }
             return -1;
-        } else {
+        } 
+        else {
             sylar::Fiber::yieldToHold();
             if(timer) {
                 timer->cancel();

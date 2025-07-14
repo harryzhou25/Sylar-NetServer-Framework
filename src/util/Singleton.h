@@ -6,7 +6,7 @@
 #include <iostream>
 
 namespace sylar {
-    
+
 template<class T>
 class Singleton {
 private:

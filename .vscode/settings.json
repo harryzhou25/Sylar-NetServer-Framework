@@ -76,6 +76,12 @@
         "cassert": "cpp",
         "cerrno": "cpp",
         "cfloat": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "*.inc": "cpp",
+        "typeindex": "cpp",
+        "bitset": "cpp",
+        "optional": "cpp",
+        "variant": "cpp",
+        "filesystem": "cpp"
     }
 }

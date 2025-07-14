@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package sylar_rpc;
+
+import "header.proto";
+
+message Echo_message {
+    Header header = 1;
+    bytes echo_message = 2;
+}

@@ -58,9 +58,9 @@ Socket::Socket(int family, int type, int protocol):
 
 Socket::~Socket() {
     close();
-    if(m_remoteAddress && m_localAddress) {
-        Log_Debug(g_logger) << "~Socket" << m_localAddress->toString() << ' ' << m_remoteAddress->toString();
-    }
+    // if(m_remoteAddress && m_localAddress) {
+        // Log_Debug(g_logger) << "~Socket" << m_localAddress->toString() << ' ' << m_remoteAddress->toString();
+    // }
 }
 
 int64_t Socket::getSendTimeout() {
@@ -270,7 +270,18 @@ bool Socket::close() {
 
 int Socket::send(const void* buffer, size_t length, int flags) {
     if(isConnected()) {
-        return ::send(m_sock, buffer, length, flags);
+        ssize_t n = ::send(m_sock, buffer, length, flags);
+        if (n < 0) {
+            if (errno == EPIPE) {
+                Log_Error(g_logger) << "catched EPIPE error: "
+                << this->toString();
+                close();
+            }
+            return -1;
+        }
+        else {
+            return n;
+        }
     }
     return -1;
 }
